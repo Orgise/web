@@ -1,0 +1,21 @@
+body {
+	background-image: url("screens/background.png");
+	overflow: hidden;
+}
+html, body, canvas {
+	margin:0;
+	padding: 0;
+}
+canvas, svg {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+svg {
+	overflow: hidden;
+}
+
+#root {
+	cursor: pointer;
+}
