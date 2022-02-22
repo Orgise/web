@@ -1,0 +1,299 @@
+body {
+	background: url(https://josetxu.com/demos/img/online-guitar-tuner/bg.jpg)repeat center center #000;
+	font-family: Arial, Helvetica, San-serif;
+	margin:0;
+	outline: none;
+}
+header {
+    height: 15vh;
+    color: #151515;
+    text-align: center;
+    margin: 0;
+    padding: 0.5vh;
+    box-shadow: 0 0 25px 5px #000;
+	box-sizing: border-box;
+    border-bottom: 1px solid #111;
+	background:url(https://josetxu.com/demos/img/online-guitar-tuner/metal.jpg) repeat-x center center / contain transparent;
+	position: relative;
+}
+h1 {
+    margin: 0.5vh 0;
+    font-size: 2em;
+    padding: 3vh 0;
+    background-color: #333333;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 3px;  
+}
+h1#title.imgTitle{
+	text-shadow: 0 0 25px rgba(20, 139, 255, 0.8), 0 0 15px rgba(30, 144, 255, 0.54);
+    background-color: rgba(77, 134, 189, 0.8);
+}
+a.josetxu {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    text-decoration: none;
+    font-size: 10px;
+    color: #333;
+    width: 33%;
+    opacity: 0.5;
+    margin: 0 33%;
+}
+a.josetxu:hover {
+	opacity:1;
+}
+section {
+	margin: 0 auto;
+    float: none;
+    height: 70vh;
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/pastilla.png) no-repeat center 50% transparent;
+    width: 360px;
+    box-sizing: border-box;
+}
+button.string {
+	border: none;
+    float: left;
+    width: 40px;
+    margin: 0 7px 0 7px;
+    height: inherit;
+    outline: none;
+    cursor: pointer;
+    padding: 0 !important; 
+	z-index: 1;
+}
+
+button.string:first-child {
+    margin-left: 26px !important;
+}
+
+button#s6, button#s4, button#s4, button#s3, button#s1 {
+    margin-left: 6px;
+}
+button#s2 {
+    margin-left: 8px;
+}
+
+#guitarBody button {
+	background-repeat:repeat-y ;
+	background-position:center center;
+	background-color:transparent;
+}
+
+#s1 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/1.png); /*1.png*/
+}
+#s2 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/2.png);
+}
+#s3 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/3.png);
+}
+#s4 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/4.png);
+}
+#s5 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/5.png);
+}
+#s6 {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/6.png);
+}
+
+#s1:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo1.png), url(https://josetxu.com/demos/img/online-guitar-tuner/1.png); /*brillo1|1.png*/
+}
+#s2:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo1.png), url(https://josetxu.com/demos/img/online-guitar-tuner/2.png);
+}
+#s3:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo2.png), url(https://josetxu.com/demos/img/online-guitar-tuner/3.png);
+}
+#s4:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo2.png), url(https://josetxu.com/demos/img/online-guitar-tuner/4.png);
+}
+#s5:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo3.png), url(https://josetxu.com/demos/img/online-guitar-tuner/5.png);
+}
+#s6:hover {
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/brillo3.png), url(https://josetxu.com/demos/img/online-guitar-tuner/6.png);
+}
+
+#guitarBody button.string.playingSound {
+	background-repeat:repeat-y, repeat-y, no-repeat !important;
+	background-position:center center, center center, center 50% !important;
+	background-color:transparent;
+}
+#s1.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/2.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo1.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png); /*1.gif|luz.png*/
+}
+#s2.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/3.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo1.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png);
+}
+#s3.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/3.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo1.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png);
+}
+#s4.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/4.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo2.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png);
+}
+#s5.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/5.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo2.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png);
+}
+#s6.string.playingSound {	
+	background-image: url(https://josetxu.com/demos/img/online-guitar-tuner/6.gif), url(https://josetxu.com/demos/img/online-guitar-tuner/brillo3.png), url(https://josetxu.com/demos/img/online-guitar-tuner/luz.png);
+}
+
+
+
+/******** CONTROLS *******/
+footer {
+    margin: 0;
+    background-color: hsl(0,0%,90%);
+    height: 15vh;
+	text-align:center;
+	bottom: 0;
+    position: relative;
+    width: 100%;
+	background:url(https://josetxu.com/demos/img/online-guitar-tuner/metal.jpg) repeat-x center center /contain transparent;
+	box-shadow: 0 0 25px 5px #000;
+}
+footer button {
+    font-size: 0;
+    height: 9vh;
+    width: 140px;
+    margin: 3vh 1vh 0;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: transparent;
+    cursor: pointer;
+	text-align: center;
+}
+/******* buttons ******/
+#btnStop {
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/switch-off-gray.png) no-repeat center right /contain;
+	text-align: left;
+}
+#btnHold {
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/switch-off-gray.png) no-repeat center left /contain;
+	text-align: right;
+}
+#btnHold:after , #btnStop:before {
+    content: "HOLD";
+    font-size: 18px;
+    background-color: #333333;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 3px;
+}
+#btnStop:before {
+    content: "STOP";
+}
+#btnHold.active:after, #btnHold:active:after {
+	text-shadow: 0px 1px 3px rgba(255,255,255,0.3), 0 0 15px #59a0f4, 0 0 20px #59a0f4, 0 0 25px #59a0f4, 0 0 30px #59a0f4, 0 0 35px #59a0f4;
+	color: #1e90ff;
+}
+#btnStop:active:before {
+	text-shadow: rgba(255,255,255,0.5) 0px 1px 3px, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000;
+	color: #ff0000;
+}
+#btnStop:active {
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/switch-stop.png) no-repeat center right /contain;
+}
+#btnHold.active, #btnHold:active {
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/switch-hold-on.png) no-repeat center left /contain;
+}
+/****** pick *****/
+#btnPick {
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/pick-off.png) no-repeat center center /contain;
+	width: 100px;
+	font-size: 22px;
+}
+#btnPick.active{    
+    background: url(https://josetxu.com/demos/img/online-guitar-tuner/pick-on.png) no-repeat center center /contain;
+}
+section.pickActive , section.pickActive .string{
+	cursor: url(https://josetxu.com/demos/img/online-guitar-tuner/pua.png)10 60, auto;
+}
+
+/* NOTES */
+.notes {
+    position: absolute;
+    width: 330px;
+    top: 22%;
+    z-index: -1;
+	margin-left: 20px;
+}
+.notes span {
+    width: 50px;
+    display: inline-block;
+    color: #171717;
+    text-align: center;
+    font-size: 50px;
+    z-index: 0;
+    text-shadow: -1px -1px 1px #000000, 0px 0px 1px #6f6f6f;
+}
+.notes .lightOn, .notes .lightOn span {
+	color: #71abeb;
+    text-shadow: 0px 0px 15px #3779c5, 0px 0px 25px #3779c5, 0px 0px 35px #71abeb, -1px -1px 1px #000000, 0px 0px 1px #6f6f6f;
+	transition: all 0.2s ease;
+}
+.notas {
+    font-size: 22px !important;
+	margin-top: 42vh;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 380px){
+	section {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 359px){
+	section {
+		margin-left: 0px;
+		background-position-x: -26px;
+	}
+	
+}
+
+@media only screen and (max-width: 320px){
+	section {
+		width: 320px;
+		padding-left: 5px;
+		box-sizing: border-box;
+		margin-right: 0;
+		background-position-x: -21px;
+	}
+	.notes {
+		width: 320px;
+		margin-left: 0px;
+	}
+	.notes span {
+		width: 48px;
+	}
+	button.string:first-child {
+		margin-left: 0 !important;
+	}
+	button.string:last-child {
+		margin-right: 0!important;
+	}
+}
+
+/* Hide Pick if we have an inaccurate pointing device */
+@media (pointer:coarse) {
+	#btnPick {
+		display:none !important;
+	}
+}
+
+/* Hide Pick if orientation is portrait (vertical)*/
+@media only screen and  (orientation : portrait) {
+    #btnPick {
+		display:none !important;
+	}
+}

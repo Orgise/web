@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Online Guitar Tuner </title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<header>
+		<h1 id="title">Online Guitar Tuner</h1>
+		<a class="josetxu" href="https://josetxu.com/" target="_blank">josetxu.com</a>
+	</header>
+    <section id="guitarBody">
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s6"></button>
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s5"></button>
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s4"></button>
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s3"></button>
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s2"></button>
+		<button onmouseover="pickString(this.id)" onclick="clickString(this.id)" class="string" id="s1"></button>
+		<div class="notes">
+			<span class="lightOff" id="s6Note">E<span class="notas">MI</span></span>
+			<span class="lightOff" id="s5Note">A<span class="notas">LA</span></span>
+			<span class="lightOff" id="s4Note">D<span class="notas">RE</span></span>
+			<span class="lightOff" id="s3Note">G<span class="notas">SOL</span></span>
+			<span class="lightOff" id="s2Note">B<span class="notas">SI</span></span>
+			<span class="lightOff" id="s1Note">E<span class="notas">MI</span></span>
+		</div>
+	</section>
+	<footer>
+		<button onclick="stopStrings()" class="inactive" id="btnStop">STOP</button>
+		<button onclick="usePick()" class="inactive" id="btnPick">PICK</button>
+		<button onclick="holdSound()" class="inactive" id="btnHold">HOLD</button>
+	</footer>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
