@@ -1,0 +1,179 @@
+body {
+  background: #F73946;
+  background: -webkit-linear-gradient(left top, #F73946, #FF3875);
+  background: -o-linear-gradient(bottom right, #F73946, #FF3875);
+  background: -moz-linear-gradient(bottom right, #F73946, #FF3875);
+  background: linear-gradient(to bottom right, #F73946, #FF3875);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.bmi-calculator {
+  margin: 75px auto;
+  width: 100%;
+  max-width: 500px;
+  display: table;
+  background: #2B2D41;
+  color: #4E5279;
+  border-radius: 5px;
+  box-shadow: 0px 2px 45px 8px #C32B4A;
+}
+
+.result {
+  display: table;
+  width: 100%;
+}
+
+.result-text {
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 20px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #4CA456;
+  background: -webkit-linear-gradient(left top, #4FD24D, #4CA456);
+  background: -o-linear-gradient(bottom right, #4FD24D, #4CA456);
+  background: -moz-linear-gradient(bottom right, #4FD24D, #4CA456);
+  background: linear-gradient(to bottom right, #4FD24D, #4CA456);
+  transition: all 0.4s ease-in;
+  -webkit-transition-delay: 2s;
+  /* Safari */
+  transition-delay: 2s;
+  box-shadow: 0px 5px 25px 2px #333;
+}
+.result-text h1 {
+  color: #fff;
+  font-size: 3em;
+  margin: 8px 0;
+  padding: 0;
+}
+.result-text small {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #fff;
+}
+
+.calculator {
+  padding: 20px;
+}
+
+.calculator-title {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: 15px;
+}
+
+.calculator-hr {
+  margin-top: -10px;
+  width: 80%;
+  border: 1.2px solid #F73946;
+  border-radius: 15px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 75%;
+  height: 4px;
+  background: #27283A;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: -15px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #F73946;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #F73946;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #F73946;
+  cursor: pointer;
+}
+
+.field-text {
+  font-size: 2em;
+  color: #F73946;
+  font-weight: 700;
+  padding: 8px;
+  display: inline-block;
+}
+
+.label-height:after {
+  content: " cm";
+  font-size: 0.5em;
+  color: #4E5279;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -12px;
+}
+
+.label-weight:after {
+  content: " kg";
+  font-size: 0.5em;
+  color: #4E5279;
+  font-weight: 400;
+}
+
+.submit {
+  text-align: center;
+}
+
+#submit {
+  background: #F73946;
+  background: -webkit-linear-gradient(left top, #F73946, #FF3875);
+  background: -o-linear-gradient(bottom right, #F73946, #FF3875);
+  background: -moz-linear-gradient(bottom right, #F73946, #FF3875);
+  background: linear-gradient(to bottom right, #F73946, #FF3875);
+  border: none;
+  border-radius: 30px;
+  padding: 4px 25px;
+  color: #2B2D41;
+  font-size: 1.5em;
+  font-weight: 100;
+  transition: all 0.3s ease-in;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+#submit:hover, #submit:focus {
+  color: #FFF;
+  outline: none;
+}

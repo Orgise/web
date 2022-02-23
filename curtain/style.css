@@ -8,48 +8,14 @@
     user-select: none;
 }
 body {
-    background: #F2F2F2;
+  background: #292B35;
 }
+
 #c {
     display: block;
     margin: 20px auto 0;
 }
-#info {
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    width: auto;
-    max-width: 420px;
-    height: auto;
-    background: #f8f8f8;
-    border-bottom-right-radius: 10px;
-    border:1px solid #ccc;
-}
-#top {
-    background: #fff;
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-bottom: 1px solid #eee;
-}
-p {
-    font-family: Arial, sans-serif;
-    color: #666;
-    text-align: justify;
-    font-size: 16px;
-    margin: 0px 16px;
-}
-#github, #twitter {
-  color:#3377ee;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  margin: 0 auto;
-  text-align: center;
-  text-decoration:none;
-}
-.center {
-  text-align: center;
-}
+
 #net {
   text-align:center;
   white-space:nowrap;
@@ -69,26 +35,7 @@ p {
   text-align: center;
   text-decoration:none;
 }
-a {
-    font-family: sans-serif;
-    color: #444;
-    text-decoration: none;
-    font-size: 20px;
-}
-#site {
-    float: left;
-    margin: 10px;
-    color: #ff9900;
-  border-bottom: 1px dashed #ccc;
-  padding-bottom:3px
-}
-#site:hover {
-    color: #ffaa11;
-}
-#close {
-    float: right;
-    margin: 10px;
-}
+
 #p {
     font-family: Verdana, sans-serif;
     position: absolute;

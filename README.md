@@ -1,13 +1,14 @@
 # Compilation of useful and curious projects
 
+# Utilities
+[Body Mass Index Calculator](https://orgise.github.io/web/imc)
+
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
 [Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
 [5-in-a-row](https://orgise.github.io/web/5-in-a-row)
-
-[Shake the Curtain](https://orgise.github.io/web/curtain)
 
 [Memory Card Game](https://orgise.github.io/web/memory)
 
@@ -44,3 +45,5 @@
 
 ## Impress your friends
 [Gravity](https://orgise.github.io/web/gravity)
+
+[Shake the Curtain](https://orgise.github.io/web/curtain)
