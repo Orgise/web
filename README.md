@@ -1,7 +1,9 @@
 # Compilation of useful and curious projects
 
-# Utilities
-[Body Mass Index Calculator](https://orgise.github.io/web/imc)
+## Utilities
+[Body Mass Index Calculator](https://orgise.github.io/web/bmi)
+
+[Password Generator](https://orgise.github.io/web/pwd-gen)
 
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)

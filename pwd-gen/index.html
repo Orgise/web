@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<main>
+    <section class="tool" id="password-generator">
+        <div class="header">Password Generator</div>
+
+        <form>
+            <div class="content">
+
+                <div class="input-row">
+                    <label for="template">Security<br>Template</label>
+                    <select class="template" name="template">
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+
+                <div class="input-row">
+                    <label for="pass-length">Length<br>(4&ndash;256)</label>
+                    <input class="pass-length" type="number" name="pass-length" value="16" />
+                </div>
+
+                <div class="input-group">
+                    <div class="input-row">
+                        <label>Valid<br>Characters</label>
+                        <label class="inline" style="text-transform: none;"><input type="checkbox" class="alpha-lower" name="alpha-lower" checked>a&ndash;z</label><!--
+                     --><label class="inline"><input type="checkbox" class="alpha-upper" name="alpha-upper" checked>A&ndash;Z</label><!--
+                     --><label class="inline"><input type="checkbox" class="numbers" name="numbers" checked>0&ndash;9</label>
+                    </div>
+                    <div class="input-row">
+                        <label class="inline"><input type="checkbox" class="symbols" name="symbols">Symbols</label><!--
+                     --><label class="inline"><input type="checkbox" class="spaces" name="spaces">Spaces</label><!--
+                     --><label class="inline"><input type="checkbox" class="similar" name="similar" checked>Similar</label>
+                    </div>
+                </div>
+
+                <textarea name="password" class="password-output" resizeable=false readonly></textarea>
+            </div>
+
+            <div class="actions">
+                <button class="generate action" type="submit">Generate</button>
+            </div>
+
+            <div class="snackbar">
+                <div class="error message"></div>
+            </div>
+        </form>
+    </section>
+</main>
+  <script src='jquery.min.js'></script>
+  <script src="./script.js"></script>
+</body>
+</html>

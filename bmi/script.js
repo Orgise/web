@@ -45,13 +45,27 @@ $('#submit').click(function(){
     $('.result-text').css('background','-moz-linear-gradient(bottom right, #EF7532, #DC3A26)');
     $('.result-text').css('background','linear-gradient(to bottom right, #EF7532, #DC3A26)');
     $('#bmid').html("Overweight");
-  } else {
-    //Obese
+  } else if ((30 <= bmi) && (bmi <= 34.9)) {
+    //Moderate obesity
     $('.result-text').css('background','-webkit-linear-gradient(left top, #F73946, #FF3875)');
     $('.result-text').css('background','-o-linear-gradient(bottom right, #F73946, #FF3875)');
     $('.result-text').css('background','-moz-linear-gradient(bottom right, #F73946, #FF3875)');
     $('.result-text').css('background','linear-gradient(to bottom right, #F73946, #FF3875)');
-     $('#bmid').html("Obese");
+    $('#bmid').html("Moderate obesity");
+  } else if ((35 <= bmi) && (bmi <= 39.9)) {
+    //Severe obesity
+    $('.result-text').css('background','-webkit-linear-gradient(left top, #F73946, #FF3875)');
+    $('.result-text').css('background','-o-linear-gradient(bottom right, #F73946, #FF3875)');
+    $('.result-text').css('background','-moz-linear-gradient(bottom right, #F73946, #FF3875)');
+    $('.result-text').css('background','linear-gradient(to bottom right, #F73946, #FF3875)');
+    $('#bmid').html("Severe obesity");
+  } else {
+    //Morbid obesity
+    $('.result-text').css('background','-webkit-linear-gradient(left top, #F73946, #FF3875)');
+    $('.result-text').css('background','-o-linear-gradient(bottom right, #F73946, #FF3875)');
+    $('.result-text').css('background','-moz-linear-gradient(bottom right, #F73946, #FF3875)');
+    $('.result-text').css('background','linear-gradient(to bottom right, #F73946, #FF3875)');
+    $('#bmid').html("Morbid obesity");
   }
   console.log(bmi);
 });
