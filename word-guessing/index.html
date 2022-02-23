@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Word Guessing Game</title>
+  <meta name="viewport" content="width=device-width"><link rel="author" href="https://google.com/+natewiley">
+  <link rel="stylesheet" href="reset.min.css">
+<link rel='stylesheet' href='jquery-ui.css'><link rel="stylesheet" href="./style.css">
+<script src="prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="hangman">
+  <div class="guess"></div>
+  <form class="guessForm">
+  <input type="text" class="guessLetter" maxlength="1"  placeholder="Enter a letter . . . &#x23ce;"/> <button type="submit" class="guessButton">Guess</button>
+  </form>  
+  <p>Hint: words are web related. <br/><a href="https://codepen.io/natewiley">Follow Me on Codepen</a></p>
+  <div class="wrong">
+    <div class="wrongLetters"></div>
+  </div>
+  <div class="message">
+    <h1 class="title"></h1>
+    <p class="text"></p>
+    <button class="restart button">Play Again?</button>
+    
+  </div>
+</div>
+<!-- partial -->
+  <script src='jquery.min.js'></script>
+<script src='jquery-ui.min.js'></script>
+<script src="./script.js"></script>
+
+</body>
+</html>
