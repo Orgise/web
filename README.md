@@ -1,15 +1,11 @@
 # Compilation of useful and curious projects
 
-## Games
+## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
 [Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
-[4-in-a-row](https://orgise.github.io/web/4-in-a-row)
-
 [5-in-a-row](https://orgise.github.io/web/5-in-a-row)
-
-[Co-Op Chess](https://orgise.github.io/web/chess)
 
 [Shake the Curtain](https://orgise.github.io/web/curtain)
 
@@ -33,10 +29,16 @@
 
 [Word Guessing](https://orgise.github.io/web/word-guessing)
 
-## Music
-[Piano 3D](https://orgise.github.io/web/piano)
+## Co-Op Games
 
-[Online Piano](https://orgise.github.io/web/piano2)
+[4-in-a-row](https://orgise.github.io/web/4-in-a-row)
+
+[Chess](https://orgise.github.io/web/chess)
+
+## Music
+[Piano 3D](https://orgise.github.io/web/3dpiano)
+
+[Online Piano](https://orgise.github.io/web/piano)
 
 [Guitar Tuner](https://orgise.github.io/web/guitar-tuner)
 
