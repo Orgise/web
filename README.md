@@ -5,6 +5,14 @@
 
 [Password Generator](https://orgise.github.io/web/pwd-gen)
 
+[Random Number Generator](https://orgise.github.io/web/random-number)
+
+[Dice Roller](https://orgise.github.io/web/dice)
+
+[Sketchpad](https://orgise.github.io/web/sketchpad)
+
+[Pixel Sketchpad](https://orgise.github.io/web/pixel-sketchpad)
+
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
@@ -25,8 +33,6 @@
 [Simon](https://orgise.github.io/web/simon)
 
 [Snake](https://orgise.github.io/web/snake)
-
-[Curtain](https://orgise.github.io/web/curtain)
 
 [Tower Builder](https://orgise.github.io/web/tower)
 

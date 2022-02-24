@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas Sketchpad</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTML5 Canvas Sketchpad</title>
+  </head>
+  <body>
+    <section id="sketchpadForm">
+    	<h3>My HTML5 Canvas Sketchpad</h3><form id="colourForm" action="" method="get">
+        <label for="color">Select your colour:</label>
+        <input type="color" id="colour" name="color"><br/><br/>
+     </form>
+    </section>
+    <canvas id="paper" width="960" height="500">
+    	Your browser does not support the HTML5 Canvas.
+    </canvas>
+	  <input type="button" id="savebtn" value="Save Drawing" onClick="savePic()" />
+  </body>
+</html>
+<!-- partial -->
+  <script src='jquery.min.js'></script>
+  <script  src="./script.js"></script>
+
+</body>
+</html>

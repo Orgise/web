@@ -1,0 +1,43 @@
+body {
+	background: #4d3319;
+}
+
+h3, label {
+	font-family: 'Handlee', cursive;
+	color:#999;
+}
+	
+#sketchpadForm, #paper, #savebtn {
+	margin-left:15%;
+}
+
+#paper {
+	width:960px;
+	height:500px;
+	box-shadow: 0px 0px 10px 2px #000000;
+}
+
+/*************************************************************************
+MEDIA QUERIES
+*************************************************************************/
+@media screen and (max-width:480px) {
+	section, h3, #colourForm, #paper, #savebtn {
+		display:block;
+	}
+	
+	#paper {
+		width:80%;
+		height:auto;
+	}
+}
+
+@media screen and (min-width:481px) and (max-width:768px) {
+	section, h3, #colourForm, #paper, #savebtn {
+		display:block;
+	}
+	
+	#paper {
+		width:85%;
+		height:auto;
+	}
+}

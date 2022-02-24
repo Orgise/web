@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Random Number Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div ng-app="numberApp">
+  <div ng-controller="NumberController" data-ng-init="loadNum()"> 
+    <div id="generator">
+      <div id="title">Random Number Generator</div>
+      <p id="rNum">{{ randomNumber }}</p>
+      <div id="inputContainer">
+        <div id="headers"> 
+          <p>Min</p>
+          <p>Max</p>
+        </div>
+        <div id="inputs">
+          <input id="min" ng-model="min" min="-9999999999" max="9999999999" type="number"/>
+          <input id="max" ng-model="max" min="-9999999999" max="9999999999" type="number"/>
+          <input id="generate" type="submit" value="Generate Number" ng-click="getInput()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='angular.min.js'></script>
+  <script  src="./script.js"></script>
+
+</body>
+</html>

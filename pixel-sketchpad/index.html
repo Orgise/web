@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Sketchpad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="normalize.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+<script src="prefixfree.min.js"></script>
+
+</head>
+<body>
+<div class="popup popup-gen">
+  <h3 class="popup-title">Generate Canvas</h3>
+  <div class="popup-content">
+    <p>This will clear the current canvas and generate a new one based on your current window size.</p>
+    <div class="grid-size-toggle">
+      <input class='tgl' id='gridsizetgl' type='checkbox'>
+      <label class='tgl-btn' for='gridsizetgl'></label>
+      <label class="text-label" for="gridsizetgl">Large Cells</label>
+    </div>
+    <a href="#" class="primary generate">Generate</a>
+    <a href="#" class="cancel">Cancel</a>
+  </div>
+</div>
+<div class="popup popup-clear">
+  <h3 class="popup-title">Clear Canvas</h3>
+  <div class="popup-content">
+    <p>Are you sure you would like to clear the canvas?</p>
+    <a href="#" class="primary confirm">Yes</a>
+    <a href="#" class="cancel">No</a>
+  </div>
+</div>
+<div class="popup lg popup-help">
+  <h3 class="popup-title">Help</h3>
+  <div class="popup-content">
+    <p class="lg">This simple pixel editor is for quickly sketching out ideas.</p>
+    <p><b>The Pencil Button</b> toggles between pencil mode and group selection mode (useful for large areas of colour). Unfortunately erasing, shading & highlighting are limited to pencil mode (for now).</p>
+    <p><b>Shading & Highlighting</b> can be done by clicking the appropriate toggle next to the pencil tool.</p>
+    <p><b>New Canvas</b> generates a new canvas based on window size, with two pixel size options.</p>
+    <p><b>Clear</b> clears the current canvas.</p>
+    <p class="small">Planned features: save, load, export, undo, shading, fill & basic objects.</p>
+    <a href="#" class="confirm primary">Got it</a>
+  </div>
+</div>
+<div class="content" oncontextmenu="return false;">
+  <div class="toolbar">
+    <div class="options">
+      <a href="#" class="help">Help</a>
+      <a href="#" class="clear">Clear</a>
+      <a href="#" class="text-right gen gr">New Canvas</a>
+      <div class="grid-toggle">
+        <input class='tgl' id='gridtgl' type='checkbox' checked>
+        <label class='tgl-btn' for='gridtgl'></label>
+        <label class="text-label" for="gridtgl">Grid</label>
+      </div>
+    </div>
+    <div class="colours">
+      <div class="button grass"></div>
+      <div class="button object"></div>
+      <div class="button red"></div>
+      <div class="button brown"></div>
+      <div class="button floor"></div>
+      <div class="button wall"></div>
+      <div class="button black"></div>
+    </div>
+    <div class="tools">
+      <div class="toggle pencil on">
+        <i class="fa fa-pencil"></i>
+      </div>
+      <div class="toggle highlight">
+        <i class="fa fa-sun-o"></i>
+      </div>
+      <div class="toggle shade">
+        <i class="fa fa-moon-o"></i>
+      </div>
+    </div>
+  </div>
+  <table id="canvas">
+  </table>
+</div>
+<!-- partial -->
+  <script src='jquery.min.js'></script>
+<script src='jquery-ui.min.js'></script>
+<script  src="./script.js"></script>
+
+</body>
+</html>
