@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>2048</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="mobilewrap">
+  <div id="container">
+    <div class="score">
+      <p> <span class="title">Score</span><span class="scorefield">0</span></p>
+    </div>
+    <div class="newgame">
+      <div class="button"><span>New Game</span></div>
+    </div>
+    <div class="grid">
+      <div class="row">
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+      </div>
+      <div class="row">
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+      </div>
+      <div class="row">
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+      </div>
+      <div class="row">
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+        <div class="base"></div>
+      </div>
+    </div>
+    <div class="tiles"></div>
+    <div class="over"><span>Game Over</span></div>
+    <div class="won"><span class="winner">You win!</span><span class="bestscore">BEST SCORE: </span><span class="numbest"> </span></div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='jquery.min.js'></script>
+<script src='hammer.min.js'></script>
+<script src="./script.js"></script>
+
+</body>
+</html>
