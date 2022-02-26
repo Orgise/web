@@ -26,6 +26,8 @@
 [Flip a Coin](https://orgise.github.io/web/flip-a-coin)
 
 ## Single Player Games
+[Chess (Player vs Computer)](https://orgise.github.io/web/chess)
+
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
 [5-in-a-row](https://orgise.github.io/web/5-in-a-row)
@@ -61,7 +63,7 @@
 
 [4-in-a-row](https://orgise.github.io/web/4-in-a-row)
 
-[Chess](https://orgise.github.io/web/chess)
+[Chess](https://orgise.github.io/web/2p-chess)
 
 ## Music
 [Piano 3D](https://orgise.github.io/web/3dpiano)
