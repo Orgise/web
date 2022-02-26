@@ -54,6 +54,8 @@
 
 [2048](https://orgise.github.io/web/2048)
 
+[Axe Throw](https://orgise.github.io/web/axe-throw)
+
 ## Two-Players Games
 [Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
@@ -77,7 +79,7 @@
 
 [Space Shapes](https://orgise.github.io/web/space-shapes)
 
-[Matrix Digital Rain](https://orgise.github.io/web/matrix-screen)
+[Matrix Digital Rain](https://orgise.github.io/web/matrix)
 
 [Cat Swinging on a string](https://orgise.github.io/web/cat-on-string)
 
