@@ -13,6 +13,14 @@
 
 [Pixel Sketchpad](https://orgise.github.io/web/pixel-sketchpad)
 
+[Pixelizer](https://orgise.github.io/web/pixelizer)
+
+[Calendar](https://orgise.github.io/web/calendar)
+
+[Cronometer](https://orgise.github.io/web/cronometer)
+
+[Pomodoro Clock](https://orgise.github.io/web/pomodoro)
+
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
@@ -55,3 +63,5 @@
 [Gravity](https://orgise.github.io/web/gravity)
 
 [Shake the Curtain](https://orgise.github.io/web/curtain)
+
+[Rainbow Background Image](https://orgise.github.io/web/rainbow-image)

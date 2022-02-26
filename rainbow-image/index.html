@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Hue rotation with gradient</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class='intro'></div>
+<!-- partial -->
+<script src='jquery-2.2.4.min.js'></script>
+<script src='TweenMax.min.js'></script>
+<script type="text/javascript">
+  var images = ['lion.jpg', 'space.jpg', 'snake.jpg', 'wolf.jpg', 'parrot.jpg'];
+  $('.intro').css({'background-image': 'url(images/' + images[Math.floor(Math.random() * images.length)] + '), linear-gradient(233deg, #e56420, #c22525, #3d9c31, #37bbde)'});
+ </script>
+</body>
+</html>

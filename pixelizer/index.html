@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Pixelizer: A No Div Pixel Art Creator</title>
+  <link rel='stylesheet' href='spectrum.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+<link rel='stylesheet' href='select2.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<canvas id="canvas" style="border:2px solid black;" width="1000" height="1000">
+</canvas>
+<div class='app'>
+  <div class='zoom'>
+    <div class='pan'>
+      <div class='scene' id='scene'>
+        <div class='pcount'>
+          <h5>Pixel Count</h5>
+          <span class='c'>0</span>
+          <span>/ 1000</span>
+          <p>Because it's not built in canvas, will start to lag when drawing after a few 100 pixels</p>
+        </div>
+        <div class='row'></div>
+        <div class='col'></div>
+        <div class='frame frame1'>
+          <div class='pixels'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class='menu'>
+    <div class='menu_logo'>
+      <img src='pixelizer_logo.png'>
+    </div>
+    <div class='menu_options'>
+      <h2>Scene options</h2>
+      <p>You must set these first otherwise your drawing will be deleted</p>
+      <div class='menu_options__psize'>
+        <h3>Pixel size</h3>
+        <h3 class='abs'>Scene name</h3>
+        <input class='w' type='number'>
+        <input class='name' value='My no div pixel art'>
+      </div>
+      <div class='menu_options__ssize'>
+        <h3>Scene size</h3>
+        <button class='s active'>S</button>
+        <button class='m'>M</button>
+        <button class='l'>L</button>
+        <button class='xl'>XL</button>
+        <input class='w' type='hidden'>
+        <input class='inactive h' type='hidden'>
+      </div>
+      <div class='menu_options__bcolor'>
+        <h3>Scene background</h3>
+        <input id='bgpicker'>
+        <div class='coutput'>#2f303e</div>
+      </div>
+    </div>
+    <div class='menu_effects'>
+      <h2>Scene effects</h2>
+      <p>Add dithering and reflections to your creation</p>
+      <div class='menu_effects__reflect'>
+        <label for='reflect'>
+          <h4>
+            <i class='fa fa-image'></i>
+            Reflect
+          </h4>
+        </label>
+        <input id='reflect' type='checkbox'>
+      </div>
+    </div>
+    <div class='menu_animations'>
+      <h2>Scene animations</h2>
+      <p>Add simple animations to your creation</p>
+      <div class='menu_animations__animation'>
+        <h4>Select animation</h4>
+        <select>
+          <option>No animation</option>
+          <option>Spin</option>
+          <option>Bounce</option>
+          <option>Wobble</option>
+        </select>
+      </div>
+    </div>
+  </aside>
+  <div class='overlay'></div>
+  <nav class='tools'>
+    <div class='tools_zoom'>
+      <h5>Zoom level</h5>
+      <input max='30' min='10' type='range' value='0'>
+      <div class='tip'>
+        x 1.0
+      </div>
+    </div>
+    <div class='tools_grid'>
+      <i class='fa fa-th'></i>
+      <div class='tipt'>Toggle grid [g]</div>
+    </div>
+    <div class='tools_pan inactive'>
+      <i class='fa fa-arrows-alt'></i>
+      <div class='tipt'>Toggle pan [Hold space]</div>
+    </div>
+    <div class='tools_center inactive'>
+      <i class='fa fa-bullseye'></i>
+      <div class='tipt'>Re center [c]</div>
+    </div>
+    <div class='tools_symx inactive'>
+      <i class='fa fa-arrows-h'></i>
+      <div class='tipt'>Symetry X [x]</div>
+    </div>
+    <div class='tools_symy inactive'>
+      <i class='fa fa-arrows-v'></i>
+      <div class='tipt'>Symetry Y [Y]</div>
+    </div>
+    <div class='tools_export_code'></div>
+    <div class='tools_export_png'>
+      <a>
+        Export as image
+      </a>
+    </div>
+  </nav>
+  <div class='picker'>
+    <h2>
+      <i class='fa fa-paint-brush'></i>
+      Color Selector
+    </h2>
+    <input id='colorpicker'>
+    <div class='col'></div>
+    <div class='output'>#ffffff</div>
+    <div class='pick'>
+      <div class='tipt'>Pick color [p]</div>
+      <i class='fa fa-crosshairs'></i>
+    </div>
+  </div>
+</div>
+<div class='pickOverlay'></div>
+<div class='keyframes'>
+  <!-- /.playhead -->
+  <div class='keyframes_control'>
+    <h4>Timeline</h4>
+    <div class='controls'>
+      <h4>Onion skin:</h4>
+      <div class='onion'>
+        <input checked='checked' id='onion' type='checkbox'>
+      </div>
+      <h4>FPS:</h4>
+      <input class='f' value='30'>
+      <h4>Controls:</h4>
+      <div class='start'>
+        <i class='fa fa-fast-backward'></i>
+      </div>
+      <div class='prev'>
+        <i class='fa fa-step-backward'></i>
+      </div>
+      <div class='play'>
+        <i class='fa fa-play'></i>
+      </div>
+      <div class='next'>
+        <i class='fa fa-step-forward'></i>
+      </div>
+      <div class='end'>
+        <i class='fa fa-fast-forward'></i>
+      </div>
+    </div>
+  </div>
+  <div class='frames'>
+    <div class='o'></div>
+    <div class='wrap'>
+      <div class='frame activeF frame1' data-frame='1'>
+        <div class='frameTitle'>
+          Frame #1
+        </div>
+        <i class='fa fa-trash'></i>
+        <i class='fa fa-copy'></i>
+      </div>
+    </div>
+  </div>
+  <div class='add'>
+    +
+  </div>
+</div>
+<!-- partial -->
+  <script src='jquery.min.js'></script>
+<script src='spectrum.js'></script>
+<script src='jquery-ui.min.js'></script>
+<script src='select2.js'></script>
+<script src="./script.js"></script>
+
+</body>
+</html>

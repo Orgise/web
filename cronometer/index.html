@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Cronometer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel='stylesheet' href='bootstrap.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+  	<body>
+		<div class="container">
+			<div class="content-cronometer">
+				<!-- Color Palet -->
+				<div class="color-palet">
+					<div class="palet_1 ususal-palet"></div>
+					<div class="palet_2 ususal-palet"></div>
+					<div class="palet_3 ususal-palet"></div>
+					<div class="palet_4 ususal-palet"></div>
+				</div>
+				<!-- Time -->
+				<div class="time-container">
+					<span class="hours timer">00</span>
+					<span class="separators">:</span>
+					<span class="minutes timer">00</span>
+					<span class="separators">:</span>
+					<span class="seconds timer">00</span>
+					<span class="separators">:</span>
+					<span class="miliseconds timer">00</span>
+				</div>
+				<!-- Buttons -->
+				<div class="buttons-conteoller-container">
+					<button class="start-lap universal-button">Start</button>
+					<button class="stop-lap universal-button">Stop</button>
+					<button class="reset-lap universal-button">Reset</button>
+					<button class="freez-lap universal-button" disabled="true">Freez Lap</button>
+				</div>
+				<!-- Freez List -->
+				<div class="freez-container">
+					<h5>Freez Lap</h5>
+					<div class="lap-overview">
+						<button class="clear-lap-buttons">Clear Lap</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- partial -->
+<script src="./script.js"></script>
+</body>
+</html>
