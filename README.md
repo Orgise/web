@@ -21,10 +21,10 @@
 
 [Pomodoro Clock](https://orgise.github.io/web/pomodoro)
 
+[Periodic Table of Elements](https://orgise.github.io/web/periodic-table)
+
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
-
-[Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
 [5-in-a-row](https://orgise.github.io/web/5-in-a-row)
 
@@ -46,7 +46,12 @@
 
 [Word Guessing](https://orgise.github.io/web/word-guessing)
 
-## Co-Op Games
+[Cube Ninja](https://orgise.github.io/web/cube-ninja)
+
+[Traffic Run](https://orgise.github.io/web/traffic-run)
+
+## Two-Players Games
+[Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
 [4-in-a-row](https://orgise.github.io/web/4-in-a-row)
 
@@ -65,3 +70,9 @@
 [Shake the Curtain](https://orgise.github.io/web/curtain)
 
 [Rainbow Background Image](https://orgise.github.io/web/rainbow-image)
+
+[Space Shapes](https://orgise.github.io/web/space-shapes)
+
+[Matrix Digital Rain](https://orgise.github.io/web/matrix-screen)
+
+[Cat Swinging on a string](https://orgise.github.io/web/cat-on-string)
