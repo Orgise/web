@@ -23,6 +23,8 @@
 
 [Periodic Table of Elements](https://orgise.github.io/web/periodic-table)
 
+[Flip a Coin](https://orgise.github.io/web/flip-a-coin)
+
 ## Single Player Games
 [Chess Pursuit](https://orgise.github.io/web/chess-pursuit)
 
@@ -50,6 +52,8 @@
 
 [Traffic Run](https://orgise.github.io/web/traffic-run)
 
+[2048](https://orgise.github.io/web/2048)
+
 ## Two-Players Games
 [Tic-Tac-Toe](https://orgise.github.io/web/toe)
 
@@ -76,3 +80,9 @@
 [Matrix Digital Rain](https://orgise.github.io/web/matrix-screen)
 
 [Cat Swinging on a string](https://orgise.github.io/web/cat-on-string)
+
+[Hacking Simulator](https://orgise.github.io/web/hacking-simulator)
+
+[WannaCry Simulator](https://orgise.github.io/web/wannacry)
+
+[Windows 10 Update Simulator](https://orgise.github.io/web/windows-update)
