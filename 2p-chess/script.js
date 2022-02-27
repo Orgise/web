@@ -174,7 +174,7 @@ $(document).ready(function() {
 		 }
 	};
 
-	var player = 'black'; //First player
+	var player = 'white'; //First player
 
 	//Selected chess piece to move
 	var select = {
