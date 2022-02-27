@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Guitar tab creator</title>
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/core.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/controlgroup.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/checkboxradio.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/resizable.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/button.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/dialog.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/ajax-progress.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/align.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/autocomplete-loading.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/fieldgroup.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/container-inline.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/clearfix.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/details.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/hidden.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/item-list.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/js.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/nowrap.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/position-container.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/progress.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/reset-appearance.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/resize.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/sticky-header.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/system-status-counter.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/system-status-report-counters.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/system-status-report-general-info.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/tabledrag.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/tablesort.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/system/css/components/tree-child.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/views/css/views.module.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/themes/base/theme.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/core/modules/layout_discovery/layouts/twocol/twocol.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/advancededitor.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/keyboard.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/tuning.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/scales.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/chords.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/gtc.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/layout.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/hopscotch-0.3.1/css/hopscotch.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/scaletable.css?r5viz4" />
+		<link rel="stylesheet" media="all" href="https://cdn.guitartabcreator.com/modules/contrib/gtc/css/fretboard.css?r5viz4" />
+	</head>
+  <body>
+        <a href="#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div class="layout-container">
+
+  <header role="banner">
+      <div>
+    <div id="block-stark-branding">
+  
+    
+          <a href="/" rel="home">guitar tab creator</a>
+    
+</div>
+<nav role="navigation" aria-labelledby="block-primarylinksanonymous-menu" id="block-primarylinksanonymous">
+            
+  <h2 class="visually-hidden" id="block-primarylinksanonymous-menu">primary links anonymous</h2>
+  
+
+        
+              <ul>
+              <li>
+        <a href="/help" data-drupal-link-system-path="node/5409">Help</a>
+              </li>
+          <li>
+        <a href="/user/login" data-drupal-link-system-path="user/login">Login</a>
+              </li>
+          <li>
+        <a href="/tabs/search" data-drupal-link-system-path="tabs/search">Search All Tabs</a>
+              </li>
+          <li>
+        <a href="/user/register" data-drupal-link-system-path="user/register">Sign Up!</a>
+              </li>
+          <li>
+        <a href="/content/contact-us" data-drupal-link-system-path="node/102">Contact Us</a>
+              </li>
+          <li>
+        <a href="https://fretboard.guitartabcreator.com">Fretboard diagrams</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+  </header>
+
+  
+  
+
+  
+
+    <div>
+    <div data-drupal-messages-fallback class="hidden"></div>
+
+  </div>
+
+
+  
+
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="layout-content">
+        <div>
+      <div class="layout layout--twocol">
+    
+          <div  class="layout__region layout__region--first">
+        <div class="block-region-first"><div>
+  
+    
+      <div id="instrument">
+	<table cellpadding="0" border="0" class="gtc_table">
+		<tbody>
+			<tr style="background-color: rgb(255, 255, 255);">
+				<td></td><td class="numnode">0</td><td class="numnode">1</td><td class="numnode">2</td><td class="numnode">3</td><td class="numnode">4</td><td class="numnode">5</td><td class="numnode">6</td><td class="numnode">7</td><td class="numnode">8</td><td class="numnode">9</td><td class="numnode">10</td><td class="numnode">11</td><td class="numnode">12</td><td class="numnode">13</td><td class="numnode">14</td><td class="numnode">15</td><td class="numnode">16</td><td class="numnode">17</td><td class="numnode">18</td><td class="numnode">19</td><td class="numnode">20</td><td class="numnode">21</td><td class="numnode">22</td><td class="numnode">23</td>
+			</tr>
+			<tr class="stringrow" id="1">
+				<td class="tdnut" pos="1" title="Click to Tune Guitar">
+					<div id="stringnote_1" pos="1" class="stringnote" onclick="">E</div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="10" title="E" class="fretdiv" onclick="">
+						<div id="note_10" i="1" j="0" class="notediv"></div>
+						<div id="notetitle_10" class="notetitle"></div>
+					</div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="11" title="F" class="fretdiv" onclick="">
+						<div id="note_11" i="1" j="1" class="notediv"></div>
+						<div id="notetitle_11" class="notetitle"></div>
+					</div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="12" title="FsGb" class="fretdiv" onclick="">
+						<div id="note_12" i="1" j="2" class="notediv"></div>
+						<div id="notetitle_12" class="notetitle"></div>
+					</div
+					></td>
+					<td class="tdfret" border="0">
+						<div id="13" title="G" class="fretdiv" onclick="">
+							<div id="note_13" i="1" j="3" class="notediv"></div>
+							<div id="notetitle_13" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="14" title="GsAb" class="fretdiv" onclick="">
+							<div id="note_14" i="1" j="4" class="notediv"></div>
+							<div id="notetitle_14" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="15" title="A" class="fretdiv" onclick="">
+							<div id="note_15" i="1" j="5" class="notediv"></div>
+							<div id="notetitle_15" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="16" title="AsBb" class="fretdiv" onclick="">
+							<div id="note_16" i="1" j="6" class="notediv"></div>
+							<div id="notetitle_16" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="17" title="B" class="fretdiv" onclick="">
+							<div id="note_17" i="1" j="7" class="notediv"></div>
+							<div id="notetitle_17" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="18" title="C" class="fretdiv" onclick="">
+							<div id="note_18" i="1" j="8" class="notediv"></div>
+							<div id="notetitle_18" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="19" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_19" i="1" j="9" class="notediv"></div>
+							<div id="notetitle_19" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="110" title="D" class="fretdiv" onclick="">
+							<div id="note_110" i="1" j="10" class="notediv"></div>
+							<div id="notetitle_110" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="111" title="DsEb" class="fretdiv" onclick="">
+							<div id="note_111" i="1" j="11" class="notediv"></div>
+							<div id="notetitle_111" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="112" title="E" class="fretdiv" onclick="">
+							<div id="note_112" i="1" j="12" class="notediv"></div>
+							<div id="notetitle_112" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="113" title="F" class="fretdiv" onclick="">
+							<div id="note_113" i="1" j="13" class="notediv"></div>
+							<div id="notetitle_113" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="114" title="FsGb" class="fretdiv" onclick="">
+							<div id="note_114" i="1" j="14" class="notediv"></div>
+							<div id="notetitle_114" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="115" title="G" class="fretdiv" onclick="">
+							<div id="note_115" i="1" j="15" class="notediv"></div>
+							<div id="notetitle_115" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="116" title="GsAb" class="fretdiv" onclick="">
+							<div id="note_116" i="1" j="16" class="notediv"></div>
+							<div id="notetitle_116" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="117" title="A" class="fretdiv" onclick="">
+							<div id="note_117" i="1" j="17" class="notediv"></div>
+							<div id="notetitle_117" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="118" title="AsBb" class="fretdiv" onclick="">
+							<div id="note_118" i="1" j="18" class="notediv"></div>
+							<div id="notetitle_118" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="119" title="B" class="fretdiv" onclick="">
+							<div id="note_119" i="1" j="19" class="notediv"></div>
+							<div id="notetitle_119" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="120" title="C" class="fretdiv" onclick="">
+							<div id="note_120" i="1" j="20" class="notediv"></div>
+							<div id="notetitle_120" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="121" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_121" i="1" j="21" class="notediv"></div>
+							<div id="notetitle_121" class="notetitle"></div>
+						</div>
+					</td>
+                                        <td class="tdfret" border="0">
+					        <div id="122" title="C" class="fretdiv" onclick="">
+							<div id="note_122" i="1" j="22" class="notediv"></div>
+							<div id="notetitle_122" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="123" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_123" i="1" j="23" class="notediv"></div>
+							<div id="notetitle_123" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="2">
+				<td class="tdnut" pos="2" title="Click to Tune Guitar">
+					<div id="stringnote_2" pos="5" class="stringnote" onclick="">B</div>
+				</td>
+				<td class="tdfret" border="0"><div id="20" title="B" class="fretdiv" onclick=""><div id="note_20" i="2" j="0" class="notediv"></div><div id="notetitle_20" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="21" title="C" class="fretdiv" onclick=""><div id="note_21" i="2" j="1" class="notediv"></div><div id="notetitle_21" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="22" title="CsDb" class="fretdiv" onclick=""><div id="note_22" i="2" j="2" class="notediv"></div><div id="notetitle_22" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="23" title="D" class="fretdiv" onclick=""><div id="note_23" i="2" j="3" class="notediv"></div><div id="notetitle_23" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="24" title="DsEb" class="fretdiv" onclick=""><div id="note_24" i="2" j="4" class="notediv"></div><div id="notetitle_24" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="25" title="E" class="fretdiv" onclick=""><div id="note_25" i="2" j="5" class="notediv"></div><div id="notetitle_25" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="26" title="F" class="fretdiv" onclick=""><div id="note_26" i="2" j="6" class="notediv"></div><div id="notetitle_26" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="27" title="FsGb" class="fretdiv" onclick=""><div id="note_27" i="2" j="7" class="notediv"></div><div id="notetitle_27" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="28" title="G" class="fretdiv" onclick=""><div id="note_28" i="2" j="8" class="notediv"></div><div id="notetitle_28" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="29" title="GsAb" class="fretdiv" onclick=""><div id="note_29" i="2" j="9" class="notediv"></div><div id="notetitle_29" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="210" title="A" class="fretdiv" onclick=""><div id="note_210" i="2" j="10" class="notediv"></div><div id="notetitle_210" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="211" title="AsBb" class="fretdiv" onclick=""><div id="note_211" i="2" j="11" class="notediv"></div><div id="notetitle_211" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="212" title="B" class="fretdiv upper" onclick=""><div id="note_212" i="2" j="12" class="notediv"></div><div id="notetitle_212" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="213" title="C" class="fretdiv" onclick=""><div id="note_213" i="2" j="13" class="notediv"></div><div id="notetitle_213" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="214" title="CsDb" class="fretdiv" onclick=""><div id="note_214" i="2" j="14" class="notediv"></div><div id="notetitle_214" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="215" title="D" class="fretdiv" onclick=""><div id="note_215" i="2" j="15" class="notediv"></div><div id="notetitle_215" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="216" title="DsEb" class="fretdiv" onclick=""><div id="note_216" i="2" j="16" class="notediv"></div><div id="notetitle_216" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="217" title="E" class="fretdiv" onclick=""><div id="note_217" i="2" j="17" class="notediv"></div><div id="notetitle_217" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="218" title="F" class="fretdiv" onclick=""><div id="note_218" i="2" j="18" class="notediv"></div><div id="notetitle_218" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="219" title="FsGb" class="fretdiv" onclick=""><div id="note_219" i="2" j="19" class="notediv"></div><div id="notetitle_219" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="220" title="G" class="fretdiv" onclick=""><div id="note_220" i="2" j="20" class="notediv"></div><div id="notetitle_220" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="221" title="GsAb" class="fretdiv" onclick=""><div id="note_221" i="2" j="21" class="notediv"></div><div id="notetitle_221" class="notetitle"></div></div>
+				</td>
+                                        <td class="tdfret" border="0">
+					        <div id="222" title="C" class="fretdiv" onclick="">
+							<div id="note_222" i="2" j="22" class="notediv"></div>
+							<div id="notetitle_222" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="223" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_223" i="2" j="23" class="notediv"></div>
+							<div id="notetitle_223" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="3">
+				<td class="tdnut" pos="3" title="Click to Tune Guitar">
+					<div id="stringnote_3" pos="3" class="stringnote" onclick="">G</div>
+				</td>
+				<td class="tdfret" border="0"><div id="30" title="G" class="fretdiv" onclick=""><div id="note_30" i="3" j="0" class="notediv"></div><div id="notetitle_30" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="31" title="GsAb" class="fretdiv" onclick=""><div id="note_31" i="3" j="1" class="notediv"></div><div id="notetitle_31" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="32" title="A" class="fretdiv" onclick=""><div id="note_32" i="3" j="2" class="notediv"></div><div id="notetitle_32" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="33" title="AsBb" class="fretdiv" onclick=""><div id="note_33" i="3" j="3" class="notediv"></div><div id="notetitle_33" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="34" title="B" class="fretdiv" onclick=""><div id="note_34" i="3" j="4" class="notediv"></div><div id="notetitle_34" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="35" title="C" class="fretdiv upper" onclick=""><div id="note_35" i="3" j="5" class="notediv"></div><div id="notetitle_35" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="36" title="CsDb" class="fretdiv" onclick=""><div id="note_36" i="3" j="6" class="notediv"></div><div id="notetitle_36" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="37" title="D" class="fretdiv upper" onclick=""><div id="note_37" i="3" j="7" class="notediv"></div><div id="notetitle_37" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="38" title="DsEb" class="fretdiv" onclick=""><div id="note_38" i="3" j="8" class="notediv"></div><div id="notetitle_38" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="39" title="E" class="fretdiv upper" onclick=""><div id="note_39" i="3" j="9" class="notediv"></div><div id="notetitle_39" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="310" title="F" class="fretdiv" onclick=""><div id="note_310" i="3" j="10" class="notediv"></div><div id="notetitle_310" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="311" title="FsGb" class="fretdiv" onclick=""><div id="note_311" i="3" j="11" class="notediv"></div><div id="notetitle_311" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="312" title="G" class="fretdiv lower" onclick=""><div id="note_312" i="3" j="12" class="notediv"></div><div id="notetitle_312" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="313" title="GsAb" class="fretdiv" onclick=""><div id="note_313" i="3" j="13" class="notediv"></div><div id="notetitle_313" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="314" title="A" class="fretdiv" onclick=""><div id="note_314" i="3" j="14" class="notediv"></div><div id="notetitle_314" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="315" title="AsBb" class="fretdiv upper" onclick=""><div id="note_315" i="3" j="15" class="notediv"></div><div id="notetitle_315" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="316" title="B" class="fretdiv" onclick=""><div id="note_316" i="3" j="16" class="notediv"></div><div id="notetitle_316" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="317" title="C" class="fretdiv upper" onclick=""><div id="note_317" i="3" j="17" class="notediv"></div><div id="notetitle_317" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="318" title="CsDb" class="fretdiv" onclick=""><div id="note_318" i="3" j="18" class="notediv"></div><div id="notetitle_318" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="319" title="D" class="fretdiv" onclick=""><div id="note_319" i="3" j="19" class="notediv"></div><div id="notetitle_319" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="320" title="DsEb" class="fretdiv" onclick=""><div id="note_320" i="3" j="20" class="notediv"></div><div id="notetitle_320" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="321" title="E" class="fretdiv" onclick=""><div id="note_321" i="3" j="21" class="notediv"></div><div id="notetitle_321" class="notetitle"></div></div>
+                </td>
+				    <td class="tdfret" border="0">
+						<div id="322" title="C" class="fretdiv" onclick="">
+							<div id="note_322" i="3" j="22" class="notediv"></div>
+							<div id="notetitle_322" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="323" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_323" i="3" j="23" class="notediv"></div>
+							<div id="notetitle_323" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="4">
+				<td class="tdnut" pos="4" title="Click to Tune Guitar">
+					<div id="stringnote_4" pos="4" class="stringnote" onclick="">D</div>
+				</td>
+				<td class="tdfret" border="0"><div id="40" title="D" class="fretdiv" onclick=""><div id="note_40" i="4" j="0" class="notediv"></div><div id="notetitle_40" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="41" title="DsEb" class="fretdiv" onclick=""><div id="note_41" i="4" j="1" class="notediv"></div><div id="notetitle_41" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="42" title="E" class="fretdiv" onclick=""><div id="note_42" i="4" j="2" class="notediv"></div><div id="notetitle_42" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="43" title="F" class="fretdiv" onclick=""><div id="note_43" i="4" j="3" class="notediv"></div><div id="notetitle_43" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="44" title="FsGb" class="fretdiv" onclick=""><div id="note_44" i="4" j="4" class="notediv"></div><div id="notetitle_44" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="45" title="G" class="fretdiv lower" onclick=""><div id="note_45" i="4" j="5" class="notediv"></div><div id="notetitle_45" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="46" title="GsAb" class="fretdiv" onclick=""><div id="note_46" i="4" j="6" class="notediv"></div><div id="notetitle_46" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="47" title="A" class="fretdiv lower" onclick=""><div id="note_47" i="4" j="7" class="notediv"></div><div id="notetitle_47" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="48" title="AsBb" class="fretdiv" onclick=""><div id="note_48" i="4" j="8" class="notediv"></div><div id="notetitle_48" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="49" title="B" class="fretdiv lower" onclick=""><div id="note_49" i="4" j="9" class="notediv"></div><div id="notetitle_49" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="410" title="C" class="fretdiv" onclick=""><div id="note_410" i="4" j="10" class="notediv"></div><div id="notetitle_410" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="411" title="CsDb" class="fretdiv" onclick=""><div id="note_411" i="4" j="11" class="notediv"></div><div id="notetitle_411" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="412" title="D" class="fretdiv upper" onclick=""><div id="note_412" i="4" j="12" class="notediv"></div><div id="notetitle_412" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="413" title="DsEb" class="fretdiv" onclick=""><div id="note_413" i="4" j="13" class="notediv"></div><div id="notetitle_413" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="414" title="E" class="fretdiv" onclick=""><div id="note_414" i="4" j="14" class="notediv"></div><div id="notetitle_414" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="415" title="F" class="fretdiv lower" onclick=""><div id="note_415" i="4" j="15" class="notediv"></div><div id="notetitle_415" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="416" title="FsGb" class="fretdiv" onclick=""><div id="note_416" i="4" j="16" class="notediv"></div><div id="notetitle_416" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="417" title="G" class="fretdiv lower" onclick=""><div id="note_417" i="4" j="17" class="notediv"></div><div id="notetitle_417" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="418" title="GsAb" class="fretdiv" onclick=""><div id="note_418" i="4" j="18" class="notediv"></div><div id="notetitle_418" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="419" title="A" class="fretdiv" onclick=""><div id="note_419" i="4" j="19" class="notediv"></div><div id="notetitle_419" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="420" title="AsBb" class="fretdiv" onclick=""><div id="note_420" i="4" j="20" class="notediv"></div><div id="notetitle_420" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="421" title="B" class="fretdiv" onclick=""><div id="note_421" i="4" j="21" class="notediv"></div><div id="notetitle_421" class="notetitle"></div></div>
+				</td>
+                    <td class="tdfret" border="0">
+					    <div id="422" title="C" class="fretdiv" onclick="">
+							<div id="note_422" i="4" j="22" class="notediv"></div>
+							<div id="notetitle_422" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="423" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_423" i="4" j="23" class="notediv"></div>
+							<div id="notetitle_423" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="5">
+				<td class="tdnut" pos="5" title="Click to Tune Guitar">
+					<div id="stringnote_5" pos="5" class="stringnote" onclick="">A</div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="50" title="A" class="fretdiv" onclick=""><div id="note_50" i="5" j="0" class="notediv"></div><div id="notetitle_50" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="51" title="AsBb" class="fretdiv" onclick=""><div id="note_51" i="5" j="1" class="notediv"></div><div id="notetitle_51" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="52" title="B" class="fretdiv" onclick=""><div id="note_52" i="5" j="2" class="notediv"></div><div id="notetitle_52" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="53" title="C" class="fretdiv" onclick=""><div id="note_53" i="5" j="3" class="notediv"></div><div id="notetitle_53" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="54" title="CsDb" class="fretdiv" onclick=""><div id="note_54" i="5" j="4" class="notediv"></div><div id="notetitle_54" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="55" title="D" class="fretdiv" onclick=""><div id="note_55" i="5" j="5" class="notediv"></div><div id="notetitle_55" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="56" title="DsEb" class="fretdiv" onclick=""><div id="note_56" i="5" j="6" class="notediv"></div><div id="notetitle_56" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="57" title="E" class="fretdiv" onclick=""><div id="note_57" i="5" j="7" class="notediv"></div><div id="notetitle_57" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="58" title="F" class="fretdiv" onclick=""><div id="note_58" i="5" j="8" class="notediv"></div><div id="notetitle_58" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="59" title="FsGb" class="fretdiv" onclick=""><div id="note_59" i="5" j="9" class="notediv"></div><div id="notetitle_59" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="510" title="G" class="fretdiv" onclick=""><div id="note_510" i="5" j="10" class="notediv"></div><div id="notetitle_510" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="511" title="GsAb" class="fretdiv" onclick=""><div id="note_511" i="5" j="11" class="notediv"></div><div id="notetitle_511" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="512" title="A" class="fretdiv lower" onclick=""><div id="note_512" i="5" j="12" class="notediv"></div><div id="notetitle_512" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="513" title="AsBb" class="fretdiv" onclick=""><div id="note_513" i="5" j="13" class="notediv"></div><div id="notetitle_513" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="514" title="B" class="fretdiv" onclick=""><div id="note_514" i="5" j="14" class="notediv"></div><div id="notetitle_514" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="515" title="C" class="fretdiv" onclick=""><div id="note_515" i="5" j="15" class="notediv"></div><div id="notetitle_515" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="516" title="CsDb" class="fretdiv" onclick=""><div id="note_516" i="5" j="16" class="notediv"></div><div id="notetitle_516" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="517" title="D" class="fretdiv" onclick=""><div id="note_517" i="5" j="17" class="notediv"></div><div id="notetitle_517" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="518" title="DsEb" class="fretdiv" onclick=""><div id="note_518" i="5" j="18" class="notediv"></div><div id="notetitle_518" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="519" title="E" class="fretdiv" onclick=""><div id="note_519" i="5" j="19" class="notediv"></div><div id="notetitle_519" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="520" title="F" class="fretdiv" onclick=""><div id="note_520" i="5" j="20" class="notediv"></div><div id="notetitle_520" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="521" title="FsGb" class="fretdiv" onclick=""><div id="note_521" i="5" j="21" class="notediv"></div><div id="notetitle_521" class="notetitle"></div></div>
+				</td>
+                                        <td class="tdfret" border="0">
+					        <div id="522" title="C" class="fretdiv" onclick="">
+							<div id="note_522" i="5" j="22" class="notediv"></div>
+							<div id="notetitle_522" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="523" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_523" i="5" j="23" class="notediv"></div>
+							<div id="notetitle_523" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="6">
+				<td class="tdnut" pos="6" title="Click to Tune Guitar">
+					<div id="stringnote_6" pos="6" class="stringnote" onclick="">E</div>
+				</td>
+				<td class="tdfret" border="0"><div id="60" title="E" class="fretdiv" onclick=""><div id="note_60" i="6" j="0" class="notediv"></div><div id="notetitle_60" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="61" title="F" class="fretdiv" onclick=""><div id="note_61" i="6" j="1" class="notediv"></div><div id="notetitle_61" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="62" title="FsGb" class="fretdiv" onclick=""><div id="note_62" i="6" j="2" class="notediv"></div><div id="notetitle_62" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="63" title="G" class="fretdiv" onclick=""><div id="note_63" i="6" j="3" class="notediv"></div><div id="notetitle_63" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="64" title="GsAb" class="fretdiv" onclick=""><div id="note_64" i="6" j="4" class="notediv"></div><div id="notetitle_64" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="65" title="A" class="fretdiv" onclick=""><div id="note_65" i="6" j="5" class="notediv"></div><div id="notetitle_65" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="66" title="AsBb" class="fretdiv" onclick=""><div id="note_66" i="6" j="6" class="notediv"></div><div id="notetitle_66" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="67" title="B" class="fretdiv" onclick=""><div id="note_67" i="6" j="7" class="notediv"></div><div id="notetitle_67" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="68" title="C" class="fretdiv" onclick=""><div id="note_68" i="6" j="8" class="notediv"></div><div id="notetitle_68" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="69" title="CsDb" class="fretdiv" onclick=""><div id="note_69" i="6" j="9" class="notediv"></div><div id="notetitle_69" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="610" title="D" class="fretdiv" onclick=""><div id="note_610" i="6" j="10" class="notediv"></div><div id="notetitle_610" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="611" title="DsEb" class="fretdiv" onclick=""><div id="note_611" i="6" j="11" class="notediv"></div><div id="notetitle_611" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="612" title="E" class="fretdiv" onclick=""><div id="note_612" i="6" j="12" class="notediv"></div><div id="notetitle_612" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="613" title="F" class="fretdiv" onclick=""><div id="note_613" i="6" j="13" class="notediv"></div><div id="notetitle_613" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="614" title="FsGb" class="fretdiv" onclick=""><div id="note_614" i="6" j="14" class="notediv"></div><div id="notetitle_614" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="615" title="G" class="fretdiv" onclick=""><div id="note_615" i="6" j="15" class="notediv"></div><div id="notetitle_615" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="616" title="GsAb" class="fretdiv" onclick=""><div id="note_616" i="6" j="16" class="notediv"></div><div id="notetitle_616" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="617" title="A" class="fretdiv" onclick=""><div id="note_617" i="6" j="17" class="notediv"></div><div id="notetitle_617" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="618" title="AsBb" class="fretdiv" onclick=""><div id="note_618" i="6" j="18" class="notediv"></div><div id="notetitle_618" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="619" title="B" class="fretdiv" onclick=""><div id="note_619" i="6" j="19" class="notediv"></div><div id="notetitle_619" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="620" title="C" class="fretdiv" onclick=""><div id="note_620" i="6" j="20" class="notediv"></div><div id="notetitle_620" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="621" title="CsDb" class="fretdiv" onclick=""><div id="note_621" i="6" j="21" class="notediv"></div><div id="notetitle_621" class="notetitle"></div></div>
+				</td>
+                                        <td class="tdfret" border="0">
+					        <div id="622" title="C" class="fretdiv" onclick="">
+							<div id="note_622" i="6" j="22" class="notediv"></div>
+							<div id="notetitle_622" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="623" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_623" i="6" j="23" class="notediv"></div>
+							<div id="notetitle_623" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr class="stringrow" id="7">
+				<td class="tdnut" pos="7" title="Click to Tune Guitar">
+					<div id="stringnote_7" pos="7" class="stringnote" onclick="">B</div>
+				</td>
+				<td class="tdfret" border="0"><div id="70" title="E" class="fretdiv" onclick=""><div id="note_70" i="7" j="0" class="notediv"></div><div id="notetitle_70" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="71" title="F" class="fretdiv" onclick=""><div id="note_71" i="7" j="1" class="notediv"></div><div id="notetitle_71" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="72" title="FsGb" class="fretdiv" onclick=""><div id="note_72" i="7" j="2" class="notediv"></div><div id="notetitle_72" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="73" title="G" class="fretdiv" onclick=""><div id="note_73" i="7" j="3" class="notediv"></div><div id="notetitle_73" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="74" title="GsAb" class="fretdiv" onclick=""><div id="note_74" i="7" j="4" class="notediv"></div><div id="notetitle_74" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="75" title="A" class="fretdiv" onclick=""><div id="note_75" i="7" j="5" class="notediv"></div><div id="notetitle_75" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="76" title="AsBb" class="fretdiv" onclick=""><div id="note_76" i="7" j="6" class="notediv"></div><div id="notetitle_76" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="77" title="B" class="fretdiv" onclick=""><div id="note_77" i="7" j="7" class="notediv"></div><div id="notetitle_77" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="78" title="C" class="fretdiv" onclick=""><div id="note_78" i="7" j="8" class="notediv"></div><div id="notetitle_78" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="79" title="CsDb" class="fretdiv" onclick=""><div id="note_79" i="7" j="9" class="notediv"></div><div id="notetitle_79" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="710" title="D" class="fretdiv" onclick=""><div id="note_710" i="7" j="10" class="notediv"></div><div id="notetitle_710" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="711" title="DsEb" class="fretdiv" onclick=""><div id="note_711" i="7" j="11" class="notediv"></div><div id="notetitle_711" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="712" title="E" class="fretdiv" onclick=""><div id="note_712" i="7" j="12" class="notediv"></div><div id="notetitle_712" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="713" title="F" class="fretdiv" onclick=""><div id="note_713" i="7" j="13" class="notediv"></div><div id="notetitle_713" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="714" title="FsGb" class="fretdiv" onclick=""><div id="note_714" i="7" j="14" class="notediv"></div><div id="notetitle_714" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="715" title="G" class="fretdiv" onclick=""><div id="note_715" i="7" j="15" class="notediv"></div><div id="notetitle_715" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="716" title="GsAb" class="fretdiv" onclick=""><div id="note_716" i="7" j="16" class="notediv"></div><div id="notetitle_716" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="717" title="A" class="fretdiv" onclick=""><div id="note_717" i="7" j="17" class="notediv"></div><div id="notetitle_717" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="718" title="AsBb" class="fretdiv" onclick=""><div id="note_718" i="7" j="18" class="notediv"></div><div id="notetitle_718" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="719" title="B" class="fretdiv" onclick=""><div id="note_719" i="7" j="19" class="notediv"></div><div id="notetitle_719" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="720" title="C" class="fretdiv" onclick=""><div id="note_720" i="7" j="20" class="notediv"></div><div id="notetitle_720" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="721" title="CsDb" class="fretdiv" onclick=""><div id="note_721" i="7" j="21" class="notediv"></div><div id="notetitle_721" class="notetitle"></div></div>
+				</td>
+                                        <td class="tdfret" border="0">
+					        <div id="722" title="C" class="fretdiv" onclick="">
+							<div id="note_722" i="7" j="22" class="notediv"></div>
+							<div id="notetitle_722" class="notetitle"></div>
+						</div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="723" title="CsDb" class="fretdiv" onclick="">
+							<div id="note_723" i="7" j="23" class="notediv"></div>
+							<div id="notetitle_723" class="notetitle"></div>
+						</div>
+					</td>
+			</tr>
+			<tr style="background-color: rgb(255, 255, 255);">
+				<td width="10" height="20"></td>
+				<td class="numnode">0</td>
+				<td class="numnode">1</td>
+				<td class="numnode">2</td>
+				<td class="numnode">3</td>
+				<td class="numnode">4</td>
+				<td class="numnode">5</td>
+				<td class="numnode">6</td>
+				<td class="numnode">7</td>
+				<td class="numnode">8</td>
+				<td class="numnode">9</td>
+				<td class="numnode">10</td>
+				<td class="numnode">11</td>
+				<td class="numnode">12</td>
+				<td class="numnode">13</td>
+				<td class="numnode">14</td>
+				<td class="numnode">15</td>
+				<td class="numnode">16</td>
+				<td class="numnode">17</td>
+				<td class="numnode">18</td>
+				<td class="numnode">19</td>
+				<td class="numnode">20</td>
+				<td class="numnode">21</td>
+				<td class="numnode">22</td>
+				<td class="numnode">23</td>
+			</tr>
+	</tbody>
+</table>
+</div>
+  </div>
+<div>
+  
+    
+      <div id="scaletable">
+<table border="1" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" colspan="8" id="scaletitle"></td>
+	</tr>
+	<tr>
+		<td class="scaletitle" id="scale_I">I</td>
+		<td class="scaletitle" id="scale_II">II</td>
+		<td class="scaletitle" id="scale_III">III</td>
+		<td class="scaletitle" id="scale_IV">IV</td>
+		<td class="scaletitle" id="scale_V">V</td>
+		<td class="scaletitle" id="scale_VI">VI</td>
+		<td class="scaletitle" id="scale_VII">VII</td>
+	</tr>
+	<tr>
+		<td class="scaleval" id="scale_I_val"></td>
+		<td class="scaleval" id="scale_II_val"></td>
+		<td class="scaleval" id="scale_III_val"></td>
+		<td class="scaleval" id="scale_IV_val"></td>
+		<td class="scaleval" id="scale_V_val"></td>
+		<td class="scaleval" id="scale_VI_val"></td>
+		<td class="scaleval" id="scale_VII_val"></td>
+	</tr>
+</table><br>
+</div>
+  </div>
+<div>
+  
+    
+      <div class="horizontal_controls">
+  <div class="ctrls">
+    <label>Spacing</label>
+    <select id="selSpace" name="selSpace">
+      <option value="2">1</option>
+      <option selected="selected" value="3">2</option>
+      <option value="4">3</option>
+      <option value="5">4</option>
+      <option value="6">5</option>
+    </select>
+    <input id="btnClear" name="btnClear" title="Click here to start over with a new tab." type="button"
+      value="Start Over" />
+    <input id="btnPlayback" name="btnPlayback" title="Show the sequence to play the tab" type="button"
+      value="Numbering" />
+    <input id="btnShowHide" name="btnShowHide" title="Hide or Show the Fretboard" type="button"
+      value="Hide Fretboard" />
+    <a class="med_help" id="tabctrlhelp" target="help">help</a>
+  </div>
+</div>
+
+  </div>
+<div>
+  
+
+  </div>
+<div>
+  
+    
+      <div id="tabeditors"><input checked="checked" id="tabeditor1" name="tabeditors" type="radio" value="standard" /> <label for="tabeditor1">Standard Editor</label> <input id="tabeditor2" name="tabeditors" type="radio" value="advanced" /> <label for="tabeditor2">Advanced Editor</label></div>
+<div id="htmltabdisplay">&nbsp;</div>
+
+  </div>
+<div>
+  
+    
+      <div id="tabdisplay"></div>
+  </div>
+<div>
+  
+    
+      <div id="homepagetext">
+<div><span style="font-size:14px;"><span style="font-family: arial,helvetica,sans-serif;"><strong>Guitar Tab Creator is
+        Free and Easy</strong></span></span></div>
+<div>&nbsp;</div>
+<div>No easier way to make,save, and share guitar tabs. Online tool works on web, phone and tablets. Tools include a
+  fretboard, scales, chords, and tunings.</div>
+<div>&nbsp;</div>
+<div><span style="font-size:12px;">Using Guitar Tab Creator requires no software to install.&nbsp; There is no other tab
+    generator loaded with so many features.</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:14px;"><strong>Save you work and get back to it later!</strong></span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:12px;">You can generate guitar tab on the fly, or you can save your guitar tabs and edit
+    them later. &nbsp;You start out with a blank guitar tab sheet,&nbsp;&nbsp;&nbsp;&nbsp; Instead of downloading
+    software, or paying for guitar tab software, use this free online guitar tablature software.</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:14px;"><strong>Great for Beginners</strong></span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:12px;">Guitar Tab Creator is so simple to use that it makes for a great tool for beginners
+    and guitarists who want to learn how to read guitar tab. Included for free are tools allowing to you view guitar
+    scale diagram generator, easily create chords, allowing a beginner to easily create tablature for guitar.&nbsp;
+    Guitar Tab Creator is smart enough to know if you are putting a note on the wrong string, and warns you in
+    advance!</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:14px;"><strong>Great for Advanced Guitarists</strong></span></div>
+<div>&nbsp;</div>
+<div><span style="font-size:12px;">Guitar Tab Creator has all of the critical components required for today&#39;s
+    tabbing. &nbsp;Customize the guitar to your tuning, or choose from our collection of alternate tunings. &nbsp;Other
+    features like the scale tool, and the advanced timing functions, you can generate guitar tablature that meets your
+    demands.</span></div>
+<div>&nbsp;</div>
+<div><strong><span style="font-size:14px;">Awesome Tabbing Interface</span></strong></div>
+<div>&nbsp;</div>
+<div><span style="font-size:12px;">using the interactive fretboard, you can easily create easy to read guitar tabs
+    without ever having to keep track of formatting issues!&nbsp; Now you can edit you guitar tab at any location, with
+    the new features of adding, overwriting, and changing any note in any position in the guitar tab!</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size: 14px;"><b>View Chord Patterns and Play them Back with MIDI</b></span></div>
+<div style="font-size: 11.68px;">&nbsp;</div>
+<div style="font-size: 11.68px;">As a registered user, your tabs comes with a Chord tool that will display the finger
+  patterns for your chords as well as play them back with MIDI Sound!</div>
+</div>
+  </div>
+<div id="gtc-news-block">
+  
+    
+      <div><div class="js-view-dom-id-447ccd88ddce835b9380086aaeec23ca773fb248e838d907b97f7059a4b49e6a">
+  
+  
+  
+
+  
+  
+  
+
+      <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/june-5th-release" hreflang="en">June 5th Release</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/new-release-april-5-2021" hreflang="en">New Release April 5, 2021</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/new-release-march-21-2021" hreflang="en">New Release March 21, 2021</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/create-and-save-your-fretboard-diagrams" hreflang="en">Create and Save your Fretboard Diagrams</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/new-features-added" hreflang="en">New Features Added</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/interactive-guitar-tablature-player" hreflang="en">Interactive Guitar Tablature Player!</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/check-out-new-fretboard-diagram-generator" hreflang="en">Check out the new Fretboard Diagram Generator</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/better-playback-chord-diagrams" hreflang="en">Better Playback of Chord Diagrams</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/include-videos-your-guitar-tab" hreflang="en">Include Videos into your Guitar Tab</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-title"><span class="field-content"><a href="/news/include-videos-your-guitar-tab-0" hreflang="en">Include Videos into your Guitar Tab</a></span></div></div>
+
+    
+
+  
+  
+
+  
+  
+</div>
+</div>
+
+  </div>
+</div>
+      </div>
+    
+          <div  class="layout__region layout__region--second">
+        <div class="block-region-second"><div>
+  
+    
+      
+            <div><p>Sign up for an Account to <strong>Save your Tabs</strong>. Just click on <a href="/user/register">Sign up</a> link. Don't worry, you can import the tab you are working on!  If you would like to keep your tabs private, that will require becoming a <a href="https://www.patreon.com/guitartabcreator">Premium Member</a>.</p>
+</div>
+      
+  </div>
+<div>
+  
+    
+      <p style="text-align: center">
+<b style="font-size: 16px; color: rgb(255, 0, 0);">Take the Tutorial!</b><br />
+Press the button to begin  tutorial on how to use guitar tab creator!<br />
+<input type="button" value="Start Tutorial to learn how to use this tool" onclick="loadTour('gtc-tour-for-anonymous',0);">
+</p>
+
+  </div>
+<div>
+  
+    
+      <p style="text-align: center;"><a href="help"><span
+      style="font-family: arial black,avant garde; font-size: medium;"><strong>New User?</strong></span></a><br />
+  <a href="/help"><span style="font-size: small; color: #ff6600;"><strong>
+        <span style="font-family: tahoma,arial,helvetica,sans-serif;">Learn about&nbsp;guitar tab
+          creator</span></strong></span></a></p>
+
+  </div>
+<div>
+  
+    
+      
+<div id="Chords">
+  <table border="0" class="chord_table">
+    <tbody>
+      <tr>
+        <td style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255); " height="10"
+          align="left">
+          <img src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return" width="10" height="10">
+          <span id="lblcontrols">Vertically Stack Notes<a class="tiny_help" target="help" id="chord_help">help</a>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td class="control_section">
+          <div id="muteon" align="center">
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td id="td4" align="center">
+                  <button type="button" id="btnnc" alt="Start a New Chord">Start a New Chord or Interval</button>
+                  <button type="button" id="btnec" alt="End Making a Chord">End Making a Chord or Interval</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="td3" align="center">
+                    <button type="button" id="btnnext" alt="Add another chord to the tab">Add another set of notes to the tab</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="td5" align="center">
+                    <button type="button" id="btnmute" alt="Click here to mute a string.">Click here to mute a string.</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+<div>
+  
+    
+      
+<div id="controls">
+  <table width="100%" border="0" style="background-color: rgb(153, 153, 153);">
+    <tbody>
+      <tr>
+        <td width="118px" align="left" height="10px"
+          style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);">
+          <img width="10" height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return"><span
+            id="lblcontrols">Tab Controls<a class="tiny_help" id="effects_help">help</a></span></td>
+      </tr>
+      <tr>
+        <td><span>Note Technical Add-Ons</span> </td>
+      </tr>
+        <td>
+            <button type="button" id="btnh" alt="Hammer On" title="Hammer On">H</button>
+            <button type="button" id="btnb" alt="Bend" title="Bend">B</button>
+            <button type="button" id="btnp" alt="Pull Up"title="Pull Up">P</button>
+            <button type="button" id="btnr" alt="Release" title="Release">R</button>
+            <button type="button" id="btnfs" alt="Slide Up" title="Slide Up">/</button>
+            <button type="button" id="btnbs" alt="Slide Down" title="Slide Down">\</button>
+            <button type="button" id="btnv" alt="Vibrato" title="Vibrato">V</button>
+            <button type="button" id="btnrest" alt="Rest" title="Rest">Rest</button>
+        </td>
+      </tr>
+      <tr>
+        <td><span>Measure Notations</span> </td>
+      </tr>
+      <tr>
+        <td>
+            <button type="button" id="btnbar" alt="Bar Line" title="Bar Line">|</button>
+            <button type="button" id="btnMeasureRepeat" alt="Measure Repeat" title="Measure Repeat">%</button>
+            <button type="button" id="btnBeginRepeat" alt="Begin Repeat Bar Line" title="Begin Repeat Bar Line">|:</button>
+            <button type="button" id="btnEndRepeat" alt="End Repeat Bar Line" title="End Repeat Bar Line">:|</button>
+        </td>
+      </tr>
+      <tr>
+        <td><span>Deletion Tools</span></td>
+      </tr>
+      <tr>
+        <td>
+            <button type="button" id="btnback" alt="Go Back" title="Delete last addition">Go Back</button>
+        </td>
+      </tr>
+      <tr>
+        <td><span>Staff Tools (only available in Advanced Editor)</span></td>
+      </tr>
+      <tr class="advanced_editor_feature">
+        <td>
+            <button type="button" id="btnInsertStaff" alt="Insert Staff" title="Insert Staff at Cursor">Insert new Staff at Cursor</button><br />
+             <button type="button" id="btnDeleteStaff" alt="Delete Staff" title="Delete Staff at Cursor">Delete Staff at Cursor</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </div>
+<div>
+  
+    
+      
+<div id="Scales">
+  <table class="scale_table">
+    <tbody>
+      <tr>
+        <td align="left" height="10"
+          style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);"><img width="10"
+            height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return">
+            <span id="lblcontrols">Scale Helper<a class="tiny_help" id="scale_help">help</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div align="left" id="muteoff" class="common_block_style">
+            <table cellspacing="0" cellpadding="0" class="scale_table_format">
+              <tbody>
+                <tr>
+                  <td>
+                    <select name="selKey" id="selKey">
+                      <option value="none" selected="">none</option>
+                      <option value="C">C</option>
+                      <option value="Cs">Cs</option>
+                      <option value="D">D</option>
+                      <option value="Ds">Ds</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                      <option value="Fs">Fs</option>
+                      <option value="G">G</option>
+                      <option value="Gs">Gs</option>
+                      <option value="A">A</option>
+                      <option value="As">As</option>
+                      <option value="B">B</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="selMode" id="selMode">
+                      <option value="ionian" selected="">Ionian (major)</option>
+                      <option value="aeolian">Aeolian</option>
+                      <option value="harmonicminor">Harmonic minor</option>
+                      <option value="melodicminor">Melodic minor</option>
+                      <option value="diminished">Diminished</option>
+                      <option value="dorian">Dorian</option>
+                      <option value="phrygian">Phrygian</option>
+                      <option value="lydian">Lydian</option>
+                      <option value="mixolydian">Mixolydian</option>
+                      <option value="locrian">Locrian</option>
+                      <option value="majorpent">Major Pent</option>
+                      <option value="minorpent">Minor Pent</option>
+                      <option value="minorblues">Minor Blues</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="background-color: rgb(153, 153, 153);" colspan="2"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+<div>
+  
+    
+      
+<div id="stavecontrols">
+  <table width="100%" border="0" style="background-color: rgb(153, 153, 153);">
+    <tbody>
+      <tr>
+        <td width="118px" align="left" height="10px"
+          style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);">
+          <img width="10" height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return"><span
+            id="lblcontrols">Stave Controls<a class="tiny_help" id="stave_help">help</a></span></td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+          <input type="button" id="btnAddRow" value="Append Stave to End" title="Append stave to the bottom of tab."
+            name="btnAddStave"><br>
+            <label>Insert:</label> 
+            <select name="selStaveBeforeAfter" id="selStaveBeforeAfter">
+              <option value="before" selected="">Before</option>
+              <option value="after" selected="">After</option>
+            </select>
+          <select name="selStaveInsert" id="selStaveInsert">
+            <option value="0" selected="">Stave 1</option>
+          </select>
+          <input type="button" id="btnInsertRow" value="Insert Stave" title="Insert stave to the tab."
+            name="btnInsertStave">
+          <br>
+          <label>Edit:</label>
+          <select name="selStave" id="selStave">
+            <option value="0" selected="">Stave 1</option>
+          </select><br>
+          <label>Delete:</label>
+          <select name="delStave" id="delStave">
+          </select><button type="button" id="btnDelRow">Delete</button>
+          <br />
+          <label>Stave Visibility</label>
+          <select id="selStaveVisibility" name="selStaveVisibility">
+            <option selected="selected" value="asc">from first to last</option>
+            <option value="desc">from last to first</option>
+            <option value="current">only show current</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </div>
+<div>
+  
+    
+      <div id="timing">
+<table width="100%" border="0" style="background-color: rgb(153, 153, 153);">
+<tbody>
+<tr><td width="118px" align="left" height="10px" style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);">
+<img width="10" height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return"><span id="lbltiming">Timing Controls<a class="tiny_help" target="help" id="timing_help">help</a></span></td></tr>
+<tr>
+<td style="background-color: rgb(153, 153, 153);">
+<div align="center" id="timingctrl" style="visibility: visible;">
+<select name="selTime" id="selTime">
+<option value="W" selected="">Whole</option>
+<option value="H">Half</option>
+<option value="Q">Quarter</option>
+<option value="E">8th</option>
+<option value="S">16th</option>
+<option value="T">32nd</option>
+<option value="X">64th</option>
+</select>
+<br>
+<input type="checkbox" id="showtiming" name="checkboxName" value="timing">Show Timing
+</div>
+</td></tr></tbody></table></div>
+  </div>
+<div>
+  
+    
+      <table width="100%" border="0" style="background-color: rgb(153, 153, 153);">
+<tbody>
+<tr>
+<td width="118px" align="left" height="10px" style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);">
+<img width="10" height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return"><span id="lblcontrols">Tuning Controls<a class="tiny_help" id="tuning_help">help</a></span></td>
+</tr>
+<tr>
+<td style="background-color: rgb(153, 153, 153);">
+Choose Instrument:
+<div style="display:inline-block; position:relative;">
+		<select id="instruments">
+			<option value="4guitar">Tenor Guitar</option>
+			<option value="6guitar" selected="">6 String Guitar</option>
+			<option value="7guitar">7 String Guitar</option>
+			<option value="4bass">4 String Bass</option>
+			<option value="5bass">5 String Bass</option>
+			<option value="6bass">6 String Bass</option>
+			<option value="mandolin">Mandolin</option>
+			<option value="ukulele">Ukulele</option>
+		</select>
+<div id="hiddeninstrument" style="position:absolute; left:0; right:0; top:0; bottom:0;"></div>
+</div>
+</td>
+<tr>
+<td style="background-color: rgb(153, 153, 153)" align="center">
+Tune Strings:
+	<table cellpadding="0" border="0" class="gtc_table">
+		<tbody>
+			<tr style="background-color: rgb(255, 255, 255);">
+				<td></td>
+				<td class="numnode">0</td><td class="numnode">1</td><td class="numnode">2</td>
+			</tr>
+			<tr class="gtrow stringrow" id="tuningstring1">
+				<td class="tdnut_tuner" pos="0">
+					<select string="1" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option selected="" value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+					<div id="stringnote_6" pos="6" class="stringnote"></div></td><td class="tdfret" border="0"><div id="60" title="E" class="fretdiv_modal"><div id="note_60" i="6" j="0" class="notediv_modal"></div><div id="notetitle_60" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="61" title="F" class="fretdiv_modal"><div id="note_61" i="6" j="1" class="notediv_modal"></div><div id="notetitle_61" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="62" title="FsGb" class="fretdiv_modal"><div id="note_62" i="6" j="2" class="notediv_modal"></div><div id="notetitle_62" class="notetitle"></div></div>
+				</td>
+			</tr>
+			<tr class="gtrow stringrow" id="tuningstring2">
+				<td class="tdnut_tuner" pos="1">
+					<select string="2" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option selected="" value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+					<div id="stringnote_5" pos="5" class="stringnote"></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="50" title="B" class="fretdiv_modal"><div id="note_50" i="5" j="0" class="notediv_modal"></div><div id="notetitle_50" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="51" title="C" class="fretdiv_modal"><div id="note_51" i="5" j="1" class="notediv_modal"></div><div id="notetitle_51" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="52" title="CsDb" class="fretdiv_modal"><div id="note_52" i="5" j="2" class="notediv_modal"></div><div id="notetitle_52" class="notetitle"></div></div>
+				</td>
+			</tr>
+			<tr class="gtrow stringrow" id="tuningstring3">
+				<td class="tdnut_tuner" pos="2">
+					<select string="3" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option selected="" value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+					<div id="stringnote_4" pos="4" class="stringnote"></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="40" title="G" class="fretdiv_modal"><div id="note_40" i="4" j="0" class="notediv_modal"></div><div id="notetitle_40" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0"><div id="41" title="GsAb" class="fretdiv_modal"><div id="note_41" i="4" j="1" class="notediv_modal"></div><div id="notetitle_41" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="42" title="A" class="fretdiv_modal"><div id="note_42" i="4" j="2" class="notediv_modal"></div><div id="notetitle_42" class="notetitle"></div></div>
+				</td>
+			</tr>
+			<tr class="gtrow stringrow" id="tuningstring4">
+				<td class="tdnut_tuner" pos="3">
+					<select string="4" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option selected="" value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+					<div id="stringnote_3" pos="3" class="stringnote"></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="30" title="D" class="fretdiv_modal"><div id="note_30" i="3" j="0" class="notediv_modal"></div><div id="notetitle_30" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="31" title="DsEb" class="fretdiv_modal"><div id="note_31" i="3" j="1" class="notediv_modal"></div><div id="notetitle_31" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="32" title="E" class="fretdiv_modal"><div id="note_32" i="3" j="2" class="notediv_modal"></div><div id="notetitle_32" class="notetitle"></div></div>
+				</td>
+			</tr>
+			<tr class="gtrow stringrow" id="tuningstring5">
+				<td class="tdnut_tuner" pos="4">
+					<select string="5" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option selected="" value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+					<div id="stringnote_2" pos="2" class="stringnote"></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="20" title="A" class="fretdiv_modal"><div id="note_20" i="2" j="0" class="notediv_modal"></div><div id="notetitle_20" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="21" title="AsBb" class="fretdiv_modal"><div id="note_21" i="2" j="1" class="notediv_modal"></div><div id="notetitle_21" class="notetitle"></div></div>
+				</td>
+				<td class="tdfret" border="0">
+					<div id="22" title="B" class="fretdiv_modal"><div id="note_22" i="2" j="2" class="notediv_modal"></div><div id="notetitle_22" class="notetitle"></div></div>
+				</td>
+			</tr>
+				<tr class="gtrow stringrow" id="tuningstring6">
+					<td class="tdnut_tuner" pos="5">
+					<select string="6" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option selected="" value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+						<div id="stringnote_1" pos="1" class="stringnote"></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="10" title="E" class="fretdiv_modal"><div id="note_10" i="1" j="0" class="notediv_modal"></div><div id="notetitle_10" class="notetitle"></div></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="11" title="F" class="fretdiv_modal"><div id="note_11" i="1" j="1" class="notediv_modal"></div><div id="notetitle_11" class="notetitle"></div></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="12" title="FsGb" class="fretdiv_modal"><div id="note_12" i="1" j="2" class="notediv_modal"></div><div id="notetitle_12" class="notetitle"></div></div>
+					</td>
+				</tr>
+				<tr class="gtrow stringrow" id="tuningstring7">
+					<td class="tdnut_tuner" pos="6">
+					<select string="7" class="stringselector">
+						<option value="A" id="A0">A0</option>
+						<option value="GsAb" id="Ab1">Ab1</option>
+						<option value="A" id="A1">A1</option>
+						<option value="GsAb" id="Ab2">Ab2</option>
+						<option value="A" id="A2">A2</option>
+						<option value="GsAb" id="Ab3">Ab3</option>
+						<option value="A" id="A3">A3</option>
+						<option value="GsAb" id="Ab4">Ab4</option>
+						<option value="A" id="A4">A4</option>
+						<option value="GsAb" id="Ab5">Ab5</option>
+						<option value="A" id="A5">A5</option>
+						<option value="GsAb" id="Ab6">Ab6</option>
+						<option value="A" id="A6">A6</option>
+						<option value="GsAb" id="Ab7">Ab7</option>
+						<option value="A" id="A7">A7</option>n>	
+						<option value="AsBb" id="Bb0">Bb0</option>
+						<option value="B" id="B0">B0</option>
+						<option value="AsBb" id="Bb1">Bb1</option>
+						<option selected="" value="B" id="B1">B1</option>
+						<option value="AsBb" id="Bb2">Bb2</option>
+						<option value="B" id="B2">B2</option>
+						<option value="AsBb" id="Bb3">Bb3</option>
+						<option value="B" id="B3">B3</option>
+						<option value="AsBb" id="Bb4">Bb4</option>
+						<option value="B" id="B4">B4</option>
+						<option value="AsBb" id="Bb5">Bb5</option>
+						<option value="B" id="B5">B5</option>
+						<option value="AsBb" id="Bb6">Bb6</option>
+						<option value="B" id="B6">B6</option>
+						<option value="AsBb" id="Bb7">Bb7</option>
+						<option value="B" id="B7">B7</option>
+						<option value="C" id="C1">C1</option>
+						<option value="C" id="C2">C2</option>
+						<option value="C" id="C3">C3</option>
+						<option value="C" id="C3">C4</option>
+						<option value="C" id="C3">C5</option>
+						<option value="C" id="C3">C6</option>
+						<option value="C" id="C3">C7</option>				
+						<option value="CsDb" id="Db1">Db1</option>
+						<option value="D" id="D1">D1</option>
+						<option value="CsDb" id="Db2">Db2</option>
+						<option value="D" id="D2">D2</option>
+						<option value="CsDb" id="Db3">Db3</option>
+						<option value="D" id="D3">D3</option>
+						<option value="CsDb" id="Db4">Db4</option>
+						<option value="D" id="D4">D4</option>
+						<option value="CsDb" id="Db5">Db5</option>
+						<option value="D" id="D5">D5</option>
+						<option value="CsDb" id="Db6">Db6</option>
+						<option value="D" id="D6">D6</option>
+						<option value="CsDb" id="Db7">Db7</option>
+						<option value="D" id="D7">D7</option>
+						<option value="DsEb" id="Eb1">Eb1</option>
+						<option value="E" id="E1">E1</option>
+						<option value="DsEb" id="Eb2">Eb2</option>
+						<option value="E" id="E2">E2</option>
+						<option value="DsEb" id="Eb3">Eb3</option>
+						<option value="E" id="E3">E3</option>
+						<option value="DsEb" id="Eb4">Eb4</option>
+						<option value="E" id="E4">E4</option>
+						<option value="DsEb" id="Eb5">Eb5</option>
+						<option value="E" id="E5">E5</option>
+						<option value="DsEb" id="Eb6">Eb6</option>
+						<option value="E" id="E6">E6</option>
+						<option value="DsEb" id="Eb7">Eb7</option>
+						<option value="E" id="E7">E7</option>
+						<option value="F" id="F1">F1</option>
+						<option value="F" id="F2">F2</option>
+						<option value="F" id="F2">F3</option>
+						<option value="F" id="F2">F4</option>
+						<option value="F" id="F2">F5</option>
+						<option value="F" id="F2">F6</option>
+						<option value="F" id="F2">F7</option>					
+						<option value="FsGb" id="Gb1">Gb1</option>
+						<option value="G" id="G1">G1</option>
+						<option value="FsGb" id="Gb2">Gb2</option>
+						<option value="G" id="G2">G2</option>
+						<option value="FsGb" id="Gb3">Gb3</option>
+						<option value="G" id="G3">G3</option>
+						<option value="FsGb" id="Gb4">Gb4</option>
+						<option value="G" id="G4">G4</option>
+						<option value="FsGb" id="Gb5">Gb5</option>
+						<option value="G" id="G5">G5</option>
+						<option value="FsGb" id="Gb6">Gb6</option>
+						<option value="G" id="G6">G6</option>
+						<option value="FsGb" id="Gb7">Gb7</option>
+						<option value="G" id="G7">G7</option>											
+					</select>
+						<div id="stringnote_1" pos="1" class="stringnote"></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="10" title="E" class="fretdiv_modal"><div id="note_10" i="1" j="0" class="notediv_modal"></div><div id="notetitle_10" class="notetitle"></div></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="11" title="F" class="fretdiv_modal"><div id="note_11" i="1" j="1" class="notediv_modal"></div><div id="notetitle_11" class="notetitle"></div></div>
+					</td>
+					<td class="tdfret" border="0">
+						<div id="12" title="FsGb" class="fretdiv_modal"><div id="note_12" i="1" j="2" class="notediv_modal"></div><div id="notetitle_12" class="notetitle"></div></div>
+					</td>
+				</tr>
+				<tr style="background-color: rgb(255, 255, 255);">
+					<td width="10" height="20"></td><td class="numnode">0</td>
+					<td class="numnode">1</td><td class="numnode">2</td>
+				</tr>
+			</tbody>
+		</table>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(153, 153, 153);">
+Choose a Tuning:
+<select id="tuningselector">
+	<optgroup label="4 String Guitar" value="4guitar" disabled>
+		<option value="4guitar" data-termid="52">Tenor</option>
+	</optgroup>
+	<optgroup label="6 String Guitar" value="6guitar">
+		<option value="6guitar" data-termid="51" selected="">Standard</option>
+		<option value="Drop D" data-termid="54">Drop D</option>
+		<option value="Double Drop D" data-termid="55">Double Drop D</option>
+		<option value="Drop C" data-termid="56">Drop C</option>
+		<option value="Drop C#" data-termid="57">Drop C#</option>
+		<option value="Drop B" data-termid="58">Drop B</option>
+		<option value="Drop A#" data-termid="59">Drop A#</option>
+		<option value="Drop A" data-termid="60">Drop A</option>
+		<option value="Open D" data-termid="61">Open D</option>
+		<option value="Open D Minor" data-termid="62">Open D Minor</option>
+		<option value="Open G" data-termid="63">Open G</option>
+		<option value="Open G Minor" data-termid="64">Open G Minor</option>
+		<option value="Open C" data-termid="65">Open C</option>
+		<option value="Open C#" data-termid="66">Open C#</option>
+		<option value="Open C Minor" data-termid="67">Open C Minor</option>
+		<option value="Open E7" data-termid="68">Open E7</option>
+		<option value="Open E Minor7" data-termid="69">Open E Minor7</option>
+		<option value="Open G Major7" data-termid="70">Open G Major7</option>
+		<option value="Open A Minor" data-termid="71">Open A Minor</option>
+		<option value="Open A Minor7" data-termid="72">Open A Minor7</option>
+		<option value="Open E" data-termid="73">Open E</option>
+		<option value="Open A" data-termid="74">Open A</option>
+		<option value="Open Dsus2" data-termid="75">Open Dsus2</option>
+		<option value="Open Gsus2" data-termid="76">Open Gsus2</option>
+		<option value="Half Step Down" data-termid="77">Half Step Down</option>
+		<option value="Full Step Down" data-termid="78">Full Step Down</option>
+		<option value="1 and 1/2 Steps Down" data-termid="79">1 and 1/2 Steps Down</option>
+		<option value="C Tuning" data-termid="80">C Tuning</option>
+		<option value="C# Tuning" data-termid="81">C# Tuning</option>
+		<option value="Bb Tuning" data-termid="82">Bb Tuning</option>
+		<option value="A to A (Baritone)" data-termid="83">A to A (Baritone)</option>
+		<option value="D A D D D D" data-termid="84">D A D D D D</option>
+		<option value="C G D G B D" data-termid="85">C G D G B D</option>
+		<option value="C G D G B E" data-termid="86">C G D G B E</option>
+		<option value="D A D E A D" data-termid="87">D A D E A D</option>
+		<option value="D G D G A D" data-termid="88">D G D G A D</option>
+		<option value="G6" data-termid="89">G6</option>
+		<option value="Modal G" data-termid="90">Modal G</option>
+		<option value="Overtone" data-termid="91">Overtone</option>
+		<option value="Pentatonic" data-termid="92">Pentatonic</option>
+		<option value="Minor Third" data-termid="93">Minor Third</option>
+		<option value="Major Third" data-termid="94">Major Third</option>
+		<option value="All Fourths" data-termid="95">All Fourths</option>
+		<option value="Augmented Fourths" data-termid="96">Augmented Fourths</option>
+		<option value="Slow Motion" data-termid="97">Slow Motion</option>
+		<option value="Admiral" data-termid="98">Admiral</option>
+		<option value="Buzzard" data-termid="99">Buzzard</option>
+		<option value="Face" data-termid="100">Face</option>
+		<option value="Four and Twenty" data-termid="101">Four and Twenty</option>
+		<option value="Ostrich" data-termid="102">Ostrich</option>
+		<option value="Capo 200" data-termid="103">Capo 200</option>
+		<option value="Balalaika" data-termid="104">Balalaika</option>
+		<option value="Cittern One" data-termid="105">Cittern One</option>
+		<option value="Cittern Two" data-termid="106">Cittern Two</option>
+		<option value="Dobro" data-termid="107">Dobro</option>
+		<option value="Lefty" data-termid="108">Lefty</option>
+		<option value="Mandoguitar" data-termid="109">Mandoguitar</option>
+		<option value="Rusty Cage" data-termid="110">Rusty Cage</option>
+	</optgroup>
+	<optgroup label="7 String Guitar" value="7guitar" disabled>
+		<option value="7guitar" data-termid="111">Standard</option>
+		<option value="7_drop_a" data-termid="112">Drop A</option>
+		<option value="7_standard_choro" data-termid="113">Standard Choro</option>
+		<option value="7_drop_d" data-termid="114">Drop D</option>
+		<option value="7_drop_d_and_a" data-termid="115">Drop D and A</option>
+		<option value="7_thirds" data-termid="116">Thirds</option>
+		<option value="All Fourths" data-termid="117">All Fourths</option>
+	</optgroup>
+	<optgroup label="4 String Bass" disabled>
+		<option value="4bass" data-termid="118">Standard</option>
+	</optgroup>
+	<optgroup label="5 String Bass" value="5bass" disabled>
+		<option value="5bass" data-termid="119">Standard</option>
+		<option value="5bass_higher" data-termid="120">Higher</option>
+	</optgroup>
+	<optgroup label="6 String Bass" value="6bass" disabled>
+		<option value="6bass" data-termid="121">Standard</option>	
+	</optgroup>
+	<optgroup label="Mandolin" value="mandolin" disabled>
+		<option value="mandolin" data-termid="122">Standard</option>	
+	</optgroup>
+	<optgroup label="Ukulele" value="ukulele" disabled>
+		<option value="ukulele" data-termid="123">Standard</option>	
+</optgroup>
+
+</select>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(153, 153, 153);">
+Place a Capo: 
+<select id="caposelect">
+  				<option value="0" selected>0</option>
+  				<option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+  </select>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(153, 153, 153);">
+<input type="checkbox" id="flat_sharp" name="flat_sharp" value="1" checked>Flat<br>
+
+</td>
+</tr>
+</tbody>
+</table>
+  </div>
+<div>
+  
+    
+      <div id="shortcuts">
+  <table width="100%" border="0" style="background-color: rgb(153, 153, 153);">
+    <tbody>
+      <tr>
+        <td width="118px" align="left" height="10px"
+          style="background-color: rgb(0, 51, 102); font-size: 10px; color: rgb(255, 255, 255);">
+          <img width="10" height="10" src="https://www.guitartabcreator.com/modules/contrib/gtc/images/button.gif" alt="return">
+          <span id="lblshortcuts">Advanced Editor Keyboard Shortcuts
+            <a class="tiny_help" target="help" id="shortcut_help">help</a>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+           <strong> Use these to add notes and effects </strong>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard">
+                <div class="key" title="Use numbers to insert a note"><strong>0-9</strong></div>
+                <div class="key" title="Vibrato"><strong>v</strong></div>
+                <div class="key" title="Mute"><strong>x</strong></div>
+                <div class="key" title="Release"><strong>r</strong></div>
+                <div class="key" title="Hammer On"><strong>h</strong></div>
+                <div class="key" title="Pull Off"><strong>p</strong></div>
+                <div class="key" title="Bend"><strong>b</strong></div>
+                <div class="key" title="Slide Up"><strong>/</strong></div>
+                <div class="key" title="Slide Down"><strong>\</strong></div>
+                <div class="key wide_1" title="Rest"><span><strong>space</strong><span></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <strong>You can delete a note too </strong>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard">
+                <div class="key wide_1" title="delete"><span><strong>delete</strong><span></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+           <strong> Use the Arrows to Navigate </strong>
+        </td>
+      </tr>
+      <tr>
+      <td>
+        <div class="keyboard">
+          <div class="key">
+            <div class="triangle left" title="Move left"></div>
+          </div>
+          <div class="key">
+            <div class="triangle up" title="Move up"></div>
+          </div>
+          <div class="key">
+            <div class="triangle down" title="Move down"></div>
+          </div>
+          <div class="key">
+            <div class="triangle right" title="Move right"></div>
+          </div>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+          <strong>  Combinations for cut, copy and paste </strong>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard" title="Select to the left">
+                <div class="key wide_1"><span><strong>shift</strong><span></div>
+                <div class="key"><div class="triangle left"></div></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard" title="Select to the right">
+                <div class="key wide_1"><span><strong>shift</strong><span></div>
+                <div class="key"><div class="triangle right"></div></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard" title="Cut">
+                <div class="key wide_1"><span><strong>ctrl</strong><span></div>
+                <div class="key"><strong>x</strong></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard" title="Copy">
+                <div class="key wide_1"><span><strong>ctrl</strong><span></div>
+                <div class="key"><strong>c</strong></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+            <div class="keyboard" title="Paste">
+                <div class="key wide_1"><span><strong>ctrl</strong><span></div>
+                <div class="key"><strong>v</strong></div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: rgb(153, 153, 153);">
+          <strong>  Combinations for measures</strong>
+          <div class="keyboard">
+            <div class="key" title="bar"><strong>|</strong></div>
+            <div class="key" title="repeat measure"><strong>%</strong></div>
+            <div class="key" title="start repeat"><strong>[</strong></div>
+            <div class="key" title="end repeat"><strong>]</strong></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+  </div>
+<div class="views-element-container">
+  
+    
+      <div><div class="js-view-dom-id-58e709dd8dc331415eecdf3762f53f1a71f719fc8928c206fccbb69ea794da82">
+  
+  
+  
+
+  
+  
+  
+
+  <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-do-i-save-my-tabs-pdf" hreflang="en">How do I save my tabs to a PDF?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-cut-copy-and-paste-musical-phrase" hreflang="en">How to Cut, Copy and Paste a Musical Phrase</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/using-stave-controls" hreflang="en">Using the Stave Controls</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-playback-chords-midi-sound" hreflang="en">How to playback Chords with MIDI sound</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-add-text-your-guitar-tab" hreflang="und">How to add text to your guitar tab</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/printer-friendly-tab" hreflang="und">Printer Friendly Tab</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-use-cut-copy-and-paste" hreflang="und">How to use Cut Copy and Paste</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-tune-your-guitar-bass-mandolin-or-ukulele-using-sound-notes" hreflang="und">How to tune your guitar, bass, mandolin or ukulele using the sound of the notes</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-use-midi-chord-playback-system" hreflang="und">How to use the MIDI Chord Playback System</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/change-tuning" hreflang="und">Change the Tuning</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/interactive-tab-editor" hreflang="und">Interactive Tab Editor</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/editing-staves" hreflang="und">Editing Staves</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/hot-key-short-cuts" hreflang="und">Hot Key Short Cuts</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/easy-use-tooltips" hreflang="und">Easy to use tooltips</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/format-guitar-tab-forums-phpbb-and-vbulletin" hreflang="und">Format Guitar Tab for Forums like phpBB and vBulletin</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/timing" hreflang="und">Timing</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-add-hammer-pull-offs-bends-slides-and-vibratos" hreflang="und">How to add hammer on, pull offs, bends, slides and vibratos</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/making-chords-guitar-tab-creator" hreflang="und">Making Chords on Guitar Tab Creator</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/how-read-guitar-tab" hreflang="und">How to Read Guitar Tab</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/guitar-postitions-scale-tool" hreflang="und">Guitar Postitions with the Scale Tool</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="https://www.guitartabcreator.com/help/using-tab-controls" hreflang="und">Using the Tab Controls</a></span></div></li>
+    
+  </ul>
+</div>
+</div>
+</div>
+
+  </div>
+</div>
+      </div>
+    
+          <div  class="layout__region layout__region--bottom">
+        <div class="block-region-bottom"><div>
+  
+      <h2>Welcome Modal</h2>
+  </div>
+<div>
+  
+    
+      
+            <div><div id="tuning_modal">Sound will begin in 5 seconds</div>
+</div>
+      
+  </div>
+<div>
+  
+    
+      <div id="signup">
+you really should join guitar tab creator and save this tab you are working on.  Don't worry - we are saving your tab to a cookie, it's quick and free to register (all we need is your email), and we'll reload the tab when you are done. By registering you'll get to save and share your tabs, as well as use the advanced tab editor, which allows you to create tab only using the keyboard.
+</div>
+  </div>
+</div>
+      </div>
+      </div>
+
+  </div>
+
+    </div>
+    
+          <aside class="layout-sidebar-second" role="complementary">
+          <div>
+    <div id="block-signupbanner">
+  
+      <h2>Sign Up Banner</h2>
+    
+      
+            <div><p>Sign up for an Account to <strong>Save your Tabs</strong>. Just click on <a href="https://www.guitartabcreator.com/user/register">Sign up</a> link. Don't worry, you can import the tab you are working on!  If you would like to keep your tabs private, that will require becoming a <a href="https://www.patreon.com/guitartabcreator">Premium Member</a>.</p>
+</div>
+      
+  </div>
+
+  </div>
+
+      </aside>
+    
+  </main>
+
+  
+</div>
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"tab\/new","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":{},"trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"user":{"uid":0,"permissionsHash":"6b6fb947b76e9facfb41854477299fa0387e66537e8691d21ec072144d4d499f"}}</script>
+<script src="jquery.min.js"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/css-escape/css.escape.js?v=1.5.1"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/polyfills/element.matches.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/polyfills/object.assign.js?v=9.3.2"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/once/once.min.js?v=1.0.1"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery-once/jquery.once.min.js?v=2.2.3"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/drupalSettingsLoader.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/drupal.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/drupal.init.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/version-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/data-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/disable-selection-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/form-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/jquery-1-7-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/scroll-parent-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/unique-id-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/escape-selector-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/focusable-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/ie-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/keycode-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/plugin-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/safe-active-element-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/safe-blur-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/controlgroup-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/form-reset-mixin-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/labels-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/mouse-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/checkboxradio-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/draggable-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/resizable-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/button-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/jquery.ui/ui/widgets/dialog-min.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/assets/vendor/tabbable/index.umd.min.js?v=5.2.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/cleantalk/js/apbct-public.js?v=2.x"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/debounce.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/displace.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/jquery.tabbable.shim.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/position.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/dialog/dialog.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/dialog/dialog.position.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/dialog/dialog.jquery-ui.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/advancededitor.js?v=1.3.0"></script>
+<script src="https://cdn.guitartabcreator.com/core/misc/jquery.once.bc.js?v=9.3.2"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/inc/shim/Base64.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/inc/shim/Base64binary.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/inc/shim/WebAudioAPI.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/audioDetect.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/gm.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/loader.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/plugin.audiotag.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/plugin.webaudio.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/midi/plugin.webmidi.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/util/dom_request_xhr.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/midi/js/util/dom_request_script.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/tuning.jquery.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/timing.js?v=1.2.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/tabcontrol.js?v=1.3.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/scales.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/guitar.js?v=1.1.2"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/chords.js?v=1.2"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/clipboard/clipboard.min.js?v=1.5.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/tabcreator.js?v=1.5.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/gtc.js?v=1.2.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/dmauro-keypress/keypress-2.1.5.min.js?v=1.2.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/hopscotch-0.3.1/js/hopscotch.js?v=1.2.0"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/effects.js?v=1.1"></script>
+<script src="https://cdn.guitartabcreator.com/modules/contrib/gtc/js/htmltabeditor.jquery.js?v=1.3.0"></script>
+
+  </body>
+</html>
