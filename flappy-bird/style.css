@@ -1,0 +1,8 @@
+body{
+	background-color: #999999;
+	margin: 10px;
+	padding: 0px;
+}
+#canvas{
+	background-image: url("background.jpg");
+}

@@ -1,0 +1,11 @@
+body{
+	background-color: darkslategray;
+	margin: 10px;
+}
+#canvas{
+	background-color: white;
+}
+
+#out {
+	color: lightcoral;
+}
