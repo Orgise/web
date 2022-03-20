@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Time Units Conversion Calculator</TITLE>
+<link rel="stylesheet" href="main.css">
+</HEAD>
+
+<BODY>
+
+<a name="top"></a>
+<H1>Time Units Conversion</H1>
+<HR COLOR="#FF0000" WIDTH="100%">
+
+<UL>
+<BLOCKQUOTE>
+
+<FORM><SELECT name=wwwLocations onchange=ChangeURL(this.form) size=1> 
+<OPTION value="">Select a Conversion</OPTION>
+<OPTION value="#d24h">days to hours</OPTION>
+<OPTION value="#d24m">days to minutes</OPTION>
+<OPTION value="#d24s">days to seconds</OPTION>
+<OPTION value="#d7w">days to weeks</OPTION>
+<OPTION value="#d365y">days to years</OPTION>
+<OPTION value="#h24d">hours to days</OPTION>
+<OPTION value="#h60m">hours to minutes</OPTION>
+<OPTION value="#h36s">hours to seconds</OPTION>
+<OPTION value="#h168w">hours to weeks</OPTION>
+<OPTION value="#h365y">hours to years</OPTION>
+<OPTION value="#m24d">minutes to days</OPTION>
+<OPTION value="#m60h">minutes to hours</OPTION>
+<OPTION value="#m60s">minutes to seconds</OPTION>
+<OPTION value="#m760w">minutes to weeks</OPTION>
+<OPTION value="#m365y">minutes to years</OPTION>
+<OPTION value="#m12y">months to years</OPTION>
+<OPTION value="#s24d">seconds to days</OPTION>
+<OPTION value="#s36h">seconds to hours</OPTION>
+<OPTION value="#s60m">seconds to minutes</OPTION>
+<OPTION value="#s724w">seconds to weeks</OPTION>
+<OPTION value="#s365y">seconds to years</OPTION>
+<OPTION value="#w7d">weeks to days</OPTION>
+<OPTION value="#w168h">weeks to hours</OPTION>
+<OPTION value="#w760m">weeks to minutes</OPTION>
+<OPTION value="#w724s">weeks to seconds</OPTION>
+<OPTION value="#w52y">weeks to years</OPTION>
+<OPTION value="#y365d">years to days</OPTION>
+<OPTION value="#y365h">years to hours</OPTION>
+<OPTION value="#y365m">years to minutes</OPTION>
+<OPTION value="#y12m">years to months</OPTION>
+<OPTION value="#y365s">years to seconds</OPTION>
+<OPTION value="#y52w">years to weeks</OPTION>
+</SELECT> 
+            </FORM>
+</BLOCKQUOTE>
+
+<b><a href="#dhmtom">days, hours and minutes to minutes</a></b><br>
+<b><a href="#d24h">days to hours</a></b><br>
+<b><a href="#d24m">days to minutes</a></b><br>
+<b><a href="#d24s">days to seconds</a></b><br>
+<b><a href="#d7w">days to weeks</a></b><br>
+<b><a href="#d365y">days to years</a></b><br>
+<b><a href="#hmstos">hours, minutes and seconds to seconds</a></b><br>
+<b><a href="#hmtom">hours and minutes to minutes</a></b><br>
+<b><a href="#h24d">hours to days</a></b><br>
+<b><a href="#h60m">hours to minutes</a></b><br>
+<b><a href="#h36s">hours to seconds</a></b><br>
+<b><a href="#h168w">hours to weeks</a></b><br>
+<b><a href="#h365y">hours to years</a></b><br>
+<b><a href="#mtodhm">minutes to days, hours and minutes</a></b><br>
+<b><a href="#m24d">minutes to days</a></b><br>
+<b><a href="#m60h">minutes to hours</a></b><br>
+<b><a href="#m60s">minutes to seconds</a></b><br>
+<b><a href="#m760w">minutes to weeks</a></b><br>
+<b><a href="#m365y">minutes to years</a></b><br>
+<b><a href="#m12y">months to years</a></b><br>
+<b><a href="#stohms">seconds to hours, minutes and seconds</a></b><br>
+<b><a href="#s24d">seconds to days</a></b><br>
+<b><a href="#s36h">seconds to hours</a></b><br>
+<b><a href="#s60m">seconds to minutes</a></b><br>
+<b><a href="#s724w">seconds to weeks</a></b><br>
+<b><a href="#s365y">seconds to years</a></b><br>
+<b><a href="#w7d">weeks to days</a></b><br>
+<b><a href="#w168h">weeks to hours</a></b><br>
+<b><a href="#w760m">weeks to minutes</a></b><br>
+<b><a href="#w724s">weeks to seconds</a></b><br>
+<b><a href="#w52y">weeks to years</a></b><br>
+<b><a href="#y365d">years to days</a></b><br>
+<b><a href="#y365h">years to hours</a></b><br>
+<b><a href="#y365m">years to minutes</a></b><br>
+<b><a href="#y12m">years to months</a></b><br>
+<b><a href="#y365s">years to seconds</a></b><br>
+<b><a href="#y52w">years to weeks</a></b><br>
+
+<a name = "hmstos"><H2> </H2></a>
+<H2>Convert hours, minutes and seconds to seconds</H2><p>
+<FORM>
+Enter number of hours: <INPUT TYPE="text" NAME="hour1" SIZE=10><BR>
+Enter number of minutes: <INPUT TYPE="text" NAME="min1" SIZE=10><BR>
+Enter number of seconds: <INPUT TYPE="text" NAME="sec1" SIZE=10><BR>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber2(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "stohms"><H2> </H2></a>
+<H2>Convert seconds to hours, minutes and seconds</H2><p>
+<FORM>
+Enter number of seconds: <INPUT TYPE="text" NAME="sec1" SIZE=10><BR>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber2b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=40></FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "hmtom"><H2> </H2></a>
+<H2>Convert hours and minutes to minutes</H2><p>
+<FORM>
+Enter number of hours: <INPUT TYPE="text" NAME="hour1" SIZE=10><BR>
+Enter number of minutes: <INPUT TYPE="text" NAME="min1" SIZE=10><BR>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber2h(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "dhmtom"><H2> </H2></a>
+<H2>Convert days, hours and minutes to minutes</H2><p>
+<FORM>
+Enter number of days: <INPUT TYPE="text" NAME="day1" SIZE=10><BR>
+Enter number of hours: <INPUT TYPE="text" NAME="hour1" SIZE=10><BR>
+Enter number of minutes: <INPUT TYPE="text" NAME="min1" SIZE=10><BR>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber3dh(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "mtodhm"><H2> </H2></a>
+<H2>Convert minutes to days, hours and minutes</H2><p>
+<FORM>
+Enter number of minutes: <INPUT TYPE="text" NAME="min1" SIZE=10><BR>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber2dm(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=32> </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "s60m"><H2> </H2></a>
+<H2>Convert seconds to minutes</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="60">
+Enter number of seconds: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m60s"><H2> </H2></a>
+<H2>Convert minutes to seconds</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="60">
+Enter number of minutes: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "s36h"><H2> </H2></a>
+<H2>Convert seconds to hours</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="3600">
+Enter number of seconds: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Hours </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "h36s"><H2> </H2></a>
+<H2>Convert hours to seconds</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="3600">
+Enter number of hours: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "s24d"><H2> </H2></a>
+<H2>Convert seconds to days</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="86400">
+Enter number of seconds: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Days </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "d24s"><H2> </H2></a>
+<H2>Convert days to seconds</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="86400">
+Enter number of days: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "s724w"><H2> </H2></a>
+<H2>Convert seconds to weeks</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="604800">
+Enter number of seconds: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Weeks </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "w724s"><H2> </H2></a>
+<H2>Convert weeks to seconds</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="604800">
+Enter number of weeks: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "s365y"><H2> </H2></a>
+<H2>Convert seconds to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="31536000">
+Enter number of seconds: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y365s"><H2> </H2></a>
+<H2>Convert years to seconds</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="31536000">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=18> Seconds </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m60h"><H2> </H2></a>
+<H2>Convert minutes to hours</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="60">
+Enter number of minutes: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Hours </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "h60m"><H2> </H2></a>
+<H2>Convert hours to minutes</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="60">
+Enter number of hours: <INPUT TYPE="text" NAME="txtNumber" SIZE=6>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m24d"><H2> </H2></a>
+<H2>Convert minutes to days</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="1440">
+Enter number of minutes: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Days </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "d24m"><H2> </H2></a>
+<H2>Convert days to minutes</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="1440">
+Enter number of days: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m760w"><H2> </H2></a>
+<H2>Convert minutes to weeks</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="10080">
+Enter number of minutes: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Weeks </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "w760m"><H2> </H2></a>
+<H2>Convert weeks to minutes</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="10080">
+Enter number of weeks: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m365y"><H2> </H2></a>
+<H2>Convert minutes to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="525600">
+Enter number of minutes: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y365m"><H2> </H2></a>
+<H2>Convert years to minutes</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="525600">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Minutes </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "h24d"><H2> </H2></a>
+<H2>Convert hours to days</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="24">
+Enter number of hours: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Days </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "d24h"><H2> </H2></a>
+<H2>Convert days to hours</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="24">
+Enter number of days: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Hours </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "h168w"><H2> </H2></a>
+<H2>Convert hours to weeks</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="168">
+Enter number of hours: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Weeks </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "w168h"><H2> </H2></a>
+<H2>Convert weeks to hours</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="168">
+Enter number of weeks: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Hours </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "h365y"><H2> </H2></a>
+<H2>Convert hours to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="8760">
+Enter number of hours: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y365h"><H2> </H2></a>
+<H2>Convert years to hours</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="8760">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Hours </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "d7w"><H2> </H2></a>
+<H2>Convert days to weeks</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="7">
+Enter number of days: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Weeks </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "w7d"><H2> </H2></a>
+<H2>Convert weeks to days</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="7">
+Enter number of weeks: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Days </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "d365y"><H2> </H2></a>
+<H2>Convert days to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="365">
+Enter number of days: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y365d"><H2> </H2></a>
+<H2>Convert years to days</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="365">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Days </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "w52y"><H2> </H2></a>
+<H2>Convert weeks to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="52">
+Enter number of weeks: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y52w"><H2> </H2></a>
+<H2>Convert years to weeks</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="52">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Weeks </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "m12y"><H2> </H2></a>
+<H2>Convert months to years</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="12">
+Enter number of months: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1b(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Years </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+<BR>
+
+<a name = "y12m"><H2> </H2></a>
+<H2>Convert years to months</H2><p>
+<FORM>
+<INPUT TYPE="hidden" NAME="txtNumbe3" VALUE="12">
+Enter number of years: <INPUT TYPE="text" NAME="txtNumber" SIZE=10>
+<INPUT TYPE="button" VALUE="Click to Convert" class="b2t" onclick="GetNumber1(this.form)">  <B><FONT SIZE=+1><INPUT TYPE="text" NAME="txtResult" SIZE=12> Months </FONT></B>
+<input type="reset" class="b3t">
+</FORM>
+
+<a name = "dir"><H2> </H2></a>
+<FONT COLOR="#000000">
+<H1>Directions</H1>
+<BLOCKQUOTE>
+Type the number in the box and then click "Click to Convert"<BR>
+If the number is 6.7 then type "6.7" (no quotation marks).<BR>
+You may type the decimal point.<BR>
+If the  number is 2154 you may type "2,154", you may type the comma. Type "2,154".<BR>
+If you want to type "256,678", but you type "25k,678", the computer will use "25678" to
+calculate the answer.<BR>
+If you type "ghblxz", the computer will use "0" to calculate the answer.<BR>
+If you type "1.9e2", the computer will use "190" to calculate the answer.<BR><BR>
+NaN = not a number<BR><BR>
+To clear the entry boxes click "Reset".<BR><BR>
+<B>Calculations assumed:</B><BR>
+Year = 365 days<BR>
+Year = 52 weeks<BR>
+Month = 30 days<BR>
+</FONT>
+</BLOCKQUOTE>
+
+<BR>
+<P><a href="#top">Return to the Top</a></P>
+<div class="fixed">
+        <a href="#top"><img src="up.png" border="0" alt="top"></a>
+</div>
+</BODY>
+<script src="script.js" lang="text/javascript"></script>
+</HTML>

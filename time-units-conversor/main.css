@@ -1,0 +1,16 @@
+body {
+    background-color: #FFFAF0;
+}
+
+div.fixed {
+    position:fixed;
+    right:0;
+    bottom:0;
+    margin:0;
+    padding:0;
+    width: 50px;
+}
+
+div.fixed img {
+    width: 100%;
+}
