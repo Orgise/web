@@ -28,8 +28,6 @@ git pull origin miRama
 sudo service apache2 restart
 ```
 
-<br>
-
 ### **Conexión mediante SSH a GitHub**
 
 Generamos una llave en nuestra máquina
@@ -68,8 +66,6 @@ $ git remote add origin git@github.com:usuario/proyecto.git
 ```
 
 Ya podremos hacer push sin tener que poner credenciales
-
-<br>
 
 ## **Comandos**
 

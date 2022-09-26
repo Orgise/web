@@ -42,8 +42,6 @@ Formatear en NTFS:
 sudo mkfs.ntfs /dev/sdc1
 ```
 
-<br>
-
 ### **¿Cómo poner nuestra melodía personalizada al arrancar el sistema?**
 
 Lo primero es elegir una melodía. Busca en Internet los términos “grub tune” para encontrar alguna ya hecha o investiga como crear una tú mismo.
@@ -61,8 +59,6 @@ Desventajas:
 * No se le puede bajar volumen: sonará al máximo por el speaker de tu equipo
 * Cuanto más dure, más tardará el sistema en arrancar. Entre 1 y 3 segundos es lo ideal
 
-<br>
-
 ### **¿Qué particiones debo crear manualmente cuando instale una distribución GNU/Linux?**
 
 * Swap: área de intercambio. De 2 a 4 GB.
@@ -70,15 +66,11 @@ Desventajas:
 * /home: tus datos personales. El espacio restante.
 * (Opcional) /boot. Arranque. 2 GB.
 
-<br>
-
 ### **Borrar el historial de comandos**
 
 ```
 $ history -c
 ```
-
-<br>
 
 ### **¿Cómo instalar temas o iconos de Internet y aplicarlos?**
 
@@ -95,15 +87,11 @@ $ history -c
 $ sudo apt install arc-theme
 ```
 
-<br>
-
 ### **Mostrar información de un paquete**
 
 ```
 $ sudo apt-cache show nombre_paquete
 ```
-
-<br>
 
 ### **Subir, bajar y mutear volumen usando comandos**
 
@@ -115,8 +103,6 @@ $ pactl set-sink-mute [TAB] toggle
 
 **Nota:** *[TAB]:* pulsar la tecla tabulador para autocompletar
 
-<br>
-
 ### **Subir y bajar volumen usando comandos**
 
 ```
@@ -124,15 +110,11 @@ $ amixer set Capture 5%+
 $ amixer set Capture 5%-
 ```
 
-<br>
-
 ### **Herramienta para buscar archivos**
 
 ```
 $ sudo apt install catfish
 ```
-
-<br>
 
 ### **Personalizar LightDM (gestor de inicio de sesión)**
 
@@ -169,13 +151,11 @@ Editamos el archivo /etc/lightdm/lightdm.conf
 
 greeter-hide-users=false (mostrar el nombre de todos los usuarios)
 ```
-<br>
 
 ### **Añadir tu usuario al grupo sudo para tener permisos de administrador**
 ```console
 $ sudo usermod -aG sudo nombre_usuario
 ```
-<br>
 
 ### **Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)**
 
@@ -186,8 +166,6 @@ $ sudo su
 
 # apt purge*\*nvidia\**; apt autoremove; reboot
 ```
-
-<br>
 
 ### **Realizar copias de seguridad de nuestros datos**
 
@@ -211,8 +189,6 @@ $ rsync [opciones] [origen] [destino]
 $ rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/temporal/FOTOS
 ```
 
-<br>
-
 **Parámetros:**
 
 **-a:** mantiene el usuario, grupo, permisos, fecha y hora, así como los enlaces simbólicos.
@@ -224,8 +200,6 @@ $ rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/t
 **--delete:** se borrará todo lo que esté en el destino y no esté en el origen.
 
 **--exclude-from='exclude\_me.txt':** ignora los archivos situados en ese fichero
-
-<br>
 
 ### Comando **tar**
 
@@ -244,8 +218,6 @@ $ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_
 
 **-czvf origen destino:** c de comprimir, z de formato gzip (gz), v de mostrar detalles, y f para darle un nombre al comprimido
 
-<br>
-
 **Herramientas gráficas**
 
 **Deja-dup**: programa muy fácil de usar que divide la copia en muchos ficheros usando el formato .diffpart. Permite el cifrado del resguardo (con GNUPG) y restaurar copias previas. Puede realizar copias remotas o en la nube, programar copias periódicas y realizar copias incrementales.
@@ -253,8 +225,6 @@ $ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_
 **Back In Time**: front-end de rsync. Permite tomar o restaurar backups, excluir archivos o por patrones. Programar copias. Copias locales o remotas.
 
 **Grsync** (recomendada): es un front-end de rsync. Muestra la explicación de cada opción al situar encima el ratón. Al iguar que rsync, permite simular que pasaría antes de hacer nada. Muy recomendado.
-
-<br>
 
 ### **Arreglar problema de Redshift (Trying location provider \`geoclue2\`…)**
 
@@ -277,20 +247,16 @@ location-provider=manual
 
 ; Madrid, Spain
 
-lat=37.18
+lat=31.10
 
-lon=-3.61
+lon=-5.61
 ```
 
 Deberás cambiar la latitud y longitud a la adecuada para ti. Reabrimos Redshift y ya estará arreglado.
 
-<br>
-
 ### **Ejecutar lanzadores al iniciar sesión**
 
 Crear los lanzadores y moverlos al directorio /home/tu\_usuario/.config/autostart/
-
-<br>
 
 ### **Instalar SmartPSS en GNU/Linux con Wine**
 
@@ -316,8 +282,6 @@ wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
 
 Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzador automáticamente en el escritorio.
 
-<br>
-
 ### **Como usar el DNI electrónico (DNIe) en GNU/Linux**
 
 1. Introducimos el lector pero no el DNI. Ponemos el comando lsusb para ver que lo detecte.
@@ -328,13 +292,9 @@ Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzad
 
 Probado en Debian 11 usando Firefox 94
 
-<br>
-
 ### **Como activar el autocompletado del terminal**
 
 sudo apt install bash-completion
-
-<br>
 
 ### **Desactivar IPv6**
 
@@ -358,8 +318,6 @@ Reiniciamos la máquina y comprobamos que está desactivado:
 $ ip a | grep inet6
 ```
 
-<br>
-
 ### **Desactivar Bluetooth**
 
 ```
@@ -369,8 +327,6 @@ sudo systemctl disable bluetooth.service
 
 systemctl status bluetooth.service
 ```
-
-<br>
 
 ### **Cambiando a Windows como predeterminado en el GRUB**
 
@@ -382,15 +338,11 @@ sudo nano /boot/grub/grub.cfg
 
 Tendremos que modificar la linea **set default=”0″**, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema Linux.
 
-<br>
-
 ### **Cambiar el nombre de un USB**
 
 Abrimos la utilidad de discos *gnome-disk-utilities*
 
 Seleccionamos el disco USB. Luego, desde el menú de la rueda de herramientas seleccionamos *Edit Filesystem* y cambiamos el nombre.
-
-<br>
 
 ### **Cambiar contraseña de partición cifrada**
 
@@ -399,8 +351,6 @@ Arrancamos desde un ***LiveCD*** con la utilidad de discos instalada y abierta.
 Seleccionamos la partición y desde el menú de la rueda de herramientas seleccionamos *Change Passphrase*.
 
 Cambiamos la contraseña y reiniciamos el equipo.
-
-<br>
 
 ### **Instalar controladores para tarjeta Wi-Fi BCM4311**
 
@@ -412,8 +362,6 @@ sudo apt-get install firmware-b43-installer b43-fwcutter
 
 Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
 
-<br>
-
 ### **Reiniciar en BIOS**
 
 ```
@@ -421,8 +369,6 @@ systemctl reboot --firmware-setup
 ```
 
 Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si tenemos activado el *Fast Boot* no podremos acceder a ella.
-
-<br>
 
 ### **Eliminar los repositorios externos**
 
@@ -432,15 +378,11 @@ sudo rm /etc/apt/sources.list.d/\*
 sudo apt update
 ```
 
-<br>
-
 ### **Cambiar la ruta por defecto de los directorios principales del usuario**
 
 ```
 nano .config/user-dirs.dirs
 ```
-
-<br>
 
 ### **Encontrar y eliminar ficheros duplicados**
 
@@ -448,23 +390,17 @@ nano .config/user-dirs.dirs
 $ sudo apt install fdupes
 ```
 
-<br>
-
 ### **Ver las fuentes instaladas en nuestro sistema**
 
 ```
 $ fc-list
 ```
 
-<br>
-
 ### **Visualizar las últimas sesiones de un usuario**
 
 ```
 $ last nombre_usuario
 ```
-
-<br>
 
 ### **Ocultar GRUB al inicio**
 
@@ -474,15 +410,11 @@ Abrimos el fichero de configuración:
 $ sudo nano /etc/default/grub
 ```
 
-<br>
-
 Asignamos el valor 0 a la variable ***GRUB\_TIMEOUT*** y recargamos la configuración de *grub*:
 
 ```
 $ sudo update-grub
 ```
-
-<br>
 
 ### **Recuperar archivos con Photorec**
 
@@ -500,8 +432,6 @@ Pulsamos *search* y elegimos el sistema de archivos de la partición
 Elegimos la opción *Whole* para que lo escanee todo
 
 Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en él y luego pulsar "c")
-
-<br>
 
 ### **Activar backports en Debian 11, instalar y actualizar los paquetes**
 
@@ -531,8 +461,6 @@ Instalar paquetes usando backports:
 $ sudo apt install "package-name" -t bullseye-backports
 ```
 
-<br>
-
 ### **Instalar temas LibreOffice**
 
 ```
@@ -541,8 +469,6 @@ sudo apt install libreoffice-style-*
 
 Reiniciar LibreOffice para aplicar cambios
 
-<br>
-
 ### **El corrector ortográfico no funciona en LibreOffice**
 
 ```
@@ -550,8 +476,6 @@ sudo apt install hunspell hunspell-es
 ```
 
 Reiniciar LibreOffice para aplicar cambios
-
-<br>
 
 ### **Escribir y enviar texto automáticamente cuando se pulse una combinación de teclado**
 
@@ -565,8 +489,6 @@ Creamos un nuevo atajo de teclado:
 
 Ajustes → Teclado → Atajos de aplicación
 
-<br>
-
 **Ejemplo:**
 
 Escribir un mensaje al pulsar la tecla *Return*:
@@ -574,8 +496,6 @@ Escribir un mensaje al pulsar la tecla *Return*:
 ```
 bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
 ```
-
-<br>
 
 ### **Exportar todos los Writer a PDF**
 
@@ -585,15 +505,11 @@ $ lowriter --headless --convert-to pdf \*.odt
 
 **Nota:** habrá tantos *.pdf* como *.odt* haya en el directorio actual.
 
-<br>
-
 ### **Convertir múltiples PDF en uno solo**
 
 ```
 $ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 ```
-
-<br>
 
 ## **Curiosidades**
 
@@ -603,15 +519,11 @@ $ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 cal 9 1752
 ```
 
-<br>
-
 ### **Mostrar la terminal como la película de Matrix**
 
 ```
 $ sudo apt install cmatrix && cmatrix
 ```
-
-<br>
 
 ## **Productividad**
 
@@ -636,8 +548,6 @@ $ sudo apt install cmatrix && cmatrix
 * **Alt + Impr Pant:** Tomar captura de la ventana actual
 * **Ctrl + Alt + ← o →:** Cambiar entre áreas de trabajo
 * **Ctrl + Mayus + Alt + ← o →:** Mover la ventana actual a otro área de trabajo
-
-<br>
 
 ### **Atajos de teclado del terminal**
 
@@ -680,8 +590,6 @@ $ sudo apt install cmatrix && cmatrix
 * **Flecha arriba:** Comando anterior
 * **Flecha abajo:** Comando siguiente
 * **Tab:** Autocompletar búsqueda
-
-<br>
 
 ### **Alias básicos**
 
@@ -776,8 +684,6 @@ Activamos el firewall (si no lo está). Perfil "Casa". Entrante -> Denegar. Sali
 $ sudo apt install hardinfo gparted firefox thunderbird libreoffice gimp gnome-system-monitor qbittorrent redshift-gtk rhythmbox simplescreenrecorder handbrake soundconverter keepassxc synaptic xfce4-notes vlc evince nextcloud-desktop telegram-desktop lingot psensor catfish menulibre vrms neofetch mlocate virt-manager
 ```
 
-<br>
-
 Otros programas excelentes que no se encuentran en los repositorios:
 
 * [tor-browser](https://www.howtogeek.com/423866/how-to-install-and-use-the-tor-browser-on-linux/): Navegación privada usando la red Tor
@@ -788,8 +694,6 @@ Otros programas excelentes que no se encuentran en los repositorios:
 * [Codium](https://github.com/VSCodium/vscodium): Visual Studio Code libre
 * [Eclipse](https://www.eclipse.org/downloads/): IDE de Java
 * [PyCharm](https://www.jetbrains.com/pycharm/): IDE de Python
-
-<br>
 
 ### Activar soporte *Flatpak* e instalación de software
 
@@ -808,8 +712,6 @@ Programas *Flatpak* recomendados:
 ```
 $ flatpak install flatseal
 ```
-
-<br>
 
 ### Creación de atajos de teclado
 
@@ -832,15 +734,11 @@ $ flatpak install flatseal
 
 ### Copiar ficheros del dispositivo de respaldo hacia el nuevo equipo
 
-<br>
-
 ### Limitar permisos de los ficheros copiados en el paso anterior
 
 ```
 $ find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
 ```
-
-<br>
 
 ### Otros ajustes
 
@@ -854,7 +752,7 @@ $ find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type
 * Paneles: modificar la apariencia y los elementos de los paneles
 * Gestor de ventas -> Opciones avanzadas -> Activar ocultar el contenido de la ventana al mover y redimensionar
 * Ajustes del gestor de ventanas -> Accesibilidad -> Desactivar usar la rueda del ratón en la barra de título de la ventana para enrollarla
-* Cambiar las fuentes de software hacia otros servidores más veloces para mayor velocidad de descarga (se puede hacer durante la instalación).<br> Principal: <https://mirror.cyberbits.eu/> (FR)<br> Base: <http://mirror.tedra.es/> (ES)
+* Cambiar las fuentes de software hacia otros servidores más veloces para mayor velocidad de descarga (se puede hacer durante la instalación). Principal: <https://mirror.cyberbits.eu/> (FR) Base: <http://mirror.tedra.es/> (ES)
 * Poner tus programas a punto (iniciar sesión, configurarlos, crear lanzadores, etc.)
 
 ### **Antes de instalar nuevo sistema operativo...**
@@ -875,8 +773,6 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 
     Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada carpeta (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
 
-<br>
-
 ### **¿Qué no debo copiar en mis copias de seguridad?**
 - Descargas/ (pesan muchos gigas, sobre todo las películas)
 - Escritorio/ (pues solo hay accesos directos a aplicaciones)
@@ -887,8 +783,6 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 - Documentos/Copias de seguridad (sería como copiarse a sí mismo)
 
 **Nota:** Si usas Linux Mint, el programa "Herramienta de copia de seguridad" te ahorrará mucho tiempo.
-
-<br>
 
 ### **Que no se te olvide exportar de vez en cuando:**
 - Marcadores del navegador web

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cool Fonts</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body style="background-color: #f2f2f2;">
+      <nav style="border-top: 3px solid #70d7f8;"></nav>
+      <div class="container-fluid f-base-container">
+        <div class="container-lg content-container" style="background-color: #fff; padding-bottom: 20px;">
+        <div class="container-fluid tool-box">
+          <div class="row"><div class="col">
+            <div class="col border">
+              <form style="padding-top: 18px; padding-bottom: 18px;">
+                <div class="form-group">
+                  <textarea onkeyup="generateFonts()" rows="4" id="fontGeneratorTextArea" class="form-control" placeholder="Start typing or paste text here"></textarea>
+                  <label for="fontGeneratorTextArea" style="margin-left: 5px;">
+                    <i><small>Introduzca su texto encima</small></i>
+                  </label>
+                </div>
+              </form>
+              <h3>El texto introducido aparecerá en distintas fuentes:</h3>
+              <hr>
+              <div id="fontGeneratorResult"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="main.js"></script>
+  </body>
+</html>
