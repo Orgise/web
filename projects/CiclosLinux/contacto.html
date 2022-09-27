@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CiclosLinux: Contacto</title>
+	<link rel="icon" href="images/logo_linux.png">
+	<link rel="stylesheet" type="text/css" href="css/contacto.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+</head>
+<body>
+	<!-- Cabecera -->
+	<header class="hero-image">
+		<div>
+			<h1>Contacto</h1>
+			<p>Comúniquese con nosotros</p>
+		</div>
+	</header>
+
+	<!-- Menú de navegación -->
+	<nav class="nav">
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="fpb.html">FPB</a></li>
+		<li><a href="smr.html">SMR</a></li>
+		<li><a href="asir.html">ASIR</a></li>
+		<li><a href="contacto.html">Contacto</a></li>
+	</nav>
+
+	<!-- Contenedores -->
+	<main>
+		<section class="contenedor1">
+			<div class="form">
+				<h1>Formulario de contacto</h1>
+				<form method="POST" onsubmit="document.getElementById('exito').style.display='block'; this.reset(); return false;">
+					<p><input type="text" maxlength="64" minlength="3" placeholder="Nombre"></p>
+			 		<p><input type="email" maxlength="64" placeholder="Correo electrónico *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></p>  
+			 		<p><input type="text" maxlength="64" placeholder="Asunto"></p> 
+			 		<p><textarea minlength="8" maxlength="256" placeholder="Mensaje *" required></textarea></p> 
+					<p><input type="submit" value="Enviar"></p>         
+				</form>
+
+				<!-- Alerta e-mail enviado -->
+				<div class="alert" id="exito" style="display: none;">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';" title="Cerrar">&times;</span>
+					<strong>¡Éxito!</strong><br> Su mensaje ha sido enviado correctamente. Le responderemos lo antes posible.
+				</div>
+
+			</div>
+			<div class="datos">
+				<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=24.62722778320313%2C60.166108948753305%2C25.236968994140625%2C60.33204620344783&amp;layer=mapnik&amp;marker=60.24939948291747%2C24.932098903946553" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=60.2494&amp;mlon=24.9321#map=11/60.2492/24.9321">Ver mapa más grande</a></small>
+
+				<p>
+					<b>Dirección:</b> Calle Linux 91<br>
+					<b>Tlf:</b> 123456789<br>
+					<b>Correo electrónico: </b><a href="mailto:linux@kernel.org">linux@kernel.org</a><br>
+					<b>Skype:</b> linux.kernel
+				</p>
+
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<section>
+		<footer>
+			<table width="150px" style="margin: 0 auto">
+				<tr>
+					<td><a href="https://www.facebook.com/" target="blank"><img src="images/logofb.png" alt="Encuéntranos en Facebook: CiclosLinux" title="Encuéntranos en Facebook: CiclosLinux" width="35px"></a></td>
+					<td><a href="https://gnu.org" target="blank"><img src="images/logoweb.png" alt="Accede a nuestro sitio web oficial" title="Accede a nuestro sitio web oficial" width="35px"></a></td>
+				</tr>
+			</table>
+			<p>CiclosLinux</p>
+		</footer>
+	</section>
+
+	<!-- <script type="text/javascript" src="js/main.js"></script> (desactivado por carencia de múltiples contenedores)-->
+</body>
+</html>

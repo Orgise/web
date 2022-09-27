@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CiclosLinux: Home</title>
+	<link rel="icon" href="images/logo_linux.png">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<!-- Cabecera -->
+	<header class="hero-image">
+		<div>
+			<h1>Cursos FP</h1>
+			<p>Explora todos los ciclos formativos disponibles</p>
+		</div>
+	</header>
+
+	<!-- Menú de navegación -->
+	<nav class="nav">
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="fpb.html">FPB</a></li>
+		<li><a href="smr.html">SMR</a></li>
+		<li><a href="asir.html">ASIR</a></li>
+		<li><a href="contacto.html">Contacto</a></li>
+	</nav>
+
+	<!-- Contenedores -->
+	<main>
+		<!-- Introducción -->
+		<section class="contenedor1">
+			<h3 class="seccion-titulo">Nuestro centro</h3>
+	        <div class="seccion-divisor"></div>
+	        <p class="seccion-descripcion">Nuestro centro <b>Linuxero</b> es uno de los centros más antiguos de la ciudad de Oslo. Lleva formando a estudiantes desde más de <b>999 años.</b></p>
+	        <img src="images/letrero.jpg" class="imagen-portada">
+	        <ul class="custom-list">
+				<li>Somos un templo trilingüe con más de <b>4 alumnos</b> en nuestras salas.</li>
+				<li>Somos <b>buenas personas</b> y contamos con la bendición de los cielos.</li>
+				<li>No usamos <b><i>software privativo.</i></b></li>
+				<li>Rezamos a <b>San IGNUcio</b> todos los días.</li>
+				<li>No aceptamos a gente que no comparta nuestra filosofía <b><i>libre.</i></b></li>
+				<li>Tenemos pistas de baloncesto y petanca.</li>
+			</ul>	        	
+	        <img src="images/edificio.jpg" alt="Una imagen del edificio del centro" class="imagen-edificio">
+		</section>
+
+		<!-- Servicios -->
+		<section class="contenedor2">
+	        <div class="contenedor2-sub1">
+                <h3>¿Qué formación ofrecemos?</h3>
+                <p class="after">Cubrimos con toda necesidad formativa del estudiante</p>
+                <div class="servicios">
+                    <div class="caja-servicios">
+                        <img src="images/ESO.png" alt="Educación Secundaria Obligatoria">
+                        <h4>Educación Secundaria Obligatoria</h4>
+                        <p>Los conocimientos necesarios que permiten que sigas formándote.</p>
+                    </div>
+                    <div class="caja-servicios">
+                        <img src="images/bachillerato.png" alt="Bachillerato">
+                        <h4>Bachillerato</h4>
+                        <p>Humanidades, CCSS, o ciencias.<br>Tú eliges.</p>
+                    </div>
+                    <div class="caja-servicios">
+                        <img src="images/fp.png" alt="Formación Profesional">
+                        <h4>Formación Profesional</h4>
+                        <p>Sigue navegando para descubrir más.</p>
+                    </div>
+                </div>
+	        </div>
+	    </section>
+
+	    <!-- Calendario -->
+        <section class="contenedor3">
+        	<script type="text/javascript">
+				var fecha = new Date();
+				var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+				document.write('<table class="fecha">');
+				document.write('<tr><td class="ano">' + fecha.getFullYear() + '</td></tr>');
+				document.write('<tr><td class="dia">' + fecha.getDate() + '</td></tr>');
+				document.write('<tr><td class="mes">' + meses[fecha.getMonth()] + '</td></tr>');
+				document.write('</table>');
+        	</script>
+        </section>
+	</main>
+
+    <!-- Footer -->
+	<section>
+		<footer>
+			<table width="150px" style="margin: 0 auto">
+				<tr>
+					<td><a href="https://www.facebook.com/" target="blank"><img src="images/logofb.png" alt="Encuéntranos en Facebook: CiclosLinux" title="Encuéntranos en Facebook: CiclosLinux" width="35px"></a></td>
+					<td><a href="https://gnu.org" target="blank"><img src="images/logoweb.png" alt="Accede a nuestro sitio web oficial" title="Accede a nuestro sitio web oficial" width="35px"></a></td>
+				</tr>
+			</table>
+			<p>CiclosLinux</p>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
