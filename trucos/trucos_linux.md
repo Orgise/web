@@ -512,11 +512,13 @@ $ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 ```
 
 ### Visualizar los detalles de nuestra RAM
-sudo dmidecode --type memory
+```
+$ sudo dmidecode --type memory
+```
 
 ### Descargar paquete y sus dependencias
 ```console
-apt install --download-only pkg_name
+$ apt install --download-only pkg_name
 ```
 **Nota:** los empaquetados se guardarán en /var/cache/apt/archives/
 
