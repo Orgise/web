@@ -511,6 +511,28 @@ $ lowriter --headless --convert-to pdf \*.odt
 $ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 ```
 
+### Visualizar los detalles de nuestra RAM
+sudo dmidecode --type memory
+
+### Descargar paquete y sus dependencias
+```console
+apt install --download-only pkg_name
+```
+**Nota:** los empaquetados se guardarán en /var/cache/apt/archives/
+
+### Instalar .deb desde terminal
+```console
+$ sudo dpkg -i programa.deb
+```
+
+### Instalar entorno de desarrollo (LAMP) en Debian
+[Tutorial completo](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10)
+
+### Crear 10 ficheros rápidamente
+```console
+$ touch test{1..10}.txt
+```
+
 ## **Curiosidades**
 
 ### **Calendario incompleto**
