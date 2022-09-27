@@ -1,0 +1,96 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+body {
+  background-color: #389938;
+  font-family: "Oxanium";
+  font-size: large;
+  font-weight: bold;
+}
+
+#main-div {
+  height: 100%;
+  width: 60%;
+  margin: 0 20%;
+  font-size: x-large;
+  color: white;
+  text-align: center;
+}
+
+#length-div {
+  margin: 5% 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#break-div,
+#session-div {
+  width: 40%;
+  text-align: center;
+}
+
+#break-controls,
+#session-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  margin: 0 32.5%;
+}
+
+button {
+  border: 0px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.fa {
+  color: white;
+}
+
+#session {
+  width: 30%;
+  margin: 0 30%;
+  padding: 2% 5%;
+  font-size: xx-large;
+  text-align: center;
+  border: solid 8px #045c1e;
+  border-radius: 40px;
+}
+
+#time-left {
+  font-size: xxx-large;
+}
+
+#controls {
+  text-align: center;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 730px) {
+  #main-div {
+    width: 70%;
+    margin: 0 15%;
+  }
+}
+@media screen and (max-width: 620px) {
+  #main-div {
+    width: 80%;
+    margin: 0 10%;
+    font-size: 20px;
+  }
+
+  #session {
+    width: 50%;
+    margin: 0 20%;
+    padding: 2% 5%;
+    font-size: x-large;
+  }
+}
+@media screen and (max-width: 450px) {
+  #break-controls,
+#session-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 10%;
+  }
+}
