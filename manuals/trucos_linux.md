@@ -39,7 +39,7 @@ $ sudo mkfs.vfat -F 32 -n nombre_para_el_usb /dev/sdc1
 Formatear en NTFS:
 
 ```
-sudo mkfs.ntfs /dev/sdc1
+$ sudo mkfs.ntfs /dev/sdc1
 ```
 
 ### **¿Cómo poner nuestra melodía personalizada al arrancar el sistema?**
@@ -153,7 +153,7 @@ greeter-hide-users=false (mostrar el nombre de todos los usuarios)
 ```
 
 ### **Añadir tu usuario al grupo sudo para tener permisos de administrador**
-```console
+```
 $ sudo usermod -aG sudo nombre_usuario
 ```
 
@@ -231,9 +231,7 @@ $ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_
 Lo que haremos será crear y editar el archivo de configuración de redshift.
 
 ```
-mkdir .config/redshift
-
-nano .config/redshift/redshift.conf
+$ mkdir ~/.config/redshift && nano ~/.config/redshift/redshift.conf
 ```
 
 Y pegaremos lo siguiente:
@@ -265,19 +263,19 @@ Crear los lanzadores y moverlos al directorio /home/tu\_usuario/.config/autostar
 Añadir soporte para 32 bits:
 
 ```
-sudo dpkg --add-architecture i386
+$ sudo dpkg --add-architecture i386
 ```
 
 Instalar Wine y otras dependencias:
 
 ```
-sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+$ sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 ```
 
 Instalamos el programa:
 
 ```
-wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
+$ wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
 ```
 
 Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzador automáticamente en el escritorio.
@@ -294,7 +292,7 @@ Probado en Debian 11 usando Firefox 94
 
 ### **Como activar el autocompletado del terminal**
 
-sudo apt install bash-completion
+$ sudo apt install bash-completion
 
 ### **Desactivar IPv6**
 
@@ -321,9 +319,9 @@ $ ip a | grep inet6
 ### **Desactivar Bluetooth**
 
 ```
-sudo systemctl stop bluetooth.service
+$ sudo systemctl stop bluetooth.service
 
-sudo systemctl disable bluetooth.service
+$ sudo systemctl disable bluetooth.service
 
 systemctl status bluetooth.service
 ```
@@ -333,7 +331,7 @@ systemctl status bluetooth.service
 Editamos el fichero de configuración
 
 ```
-sudo nano /boot/grub/grub.cfg
+$ sudo nano /boot/grub/grub.cfg
 ```
 
 Tendremos que modificar la linea **set default=”0″**, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema Linux.
@@ -355,9 +353,9 @@ Cambiamos la contraseña y reiniciamos el equipo.
 ### **Instalar controladores para tarjeta Wi-Fi BCM4311**
 
 ```
-sudo apt-get remove bcmwl-kernel-source
+$ sudo apt-get remove bcmwl-kernel-source
 
-sudo apt-get install firmware-b43-installer b43-fwcutter
+$ sudo apt-get install firmware-b43-installer b43-fwcutter
 ```
 
 Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
@@ -365,7 +363,7 @@ Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
 ### **Reiniciar en BIOS**
 
 ```
-systemctl reboot --firmware-setup
+$ systemctl reboot --firmware-setup
 ```
 
 Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si tenemos activado el *Fast Boot* no podremos acceder a ella.
@@ -373,15 +371,15 @@ Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si t
 ### **Eliminar los repositorios externos**
 
 ```
-sudo rm /etc/apt/sources.list.d/\*
+$ sudo rm /etc/apt/sources.list.d/\*
 
-sudo apt update
+$ sudo apt update
 ```
 
 ### **Cambiar la ruta por defecto de los directorios principales del usuario**
 
 ```
-nano .config/user-dirs.dirs
+$ nano .config/user-dirs.dirs
 ```
 
 ### **Encontrar y eliminar ficheros duplicados**
@@ -464,7 +462,7 @@ $ sudo apt install "package-name" -t bullseye-backports
 ### **Instalar temas LibreOffice**
 
 ```
-sudo apt install libreoffice-style-*
+$ sudo apt install libreoffice-style-*
 ```
 
 Reiniciar LibreOffice para aplicar cambios
@@ -472,7 +470,7 @@ Reiniciar LibreOffice para aplicar cambios
 ### **El corrector ortográfico no funciona en LibreOffice**
 
 ```
-sudo apt install hunspell hunspell-es
+$ sudo apt install hunspell hunspell-es
 ```
 
 Reiniciar LibreOffice para aplicar cambios
@@ -494,7 +492,7 @@ Ajustes → Teclado → Atajos de aplicación
 Escribir un mensaje al pulsar la tecla *Return*:
 
 ```
-bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
+$ bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
 ```
 
 ### **Exportar todos los Writer a PDF**
@@ -517,13 +515,13 @@ $ sudo dmidecode --type memory
 ```
 
 ### Descargar paquete y sus dependencias
-```console
+```
 $ apt install --download-only pkg_name
 ```
 **Nota:** los empaquetados se guardarán en /var/cache/apt/archives/
 
 ### Instalar .deb desde terminal
-```console
+```
 $ sudo dpkg -i programa.deb
 ```
 
@@ -531,8 +529,13 @@ $ sudo dpkg -i programa.deb
 [Tutorial completo](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10)
 
 ### Crear 10 ficheros rápidamente
-```console
+```
 $ touch test{1..10}.txt
+```
+
+### Ver los 20 comandos más usados
+```
+$ history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
 ```
 
 ## **Curiosidades**
@@ -540,7 +543,7 @@ $ touch test{1..10}.txt
 ### **Calendario incompleto**
 
 ```
-cal 9 1752
+$ cal 9 1752
 ```
 
 ### **Mostrar la terminal como la película de Matrix**
@@ -793,9 +796,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 - Software
     - Cerrar sesión de todos los programas importantes
 
-**Importante**
-
-    Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada carpeta (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
+**Importante:** Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada carpeta (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
 
 ### **¿Qué no debo copiar en mis copias de seguridad?**
 - Descargas/ (pesan muchos gigas, sobre todo las películas)
