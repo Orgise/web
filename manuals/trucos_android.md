@@ -174,7 +174,7 @@ Location values:
 
 ### Visualizar el dispositivo donde se instalarán los paquetes por defecto
 ```
-$ pm pm get-install-location
+$ pm get-install-location
 ```
 
 ### Crear usuario
