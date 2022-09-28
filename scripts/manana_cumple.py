@@ -1,5 +1,6 @@
 # Software usado para recordarte felicitar a tus conocidos que cumplen al día siguiente.
 # Ejemplo del formato del fichero .txt necesario: nombre_pesona:dia:mes:info_extra
+
 from datetime import datetime
 
 
