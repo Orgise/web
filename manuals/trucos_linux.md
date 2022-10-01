@@ -2,33 +2,11 @@
 
 ## Comandos
 
-### **¿Cómo cambiar permisos recursivamente?**
+### ¿Cómo formatear una memoria USB?
 
-Este truco es extremadamente útil para controlar los permisos (y dejarlos como por defecto) de todos los directorios y ficheros. Viene perfecto cuando copiamos elementos de una memoria la cual tiene todos los permisos activados por defecto (777).
+Averiguamos el nombre de la memoria con los comandos `lsblk` o `fdisk -l`. Partiendo de que la memoria es `sdc` y la partición a formatear es `/dev/sdc1`, ejecutamos el comando:
 
-Para directorios:
-
-```shell
-find -type d -exec chmod 755 {} \\;
-```
-
-Para ficheros:
-
-```shell
-find -type f -exec chmod 644 {} \\;
-```
-
-Todo junto:
-
-```shell
-find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
-```
-
-### **¿Cómo formatear una memoria USB?**
-
-Averiguamos el nombre de la memoria con **lsblk** o **fdisk -l**. Partiendo de que la memoria a formatear es /dev/sdc1, ejecutamos el comando:
-
-**Aviso: el dispositivo tiene que estar desmontado.**
+**Aviso:** el dispositivo tiene que estar desmontado.
 
 Formatear en FAT32:
 
@@ -42,7 +20,7 @@ Formatear en NTFS:
 sudo mkfs.ntfs /dev/sdc1
 ```
 
-### **¿Cómo poner nuestra melodía personalizada al arrancar el sistema?**
+### ¿Cómo poner nuestra melodía personalizada al arrancar el sistema?
 
 Lo primero es elegir una melodía. Busca en Internet los términos “grub tune” para encontrar alguna ya hecha o investiga como crear una tú mismo.
 
@@ -56,27 +34,28 @@ Lo primero es elegir una melodía. Busca en Internet los términos “grub tune�
 
 Desventajas:
 
-* No se le puede bajar volumen: sonará al máximo por el speaker de tu equipo
-* Cuanto más dure, más tardará el sistema en arrancar. Entre 1 y 3 segundos es lo ideal
+* No se le puede bajar volumen: sonará al máximo por el speaker de tu equipo.
+* Cuanto más dure, más tardará el sistema en arrancar. Entre 1 y 3 segundos es lo ideal.
 
-### **¿Qué particiones debo crear manualmente cuando instale una distribución GNU/Linux?**
+### ¿Qué particiones debo crear manualmente cuando instale una distribución GNU/Linux?
 
 * Swap: área de intercambio. De 2 a 4 GB.
 * /: raíz. Al menos 20 GB.
 * /home: tus datos personales. El espacio restante.
 * (Opcional) /boot. Arranque. 2 GB.
+* Si tu sistema usa UEFI, deberás crear `/boot/efi`. Al menos 256 MB.
 
-### **Borrar el historial de comandos**
+### Borrar el historial de comandos
 
 ```shell
 history -c
 ```
 
-### **¿Cómo instalar temas o iconos de Internet y aplicarlos?**
+### ¿Cómo instalar temas o iconos de Internet y aplicarlos?
 
 1. [Descargar](https://www.mate-look.org/) algún paquete de iconos o de temas.
 2. Descomprimir el fichero descargado.
-3. Mover la carpeta extraída a **./home/tu\_usuario/.icons** o **/home/tu\_usuario/.themes** .
+3. Mover la carpeta extraída a `/home/tu_usuario/.icons` o `/home/tu_usuario/.themes`.
 4. Ir a las opciones de apariencia y marcar el estilo deseado
 
 **Nota:** la instalación de un tema para todos los usuarios del sistema se hace moviendo la carpeta descomprimida a /usr/share/icons o /usr/share/themes.
@@ -87,13 +66,13 @@ history -c
 sudo apt install arc-theme
 ```
 
-### **Mostrar información de un paquete**
+### Mostrar información de un paquete
 
 ```shell
 sudo apt-cache show nombre_paquete
 ```
 
-### **Subir, bajar y mutear volumen usando comandos**
+### Subir, bajar y mutear el volumen del altavoz
 
 ```shell
 pactl set-sink-volume [TAB] +10%
@@ -103,20 +82,20 @@ pactl set-sink-mute [TAB] toggle
 
 **Nota:** *[TAB]:* pulsar la tecla tabulador para autocompletar
 
-### **Subir y bajar volumen usando comandos**
+### Subir y bajar el volumen del micrófono
 
 ```shell
 amixer set Capture 5%+
 amixer set Capture 5%-
 ```
 
-### **Herramienta para buscar archivos**
+### Herramienta para buscar archivos
 
 ```shell
 sudo apt install catfish
 ```
 
-### **Personalizar LightDM (gestor de inicio de sesión)**
+### Personalizar LightDM (gestor de inicio de sesión)
 
 Editamos el archivo `/etc/lightdm/lightdm-gtk-greeter.conf`:
 
@@ -144,7 +123,7 @@ clock-format= %a %d %b, %H:%M
 
 **Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en /home/usuario/.face
 
-Editamos el archivo /etc/lightdm/lightdm.conf
+Editamos el archivo `/etc/lightdm/lightdm.conf`:
 
 ```
 [Seat:\*]
@@ -152,12 +131,12 @@ Editamos el archivo /etc/lightdm/lightdm.conf
 greeter-hide-users=false (mostrar el nombre de todos los usuarios)
 ```
 
-### **Añadir tu usuario al grupo sudo para tener permisos de administrador**
+### Añadir tu usuario al grupo sudo para tener permisos de administrador
 ```shell
 sudo usermod -aG sudo nombre_usuario
 ```
 
-### **Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)**
+### Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)
 
 Este error se origina cuando en Linux Mint aplicamos desde Ajustes → Gestor de controladores los gráficos privativos que nos ofrece Nvidia para nuestra tarjeta gráfica y la pantalla se nos queda en negro tras reiniciar.
 
@@ -166,49 +145,69 @@ sudo su
 apt purge*\*nvidia\**; apt autoremove; reboot
 ```
 
-### **Realizar copias de seguridad de nuestros datos**
+### Copias de seguridad con rsync (muy recomendado)
 
-### **Comando rsync (recomendada)**
+Rsync (Remote Sync) es una herramienta de sincronización para copiar archivos y directorios en un sistema o entre sistemas. La mayor ventaja de rsync es que sólo copia los archivos modificados y, por lo tanto, reduce el consumo de CPU y ahorra el ancho de banda y el tiempo durante la copia de archivos.
 
-Rsync es un programa potentísimo para realizar copias de seguridad tanto locales como remotas en un tiempo récord. La primera vez realiza una copia total, pero en el próximo respaldo solo se sincronizarán los cambios. Tiene un montón de opciones.
-
-Ejemplo de backup simple:
-
-**Sintaxis:**
-
+**Ejemplo 1:** Copiar los ficheros (solo si se encuentran cambios) del directorio A en el directorio Backup-A. 
 ```shell
-rsync [opciones] [origen] [destino]
+rsync A/ Backup-A/
 ```
 
-**Ejemplos:**
+El ejemplo anterior copia los archivos del origen al destino. Pero si el sistema tenía algunos archivos extra que no estaban en el origen, esos no serán eliminados por la sincronización de una vía. Si quieres eso, tendrás que usar la **sincronización bidireccional**.
 
-**1. nombre :** desc.
+Para mantener ambos puntos finales (directorios o archivos) en el mismo estado, con los mismos archivos y sin extras en ninguno de los dos lados, basta con añadir la opción `--delete` al comando original.
 
 ```shell
-rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/temporal/FOTOS
+rsync --delete A/ Backup-A/
 ```
 
-**Parámetros:**
+**Ejemplo 2:** Copia de seguridad local de nuestra carpeta personal omitiendo ficheros y directorios ocultos usando un dispositivo externo como destino.
 
-**-a:** mantiene el usuario, grupo, permisos, fecha y hora, así como los enlaces simbólicos.
+```shell
+rsync -avh --delete --progress --exclude=".[!.]*" $HOME /media/USB_NAME/backup
+```
 
-**-v:** comprime la información antes de realizar la transferencia.
+Otros parámetros importantes:
+- `-a`: equivale a `-rlptgoD`, es decir:
+    - `-r:` copiar directorios recursivamente.
+    - `-l`: copiar enlaces simbólicos.
+    - `-p`: conservar permisos.
+    - `-t`: conservar el tiempo de modificación.
+    - `-g`: conservar el grupo.
+    - `-o`: conservar el propietario.
+    - `-D`: combinación de:
+        - `--devices`: copiar ficheros de tipo dispositivo.
+        - `--specials`: copiar ficheros especiales como FIFO o socket.
+        
+        Alguno de estos ficheros necesitarán permisos de root para poder copiarse, pero lo normal es que no nos encontremos con ellos cuando hagamos copias de nuestros directorios.
+> Un **fichero FIFO** es un tipo especial de archivo en el almacenamiento local que permite que dos o más procesos se comuniquen entre sí leyendo/escribiendo en/desde este archivo.
+>
+> Un **fichero socket** es un punto final de un enlace de comunicación bidireccional entre dos programas que se ejecutan en la red.
 
-**-h:** nos da las tasas de transferencia y el tamaño de los archivos en unidades razonables.
+- `-n`: comprobar lo que pasaría a la hora de ejecutar el comando.
+- `--max-size=SIZE`: no transferir ficheros de mayor tamaño que SIZE.
+- `--min-size=SIZE`: no transferir ficheros de menor tamaño que SIZE.
+- `-v`: aumentar la verbosidad.
+- `-q`: suprimir los mensajes que no sean de error.
+- `-h`: mostrar los números en formato amigable.
+- `-z`: mostrar los datos durante el envío. Útil para copias remotas lentas.
+- `--exclude=PATTERN`: excluir los ficheros que coincidan con el patrón.
+- `--exclude-from=FILE`: excluir los ficheros o directorios incluidos en el fichero de exclusión.
+- `--include=PATTERN`: no excluir los ficheros que coincidan con el patrón.
+- `--include-from=FILE`: incluir los ficheros o directorios incluidos en el fichero de exclusión.
+- `--progress`: muestra una barra de progreso de la transferencia.
 
-**--delete:** se borrará todo lo que esté en el destino y no esté en el origen.
+### Comando tar
 
-**--exclude-from='exclude\_me.txt':** ignora los archivos situados en ese fichero
+El comando tar permite empaquetar y comprimir un archivo o serie de archivos, incluso hasta el sistema de archivos completo. Compatible con copias incrementales.
 
-### Comando **tar**
-
-Tar permite la compresión de un directorio origen a uno destino.
+**Ejemplo:** copia total de nuestro directorio personal excluyendo los ficheros y directorios ocultos, además de usar un fichero con más exclusiones.
 
 ```shell
 tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu_usuario
 ```
 
-\
 **Parámetros:**
 
 **-X exclusiones:** una lista de ficheros o directorios que deseo omitir
@@ -217,15 +216,7 @@ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu
 
 **-czvf origen destino:** c de comprimir, z de formato gzip (gz), v de mostrar detalles, y f para darle un nombre al comprimido
 
-**Herramientas gráficas**
-
-**Deja-dup**: programa muy fácil de usar que divide la copia en muchos ficheros usando el formato .diffpart. Permite el cifrado del resguardo (con GNUPG) y restaurar copias previas. Puede realizar copias remotas o en la nube, programar copias periódicas y realizar copias incrementales.
-
-**Back In Time**: front-end de rsync. Permite tomar o restaurar backups, excluir archivos o por patrones. Programar copias. Copias locales o remotas.
-
-**Grsync** (recomendada): es un front-end de rsync. Muestra la explicación de cada opción al situar encima el ratón. Al iguar que rsync, permite simular que pasaría antes de hacer nada. Muy recomendado.
-
-### **Arreglar problema de Redshift (Trying location provider \`geoclue2\`…)**
+### Solucionar el problema Redshift (Trying location provider \`geoclue2\`…)
 
 Lo que haremos será crear y editar el archivo de configuración de redshift.
 
@@ -250,11 +241,11 @@ lon=-5.61
 
 Deberás cambiar la latitud y longitud a la adecuada para ti. Reabrimos Redshift y ya estará arreglado.
 
-### **Ejecutar lanzadores al iniciar sesión**
+### Ejecutar lanzadores al iniciar sesión
 
-Crear los lanzadores y moverlos al directorio /home/tu\_usuario/.config/autostart/
+Crear los lanzadores y moverlos al directorio `/home/tu_usuario/.config/autostart/`
 
-### **Instalar SmartPSS en GNU/Linux con Wine**
+### Instalar SmartPSS en GNU/Linux con Wine
 
 [Descargar el programa](https://dahuawiki.com/SmartPSS)
 
@@ -278,7 +269,7 @@ wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
 
 Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzador automáticamente en el escritorio.
 
-### **Como usar el DNI electrónico (DNIe) en GNU/Linux**
+### Como usar el DNI electrónico (DNIe) en GNU/Linux
 
 1. Introducimos el lector pero no el DNI. Ponemos el comando lsusb para ver que lo detecte.
 2. Instalamos los paquetes necesarios para trabajar con el DNIe: sudo apt install opensc-pkcs11 pcsc-tools pcscd pinentry-gtk2 libccid.
@@ -288,17 +279,13 @@ Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzad
 
 Probado en Debian 11 usando Firefox 94
 
-### **Como activar el autocompletado del terminal**
+### Como activar el autocompletado del terminal
 
 sudo apt install bash-completion
 
-### **Desactivar IPv6**
+### Desactivar IPv6
 
-Abrimos el fichero de configuración
-
-```shell
-sudo nano /etc/sysctl.conf
-```
+Abrimos el fichero de configuración `/etc/sysctl.conf`:
 
 Dentro del fichero, insertamos al final:
 
@@ -313,7 +300,7 @@ Reiniciamos la máquina y comprobamos que está desactivado:
 ip a | grep inet6
 ```
 
-### **Desactivar Bluetooth**
+### Desactivar Bluetooth
 
 ```shell
 sudo systemctl stop bluetooth.service
@@ -323,29 +310,25 @@ systemctl status bluetooth.service
 
 ### **Cambiando a Windows como predeterminado en el GRUB**
 
-Editamos el fichero de configuración
+Editamos el fichero de configuración `/boot/grub/grub.cfg`.
 
-```shell
-sudo nano /boot/grub/grub.cfg
-```
+Tendremos que modificar la linea `set default="0"`, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema GNU/Linux.
 
-Tendremos que modificar la linea **set default=”0″**, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema Linux.
+### Cambiar el nombre de un USB
 
-### **Cambiar el nombre de un USB**
-
-Abrimos la utilidad de discos *gnome-disk-utilities*
+Abrimos la utilidad de discos *gnome-disk-utilities*.
 
 Seleccionamos el disco USB. Luego, desde el menú de la rueda de herramientas seleccionamos *Edit Filesystem* y cambiamos el nombre.
 
-### **Cambiar contraseña de partición cifrada**
+### Cambiar contraseña de partición cifrada
 
-Arrancamos desde un ***LiveCD*** con la utilidad de discos instalada y abierta.
+Arrancamos desde un LiveCD con la utilidad de discos instalada y abierta.
 
 Seleccionamos la partición y desde el menú de la rueda de herramientas seleccionamos *Change Passphrase*.
 
 Cambiamos la contraseña y reiniciamos el equipo.
 
-### **Instalar controladores para tarjeta Wi-Fi BCM4311**
+### Instalar controladores para tarjeta Wi-Fi BCM4311
 
 ```shell
 sudo apt-get remove bcmwl-kernel-source
@@ -354,7 +337,7 @@ sudo apt-get install firmware-b43-installer b43-fwcutter
 
 Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
 
-### **Reiniciar en BIOS**
+### Reiniciar en BIOS
 
 ```shell
 systemctl reboot --firmware-setup
@@ -362,52 +345,49 @@ systemctl reboot --firmware-setup
 
 Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si tenemos activado el *Fast Boot* no podremos acceder a ella.
 
-### **Eliminar los repositorios externos**
+### Eliminar los repositorios externos
 
 ```shell
 sudo rm /etc/apt/sources.list.d/\*
 sudo apt update
 ```
 
-### **Cambiar la ruta por defecto de los directorios principales del usuario**
+### Cambiar la ruta por defecto de los directorios principales del usuario
 
 ```shell
 nano .config/user-dirs.dirs
 ```
 
-### **Encontrar y eliminar ficheros duplicados**
+### Encontrar y eliminar ficheros duplicados
 
 ```shell
 sudo apt install fdupes
 ```
 
-### **Ver las fuentes instaladas en nuestro sistema**
+### Ver las fuentes instaladas en nuestro sistema
 
 ```shell
 fc-list
 ```
 
-### **Visualizar las últimas sesiones de un usuario**
+### Visualizar las últimas sesiones de un usuario
 
 ```shell
 last nombre_usuario
 ```
 
-### **Ocultar GRUB al inicio**
+### Ocultar GRUB al inicio
 
-Abrimos el fichero de configuración:
+Editamos el fichero de configuración `/etc/default/grub`:
 
-```shell
-sudo nano /etc/default/grub
-```
-
-Asignamos el valor 0 a la variable ***GRUB\_TIMEOUT*** y recargamos la configuración de *grub*:
+Asignamos el valor 0 a la variable ***GRUB_TIMEOUT***:
 
 ```shell
+# Recargamos la configuración de grub
 sudo update-grub
 ```
 
-### **Recuperar archivos con Photorec**
+### Recuperar archivos con Photorec
 
 ```shell
 sudo apt install testdisk
@@ -424,7 +404,7 @@ Elegimos la opción *Whole* para que lo escanee todo
 
 Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en él y luego pulsar "c")
 
-### **Activar backports en Debian 11, instalar y actualizar los paquetes**
+### Activar backports en Debian 11, instalar y actualizar los paquetes
 
 Los *backports* son repositorios oficiales de Debian que cuentan con paquetes algo más actualizados, pero fuera de la rama *stable*.
 
@@ -439,36 +419,33 @@ deb <http://deb.debian.org/debian> bullseye-backports main contrib non-free
 deb-src <http://deb.debian.org/debian> bullseye-backports main contrib non-free
 ```
 
-Actualizar paquetes usando backports:
+Ejemplos:
 
 ```shell
+# Actualizar paquetes usando backports
 sudo apt -t bullseye-backports update
 sudo apt -t bullseye-backports upgrade
-```
-
-Instalar paquetes usando backports:
-
-```shell
+# Instalar paquetes usando backports
 sudo apt install "package-name" -t bullseye-backports
 ```
 
-### **Instalar temas LibreOffice**
+### Instalar temas LibreOffice
 
 ```shell
 sudo apt install libreoffice-style-*
 ```
 
-Reiniciar LibreOffice para aplicar cambios
+Reiniciar LibreOffice para aplicar cambios.
 
-### **El corrector ortográfico no funciona en LibreOffice**
+### El corrector ortográfico no funciona en LibreOffice
 
 ```shell
 sudo apt install hunspell hunspell-es
 ```
 
-Reiniciar LibreOffice para aplicar cambios
+Reiniciar LibreOffice para aplicar cambios.
 
-### **Escribir y enviar texto automáticamente cuando se pulse una combinación de teclado**
+### Escribir y enviar texto automáticamente cuando se pulse una combinación de teclado
 
 Instalamos la siguiente herramienta de automatización (macro):
 
@@ -480,15 +457,13 @@ Creamos un nuevo atajo de teclado:
 
 Ajustes → Teclado → Atajos de aplicación
 
-**Ejemplo:**
-
-Escribir un mensaje al pulsar la tecla *Return*:
+**Ejemplo:** Escribir un mensaje al pulsar la tecla *Return*:
 
 ```shell
 bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
 ```
 
-### **Exportar todos los Writer a PDF**
+### Exportar todos los Writer a PDF
 
 ```shell
 lowriter --headless --convert-to pdf \*.odt
@@ -496,7 +471,7 @@ lowriter --headless --convert-to pdf \*.odt
 
 **Nota:** habrá tantos *.pdf* como *.odt* haya en el directorio actual.
 
-### **Convertir múltiples PDF en uno solo**
+### Convertir múltiples PDF en uno solo
 
 ```shell
 pdftk mypdf1.pdf mypdf2 cat output salida.pdf
@@ -511,9 +486,9 @@ sudo dmidecode --type memory
 ```shell
 sudo apt install --download-only pkg_name
 ```
-**Nota:** los empaquetados se guardarán en /var/cache/apt/archives/
+**Nota:** los empaquetados se guardarán en `/var/cache/apt/archives/`.
 
-### Instalar .deb desde terminal
+### Instalar paquetes .deb
 ```shell
 sudo dpkg -i programa.deb
 ```
@@ -536,7 +511,7 @@ du -sh .
 history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
 ```
 
-### Dos herramientas para gestionar el portapapeles desde el terminal
+### Dos herramientas para gestionar el portapapeles
 ```shell
 sudo apt install xclip xsel
 # Pegar portapapeles
@@ -550,23 +525,23 @@ xclip -i /dev/null
 xsel -c
 ```
 
-### Mostrar la terminal como la película de Matrix
+### Efecto de la película de Matrix
 
 ```shell
 sudo apt install cmatrix && cmatrix
 ```
 
-### Mostrar mensaje indefinidamente por terminal
+### Mostrar mensaje en bucle
 ```shell
 yes mensaje
 ```
 
-### Imprimir con color arcoíris la salida de los comandos
+### Imprimir con efecto arcoíris la salida de los comandos
 ```shell
 ls | lolcat
 ```
 
-### Dos herramientas para mostrar mensajes con tipografías grandes por terminal
+### Dos herramientas para mostrar mensajes con tipografías grandes
 ```shell
 sudo apt install toilet figlet
 toilet mensaje
@@ -579,13 +554,13 @@ sudo apt install oneko
 oneko
 ```
 
-### Herramienta CLI para hacer sonar por el altavoz el texto introducido por teclado
+### Hacer sonar por el altavoz el texto introducido por teclado
 ```shell
 sudo apt install espeak
 espeak
 ```
 
-### **Mostrar el calendario por terminal**
+### **Mostrar el calendario**
 
 ```shell
 # Año actual
@@ -595,16 +570,24 @@ cal 1 1990
 ```
 
 
-### Tres métodos para descomprimir multiples ficheros .zip de un mismo directo desde terminal
+### Tres métodos para descomprimir multiples ficheros .zip de un mismo directorio
 ```bash
 unzip '*.zip'
 unzip \*.zip
 for z in *.zip; do unzip "$z"; done
 ```
 
-## **Productividad**
+## Productividad
 
-### **Atajos de teclado del sistema operativo**
+### Herramientas gráficas para copias de seguridad
+
+**Deja-dup**: programa muy fácil de usar que divide la copia en muchos ficheros usando el formato .diffpart. Permite el cifrado del resguardo (con GNUPG) y restaurar copias previas. Puede realizar copias remotas o en la nube, programar copias periódicas y realizar copias incrementales.
+
+**Back In Time**: front-end de rsync. Permite tomar o restaurar backups, excluir archivos o por patrones. Programar copias. Copias locales o remotas.
+
+**Grsync** (recomendada): es un front-end de rsync. Muestra la explicación de cada opción al situar encima el ratón. Al iguar que rsync, permite simular que pasaría antes de hacer nada. Muy recomendado.
+
+### Atajos de teclado del sistema operativo
 
 * **Super:** Mostrar menú
 * **Super + n.º:** Abrir aplicaciones ancladas al panel o ejecutándose
@@ -626,7 +609,7 @@ for z in *.zip; do unzip "$z"; done
 * **Ctrl + Alt + ← o →:** Cambiar entre áreas de trabajo
 * **Ctrl + Mayus + Alt + ← o →:** Mover la ventana actual a otro área de trabajo
 
-### **Atajos de teclado del terminal**
+### Atajos de teclado del terminal
 
 * **Ctrl + A:** Mover el cursor al principio
 * **Ctrl + B:** Mover cursor hacia atrás (igual que flecha izquierda)
@@ -668,7 +651,7 @@ for z in *.zip; do unzip "$z"; done
 * **Flecha abajo:** Comando siguiente
 * **Tab:** Autocompletar búsqueda
 
-### **Alias básicos**
+### Alias básicos
 
 ```shell
 # Actualiza los repositorios e instala las actualizaciones de todos los paquetes
@@ -693,12 +676,12 @@ alias apagar="systemctl poweroff"
 alias reiniciar="systemctl reboot"
 ```
 
-### **Alias avanzados**
+### Alias avanzados
 
-Copia de seguridad
+Copias de seguridad
 
 ```shell
-alias backup="tar -X exclusiones.txt --exclude="$HOME/.*" -czvf backup_$(date +%d.%m.%y).tar.gz $HOME/*"
+alias backup="insertar el comando para copias de seguridad"
 ```
 
 **Parámetros:**
@@ -713,17 +696,19 @@ alias backup="tar -X exclusiones.txt --exclude="$HOME/.*" -czvf backup_$(date +%
 
 **-f, --file:** indica que se dará un nombre al archivo tar.
 
-## **Tareas a realizar antes de instalar GNU/Linux**
+## Tareas a realizar antes de instalar GNU/Linux
 
-### **Activar cortafuegos**
+### Activar cortafuegos
+Activamos el firewall para protegernos de los ataques informáticos y el malware.
 
 ```shell
 sudo apt install gufw
+gufw &
 ```
 
-Activamos el firewall (si no lo está). Perfil "Casa". Entrante -> Denegar. Saliente -> Permitir
+Perfil "Casa". Entrante -> Denegar. Saliente -> Permitir
 
-### **Instalamos diversos programas escogidos entre los mejores de uso frecuente**
+### Instalamos diversos programas escogidos entre los mejores de uso frecuente
 
 * **Hardinfo:** Muestra muchas estadísticas de tu equipo y componentes
 * **Gparted:** Administra dispositivos y particiones
@@ -772,19 +757,20 @@ Otros programas excelentes que no se encuentran en los repositorios:
 * [Eclipse](https://www.eclipse.org/downloads/): IDE de Java
 * [PyCharm](https://www.jetbrains.com/pycharm/): IDE de Python
 
-### Activar soporte *Flatpak* e instalación de software
+### Activar soporte para flatpaks e instalación de software
 
-*Flatpak* es un repositorio de aplicaciones que se actualizan muy rápidamente a su última versión. Para instalarlo ponemos el comando:
+Flatpak es una tecnología para crear, distribuir, instalar y ejecutar aplicaciones las cuales se actualizan a su última versión con rápidez. Además se ejecutan bajo un sistema aislado lo cual permite modificar los permisos de la misma y mantenerla separada del resto de aplicaciones. Es la mejor opción para aquellos usuarios que desean tener la última versión de un software pero su distribución solo cuenta con una demasiado antigua. Para instalarlo ponemos el comando:
 
 ```shell
 sudo apt install flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# Reiniciamos la máquina
 reboot
 ```
 
-Programas *Flatpak* recomendados:
+Programas Flatpak recomendados:
 
-* **FlatSeal:** Gestor de permisos de aplicaciones *Flatpak*
+* **FlatSeal:** Gestor de permisos de aplicaciones Flatpak
 
 ```shell
 flatpak install flatseal
@@ -806,12 +792,14 @@ flatpak install flatseal
 * **Navegador prederminado (Ctrl + Alt + I):** exo-open --launch WebBrowser
 * **Matar ventana (Ctrl + Alt + Esc):** xkill
 * **Diálogo de ejecución (Alt + Space):** xfrun4
-* \*\*Menú de operaciones de ventanas (Mayus + Menú contextual)
+* **Menú de operaciones de ventanas (Mayus + Menú contextual)**
 * **Desplegar menú de aplicaciones (Super R):** xfce4-popup-whiskermenu
 
 ### Copiar ficheros del dispositivo de respaldo hacia el nuevo equipo
+Para tenerlos a mano cuando nos hagan falta.
 
 ### Limitar permisos de los ficheros copiados en el paso anterior
+A veces los dispositivos de almacenamiento externo les otorgan a los ficheros y directorios todos los permisos (777), algo que normalmente no queremos que haga. Para evitarlo podemos cambiar estos permisos recursivamente por cada directorio una vez ya están en el equipo con el que vamos a trabajar.
 
 ```shell
 find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
@@ -819,27 +807,27 @@ find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d
 
 ### Otros ajustes
 
-* Energía: controlar cuando se apagará la pantalla
-* Establecer las aplicaciones favoritas
-* Autoarranque de aplicaciones: desactivar las aplicaciones o servicios que no queremos que se ejecuten al arrancar (aumentando el rendimiento)
-* Apariencia: activar modo oscuro
-* Establecer una imagen de perfil
-* Idiomas del sistema: eliminar otros idiomas indeseados
-* Controladores adicionales: elegir los drivers que mejor se adecúen aal sistema
-* Paneles: modificar la apariencia y los elementos de los paneles
-* Gestor de ventas -> Opciones avanzadas -> Activar ocultar el contenido de la ventana al mover y redimensionar
-* Ajustes del gestor de ventanas -> Accesibilidad -> Desactivar usar la rueda del ratón en la barra de título de la ventana para enrollarla
-* Cambiar las fuentes de software hacia otros servidores más veloces para mayor velocidad de descarga (se puede hacer durante la instalación). Principal: <https://mirror.cyberbits.eu/> (FR) Base: <http://mirror.tedra.es/> (ES)
-* Poner tus programas a punto (iniciar sesión, configurarlos, crear lanzadores, etc.)
+* Energía: controlar cuando se apagará la pantalla.
+* Establecer las aplicaciones favoritas.
+* Autoarranque de aplicaciones: desactivar las aplicaciones o servicios que no queremos que se ejecuten al arrancar (aumentando el rendimiento).
+* Apariencia: activar modo oscuro.
+* Establecer una imagen de perfil.
+* Idiomas del sistema: eliminar otros idiomas indeseados.
+* Controladores adicionales: elegir los drivers que mejor se adecúen al sistema.
+* Paneles: modificar la apariencia y los elementos de los paneles.
+* Gestor de ventas → Opciones avanzadas → Activar ocultar el contenido de la ventana al mover y redimensionar.
+* Ajustes del gestor de ventanas → Accesibilidad → Desactivar usar la rueda del ratón en la barra de título de la ventana para enrollarla.
+* Cambiar las fuentes de software hacia otros servidores más veloces para mayor velocidad de descarga (se puede hacer durante la instalación). Principal: <https://mirror.cyberbits.eu/> (FR) Base: <http://mirror.tedra.es/> (ES).
+* Poner tus programas a punto (iniciar sesión, configurarlos, crear lanzadores, etc.).
 
-### **Antes de instalar nuevo sistema operativo...**
-Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar otra distribución GNU/Linux
+### Antes de instalar nuevo sistema operativo...
+Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar otra distribución GNU/Linux:
 
 - Navegador web
     - Exportar marcadores
     - Cerrar sesión de todos los sitios importantes
     - Exportar configuración de las extensiones
-    - Cerrar sesión de Firefox Accounts
+    - Cerrar sesión en Firefox Accounts
     - Borrar todos los datos (cookies, historial, etc.)
 - Sistema de archivos
     - Comprobar y limpiar descargas, programas y vídeos
@@ -848,7 +836,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 
 **Importante:** Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada carpeta (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
 
-### **¿Qué no debo copiar en mis copias de seguridad?**
+### ¿Qué no debo copiar en mis copias de seguridad?
 - Descargas/ (pesan muchos gigas, sobre todo las películas)
 - Escritorio/ (pues solo hay accesos directos a aplicaciones)
 - Música/ (usar servicios de streaming o copiar solo una vez en un HDD externo)
@@ -859,12 +847,12 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 
 **Nota:** Si usas Linux Mint, el programa "Herramienta de copia de seguridad" te ahorrará mucho tiempo.
 
-### **Que no se te olvide exportar de vez en cuando:**
+### Elementos que no se te deben olvidar exportar de vez en cuando
 - Marcadores del navegador web
 - Exclusiones de Privacy Badger
 - Dominios bloqueados/permitidos de NoScript
 - Reglas de uBlock Origin
 - Recetas de GNOME
 
-#### **Extra:**
+#### Extra
 Crear directorio "Copias de seguridad" dentro de *Documentos*.
