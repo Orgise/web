@@ -25,10 +25,10 @@ sudo eject /dev/sdX
 Lo primero es elegir una melodía. Busca en Internet los términos “grub tune” para encontrar alguna ya hecha o investiga como crear una tú mismo.
 
 1. Comando `sudo nano /etc/default/grub`.
-2. Descomenta la línea que dice `GRUB_INIT_TUNE=""`
-3. Entre las comillas inserta tu nueva melodía
+2. Descomenta la línea que dice `GRUB_INIT_TUNE=""`.
+3. Entre las comillas inserta tu nueva melodía.
 4. Comando `sudo update-grub2`.
-5. Reinicia la computadora para escuchar tu temazo a todo volumen
+5. Reinicia la computadora para escuchar tu temazo a todo volumen.
 
 [Ver algunas melodías](https://etherpad.wikimedia.org/p/grub_tune_compilation)
 
@@ -129,7 +129,7 @@ user-background=false
 clock-format= %a %d %b, %H:%M
 ```
 
-**Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en `/home/usuario/.face`
+**Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en `/home/usuario/.face`.
 
 Editamos el archivo `/etc/lightdm/lightdm.conf`:
 
@@ -220,7 +220,10 @@ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu
 
 - **-X exclusiones:** una lista de ficheros o directorios que deseo omitir
 - **-exclude="$HOME/.\*":** ignorar los archivos ocultos situados en esa ruta (los ficheros ocultos de los directorios hijos sí se copiarán)
-- **-czvf origen destino:** c de comprimir, z de formato gzip (gz), v de mostrar detalles, y f para darle un nombre al comprimido
+- **-c, --create:** crear un nuevo fichero
+- **-z, --gzip:** compresión gzip
+- **-v, --verbose:** verbosidad
+- **-f, --file:** indica que se dará un nombre al archivo tar.
 
 ### Solucionar el problema Redshift (Trying location provider \`geoclue2\`…)
 
@@ -249,45 +252,41 @@ Deberás cambiar la latitud y longitud a la adecuada para ti. Reabrimos Redshift
 
 ### Ejecutar lanzadores al iniciar sesión
 
-Crear los lanzadores y moverlos al directorio `/home/tu_usuario/.config/autostart/`
+Crear los lanzadores y moverlos al directorio `/home/tu_usuario/.config/autostart/`.
 
 ### Instalar SmartPSS en GNU/Linux con Wine
 
 [Descargar el programa](https://dahuawiki.com/SmartPSS)
 
-Añadir soporte para 32 bits:
-
 ```shell
+# Añadir soporte para 32 bits
 sudo dpkg --add-architecture i386
-```
-
-Instalar Wine y otras dependencias:
-
-```shell
+#  Instalar Wine y otras dependencias:
 sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+# Instalar el programa
+wine nombre_programa.exe
 ```
 
-Instalamos el programa:
-
-```shell
-wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
-```
-
-Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzador automáticamente en el escritorio.
+**Nota:** cuando ejecutemos el instalador, dejamos marcada la casilla `Generate shorcuts` para que cree un lanzador automáticamente en el escritorio.
 
 ### Como usar el DNI electrónico (DNIe) en GNU/Linux
 
-1. Introducimos el lector pero no el DNI. Ponemos el comando lsusb para ver que lo detecte.
-2. Instalamos los paquetes necesarios para trabajar con el DNIe: sudo apt install opensc-pkcs11 pcsc-tools pcscd pinentry-gtk2 libccid.
-3. Escribimos pcsc\_scan y metemos el DNI. Se actualizará la pantalla y al final pondrá DNI Electrónico español (si tu tarjeta es compatible). Si no saliera, instalar los drivers de la página web dnielectronico.es correspondientes.
-4. Abrimos Firefox. Preferencias -> Privacidad y Seguridad -> Dispositivos de seguridad -> Cargar -> Nombre: DNIe (o el que sea). Archivo: /usr/lib/x86\_64-linux-gnu/opensc-pkcs11.so
-5. Comprobamos buscando "dnielectronico verificar que funciona" en el buscador y pinchamos en el último enlace de los prestadores de servicio de validación. El que dice "FNMT". Nos pedirá la contraseña de nuestro DNIe.
+1. Introducimos el lector pero no el DNI. Ponemos el comando `lsusb` para ver que lo detecte.
+2. Instalamos los paquetes necesarios para trabajar con el DNIe: `sudo apt install opensc-pkcs11 pcsc-tools pcscd pinentry-gtk2 libccid`.
+3. Escribimos `pcsc_scan` e introducimos el DNI. Se actualizará la pantalla y al final pondrá DNI Electrónico español (si tu tarjeta es compatible). Si no saliera, instalar los drivers de la página web `dnielectronico.es` correspondientes.
+4. Abrimos Firefox. Nos dirigimos a `Preferencias, Privacidad y Seguridad, Dispositivos de seguridad, Cargar`
+    - **Nombre:** DNIe (o el que sea).
+    - **Archivo:** `/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so`.
+5. Entramos en [este enlace](https://www.sede.fnmt.gob.es/certificados/persona-fisica/verificar-estado) para verificar que funciona correctamente. Nos pedirá la contraseña de nuestro DNIe.
 
-Probado en Debian 11 usando Firefox 94
+**Nota:** Esta guía ha funcionado usando Debian y Mozilla Firefox.
 
 ### Como activar el autocompletado del terminal
-
+```shell
 sudo apt install bash-completion
+```
+
+Pulsar la tecla Tabulador para activar el autocompletado.
 
 ### Desactivar IPv6
 
@@ -684,14 +683,6 @@ Copias de seguridad
 alias backup="insertar el comando para copias de seguridad"
 ```
 
-**Parámetros:**
-
-- **-X:** fichero de exclusión de directorios. Pondremos los directorios que no deseemos guardar en la copia.
-- **-c, --create:** crear un nuevo fichero
-- **-z, --gzip:** compresión gzip
-- **-v, --verbose:** verbosidad
-- **-f, --file:** indica que se dará un nombre al archivo tar.
-
 ## Tareas a realizar antes de instalar GNU/Linux
 
 ### Activar cortafuegos
@@ -782,7 +773,7 @@ flatpak install flatseal
 * **Activar/Desactivar volumen (Alt + <):** pactl set-sink-mute alsa\_output.pci-0000\_00\_1b.0.analog-stereo toggle
 * **Abrir el monitor del sistema (Ctrl + Alt + M):** gnome-system-monitor
 * **Imprimir pantalla (Imp Pant):** xfce4-screenshooter -f
-* **Imprimir pantalla -> Seleccionar rectángulo (Mayus + Imp Pant):** xfce4-screenshooter -r
+* **Imprimir pantalla: Seleccionar rectángulo (Mayus + Imp Pant):** xfce4-screenshooter -r
 * **Imprimir ventana actual (Alt + Imp Pant):** xfce4-screenshooter -w
 * **Apagar, reiniciar, cerrar sesión (Ctrl + Alt + Supr):** xfce4-session-logout
 * **Bloquear pantalla (Ctrl + Alt + L):** xflock4
