@@ -4,30 +4,30 @@
 
 ### ¿Cómo formatear una memoria USB?
 
-Averiguamos el nombre de la memoria con los comandos `lsblk` o `fdisk -l`. Partiendo de que la memoria es `sdc` y la partición a formatear es `/dev/sdc1`, ejecutamos el comando:
+Primero debemos averiguar el nombre de la memoria con los comandos `lsblk` o `fdisk -l`.
 
-**Aviso:** el dispositivo tiene que estar desmontado.
-
-Formatear en FAT32:
+**Aviso:** el dispositivo tiene que estar desmontado. Usa el comando `umount /dev/sdXX` para desmontarlo.
 
 ```shell
-sudo mkfs.vfat -F 32 -n nombre_para_el_usb /dev/sdc1
+# Formatear en FAT32
+sudo mkfs -t fat32 -n nombre_para_el_usb /dev/sdXX
+# Formatear en NTFS
+sudo mkfs.ntfs -n nombre_para_el_usb /dev/sdXX
 ```
 
-Formatear en NTFS:
-
+### Expulsar el dispositivo del equipo
 ```shell
-sudo mkfs.ntfs /dev/sdc1
+sudo eject /dev/sdX
 ```
 
 ### ¿Cómo poner nuestra melodía personalizada al arrancar el sistema?
 
 Lo primero es elegir una melodía. Busca en Internet los términos “grub tune” para encontrar alguna ya hecha o investiga como crear una tú mismo.
 
-1. sudo nano /etc/default/grub
-2. Descomenta la línea que dice GRUB\_INIT\_TUNE=””
+1. Comando `sudo nano /etc/default/grub`.
+2. Descomenta la línea que dice `GRUB_INIT_TUNE=""`
 3. Entre las comillas inserta tu nueva melodía
-4. sudo update-grub2
+4. Comando `sudo update-grub2`.
 5. Reinicia la computadora para escuchar tu temazo a todo volumen
 
 [Ver algunas melodías](https://etherpad.wikimedia.org/p/grub_tune_compilation)
@@ -56,7 +56,7 @@ history -c
 1. [Descargar](https://www.mate-look.org/) algún paquete de iconos o de temas.
 2. Descomprimir el fichero descargado.
 3. Mover la carpeta extraída a `/home/tu_usuario/.icons` o `/home/tu_usuario/.themes`.
-4. Ir a las opciones de apariencia y marcar el estilo deseado
+4. Ir a las opciones de apariencia y marcar el estilo deseado.
 
 **Nota:** la instalación de un tema para todos los usuarios del sistema se hace moviendo la carpeta descomprimida a /usr/share/icons o /usr/share/themes.
 
@@ -101,34 +101,42 @@ Editamos el archivo `/etc/lightdm/lightdm-gtk-greeter.conf`:
 
 ```
 [greeter]
-
+# Fondo de pantala de inicio de sesión
 background=/ruta/imagen/fondo
 
+# Nombre del tema
 theme-name=Tema a usar
 
+# Nombre del paquete de iconos
 icon-theme-name=Iconos a usar
 
+# Tipografía y tamaño
 font-name:Ubuntu 11
 
+# Mostrar información extra en la pantalla
 indicators=\~host;\~spacer;\~session;\~clock;\~a11y;\~power
 
-keyboard=onboard (instalar si no lo tienes)
+# Teclado virtual a usar. Instalar si no lo tienes
+keyboard=onboard
 
-position=5% 40% (izquierda centro)
+# Posición del diálogo para iniciar sesión. Establecido en la parte izquierda centrado
+position=5% 40%
 
-user-background=false (no usar los fondos individuales de cada usuario)
+# Usar los fondos de pantalla individuales de cada usuario
+user-background=false
 
+# Formato de tiempo para el reloj
 clock-format= %a %d %b, %H:%M
 ```
 
-**Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en /home/usuario/.face
+**Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en `/home/usuario/.face`
 
 Editamos el archivo `/etc/lightdm/lightdm.conf`:
 
 ```
 [Seat:\*]
-
-greeter-hide-users=false (mostrar el nombre de todos los usuarios)
+# Mostrar el nombre de todos los usuarios
+greeter-hide-users=false
 ```
 
 ### Añadir tu usuario al grupo sudo para tener permisos de administrador
@@ -138,7 +146,7 @@ sudo usermod -aG sudo nombre_usuario
 
 ### Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)
 
-Este error se origina cuando en Linux Mint aplicamos desde Ajustes → Gestor de controladores los gráficos privativos que nos ofrece Nvidia para nuestra tarjeta gráfica y la pantalla se nos queda en negro tras reiniciar.
+Este error se origina cuando en Linux Mint aplicamos desde `Ajustes → Gestor de controladores` los gráficos privativos que nos ofrece Nvidia para nuestra tarjeta gráfica y la pantalla se nos queda en negro tras reiniciar.
 
 ```shell
 sudo su
@@ -210,11 +218,9 @@ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu
 
 **Parámetros:**
 
-**-X exclusiones:** una lista de ficheros o directorios que deseo omitir
-
-**-exclude="$HOME/.\*":** ignorar los archivos ocultos situados en esa ruta (los ficheros ocultos de los directorios hijos sí se copiarán)
-
-**-czvf origen destino:** c de comprimir, z de formato gzip (gz), v de mostrar detalles, y f para darle un nombre al comprimido
+- **-X exclusiones:** una lista de ficheros o directorios que deseo omitir
+- **-exclude="$HOME/.\*":** ignorar los archivos ocultos situados en esa ruta (los ficheros ocultos de los directorios hijos sí se copiarán)
+- **-czvf origen destino:** c de comprimir, z de formato gzip (gz), v de mostrar detalles, y f para darle un nombre al comprimido
 
 ### Solucionar el problema Redshift (Trying location provider \`geoclue2\`…)
 
@@ -312,19 +318,19 @@ systemctl status bluetooth.service
 
 Editamos el fichero de configuración `/boot/grub/grub.cfg`.
 
-Tendremos que modificar la linea `set default="0"`, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema GNU/Linux.
+Tendremos que modificar la línea `set default="0"`, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema GNU/Linux.
 
 ### Cambiar el nombre de un USB
 
-Abrimos la utilidad de discos *gnome-disk-utilities*.
+Abrimos la utilidad de discos `gnome-disk-utilities`.
 
-Seleccionamos el disco USB. Luego, desde el menú de la rueda de herramientas seleccionamos *Edit Filesystem* y cambiamos el nombre.
+Seleccionamos el disco USB. Luego, desde el menú de la rueda de herramientas seleccionamos `Edit Filesystem` y cambiamos el nombre.
 
 ### Cambiar contraseña de partición cifrada
 
 Arrancamos desde un LiveCD con la utilidad de discos instalada y abierta.
 
-Seleccionamos la partición y desde el menú de la rueda de herramientas seleccionamos *Change Passphrase*.
+Seleccionamos la partición y desde el menú de la rueda de herramientas seleccionamos `Change Passphrase`.
 
 Cambiamos la contraseña y reiniciamos el equipo.
 
@@ -335,7 +341,7 @@ sudo apt-get remove bcmwl-kernel-source
 sudo apt-get install firmware-b43-installer b43-fwcutter
 ```
 
-Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
+Reiniciamos y encendemos el adaptador inalámbrico desde los ajustes de red.
 
 ### Reiniciar en BIOS
 
@@ -380,7 +386,7 @@ last nombre_usuario
 
 Editamos el fichero de configuración `/etc/default/grub`:
 
-Asignamos el valor 0 a la variable ***GRUB_TIMEOUT***:
+Asignamos el valor `0` a la variable `GRUB_TIMEOUT`.
 
 ```shell
 # Recargamos la configuración de grub
@@ -394,15 +400,11 @@ sudo apt install testdisk
 sudo photorec
 ```
 
-Seleccionamos la unidad, luego la partición
-
-En *file opt* elegimos los formatos a recuperar
-
-Pulsamos *search* y elegimos el sistema de archivos de la partición
-
-Elegimos la opción *Whole* para que lo escanee todo
-
-Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en él y luego pulsar "c")
+1. Seleccionamos la unidad, luego la partición.
+2. En `file opt` elegimos los formatos a recuperar.
+3. Pulsamos `search` y elegimos el sistema de archivos de la partición.
+4. Elegimos la opción `Whole` para que lo escanee todo.
+5. Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en él y luego pulsar `c`).
 
 ### Activar backports en Debian 11, instalar y actualizar los paquetes
 
@@ -453,9 +455,7 @@ Instalamos la siguiente herramienta de automatización (macro):
 sudo apt install xdotool
 ```
 
-Creamos un nuevo atajo de teclado:
-
-Ajustes → Teclado → Atajos de aplicación
+Creamos un nuevo atajo de teclado `Ajustes → Teclado → Atajos de aplicación`.
 
 **Ejemplo:** Escribir un mensaje al pulsar la tecla *Return*:
 
@@ -686,15 +686,11 @@ alias backup="insertar el comando para copias de seguridad"
 
 **Parámetros:**
 
-**-X:** fichero de exclusión de directorios. Pondremos los directorios que no deseemos guardar en la copia.
-
-**-c, --create:** crear un nuevo fichero
-
-**-z, --gzip:** compresión gzip
-
-**-v, --verbose:** verbosidad
-
-**-f, --file:** indica que se dará un nombre al archivo tar.
+- **-X:** fichero de exclusión de directorios. Pondremos los directorios que no deseemos guardar en la copia.
+- **-c, --create:** crear un nuevo fichero
+- **-z, --gzip:** compresión gzip
+- **-v, --verbose:** verbosidad
+- **-f, --file:** indica que se dará un nombre al archivo tar.
 
 ## Tareas a realizar antes de instalar GNU/Linux
 
@@ -706,7 +702,9 @@ sudo apt install gufw
 gufw &
 ```
 
-Perfil "Casa". Entrante -> Denegar. Saliente -> Permitir
+Perfil `Casa`:
+- Entrante: Denegar
+- Saliente: Permitir
 
 ### Instalamos diversos programas escogidos entre los mejores de uso frecuente
 
@@ -770,7 +768,7 @@ reboot
 
 Programas Flatpak recomendados:
 
-* **FlatSeal:** Gestor de permisos de aplicaciones Flatpak
+* **FlatSeal:** Gestor de permisos de aplicaciones Flatpak.
 
 ```shell
 flatpak install flatseal
@@ -855,4 +853,4 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 - Recetas de GNOME
 
 #### Extra
-Crear directorio "Copias de seguridad" dentro de *Documentos*.
+Crear directorio "Copias de seguridad" dentro de Documentos.
