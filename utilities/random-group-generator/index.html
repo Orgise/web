@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Group Generator</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Random Group Generator</h1>
+	<div class="wrap alt">
+		<p class="toggle-wrap">Number of People per group <a class="choice" href="#choice"><strong>TOGGLE</strong><span class="switch"></span></a> Number of Groups</p>
+		<p class="pergroup-wrap">Number of students per group: <input class="pergroup" type="integer" value="" /></p>
+		<p class="numgroups-wrap">Number of groups: <input class="numgroups" type="integer" value="" /></p>
+		<p><textarea name="students" id="students" cols="40" rows="15">Lovella
+Harry
+Bethel
+Lettie
+Shon
+Alberto
+Paola
+Jim
+Dagny
+Altha
+Shonda
+Wesley</textarea></p>
+		<button>Make Groups</button>
+		<div class="groups"></div>
+	</div>
+	<script src='jquery.min.js'></script>
+	<script src="./script.js"></script>
+</body>
+</html>

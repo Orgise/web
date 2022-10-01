@@ -8,20 +8,20 @@ Este truco es extremadamente útil para controlar los permisos (y dejarlos como 
 
 Para directorios:
 
-```
-$ find -type d -exec chmod 755 {} \\;
+```shell
+find -type d -exec chmod 755 {} \\;
 ```
 
 Para ficheros:
 
-```
-$ find -type f -exec chmod 644 {} \\;
+```shell
+find -type f -exec chmod 644 {} \\;
 ```
 
 Todo junto:
 
-```
-$ find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
+```shell
+find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
 ```
 
 ### **¿Cómo formatear una memoria USB?**
@@ -32,14 +32,14 @@ Averiguamos el nombre de la memoria con **lsblk** o **fdisk -l**. Partiendo de q
 
 Formatear en FAT32:
 
-```
-$ sudo mkfs.vfat -F 32 -n nombre_para_el_usb /dev/sdc1
+```shell
+sudo mkfs.vfat -F 32 -n nombre_para_el_usb /dev/sdc1
 ```
 
 Formatear en NTFS:
 
-```
-$ sudo mkfs.ntfs /dev/sdc1
+```shell
+sudo mkfs.ntfs /dev/sdc1
 ```
 
 ### **¿Cómo poner nuestra melodía personalizada al arrancar el sistema?**
@@ -68,8 +68,8 @@ Desventajas:
 
 ### **Borrar el historial de comandos**
 
-```
-$ history -c
+```shell
+history -c
 ```
 
 ### **¿Cómo instalar temas o iconos de Internet y aplicarlos?**
@@ -83,42 +83,42 @@ $ history -c
 
 **Extra:** también puedes aplicar el tema o los iconos para tu gestor de inicio de sesión como lightdm. Un tema que a mi me gusta es Arc que se puede instalar escribiendo el comando:
 
-```
-$ sudo apt install arc-theme
+```shell
+sudo apt install arc-theme
 ```
 
 ### **Mostrar información de un paquete**
 
-```
-$ sudo apt-cache show nombre_paquete
+```shell
+sudo apt-cache show nombre_paquete
 ```
 
 ### **Subir, bajar y mutear volumen usando comandos**
 
-```
-$ pactl set-sink-volume [TAB] +10%
-$ pactl set-sink-volume [TAB] -10%
-$ pactl set-sink-mute [TAB] toggle
+```shell
+pactl set-sink-volume [TAB] +10%
+pactl set-sink-volume [TAB] -10%
+pactl set-sink-mute [TAB] toggle
 ```
 
 **Nota:** *[TAB]:* pulsar la tecla tabulador para autocompletar
 
 ### **Subir y bajar volumen usando comandos**
 
-```
-$ amixer set Capture 5%+
-$ amixer set Capture 5%-
+```shell
+amixer set Capture 5%+
+amixer set Capture 5%-
 ```
 
 ### **Herramienta para buscar archivos**
 
-```
-$ sudo apt install catfish
+```shell
+sudo apt install catfish
 ```
 
 ### **Personalizar LightDM (gestor de inicio de sesión)**
 
-Editamos el archivo /etc/lightdm/lightdm-gtk-greeter.conf:
+Editamos el archivo `/etc/lightdm/lightdm-gtk-greeter.conf`:
 
 ```
 [greeter]
@@ -153,18 +153,17 @@ greeter-hide-users=false (mostrar el nombre de todos los usuarios)
 ```
 
 ### **Añadir tu usuario al grupo sudo para tener permisos de administrador**
-```
-$ sudo usermod -aG sudo nombre_usuario
+```shell
+sudo usermod -aG sudo nombre_usuario
 ```
 
 ### **Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)**
 
 Este error se origina cuando en Linux Mint aplicamos desde Ajustes → Gestor de controladores los gráficos privativos que nos ofrece Nvidia para nuestra tarjeta gráfica y la pantalla se nos queda en negro tras reiniciar.
 
-```
-$ sudo su
-
-# apt purge*\*nvidia\**; apt autoremove; reboot
+```shell
+sudo su
+apt purge*\*nvidia\**; apt autoremove; reboot
 ```
 
 ### **Realizar copias de seguridad de nuestros datos**
@@ -177,16 +176,16 @@ Ejemplo de backup simple:
 
 **Sintaxis:**
 
-```
-$ rsync [opciones] [origen] [destino]
+```shell
+rsync [opciones] [origen] [destino]
 ```
 
 **Ejemplos:**
 
 **1. nombre :** desc.
 
-```
-$ rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/temporal/FOTOS
+```shell
+rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/temporal/FOTOS
 ```
 
 **Parámetros:**
@@ -205,8 +204,8 @@ $ rsync -avh --delete --exclude-from='exclude\_me.txt' \~/Escritorio/FOTOS/ \~/t
 
 Tar permite la compresión de un directorio origen a uno destino.
 
-```
-$ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu_usuario
+```shell
+tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu_usuario
 ```
 
 \
@@ -230,12 +229,11 @@ $ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_
 
 Lo que haremos será crear y editar el archivo de configuración de redshift.
 
-```
-$ mkdir ~/.config/redshift && nano ~/.config/redshift/redshift.conf
+```shell
+mkdir ~/.config/redshift && nano ~/.config/redshift/redshift.conf
 ```
 
 Y pegaremos lo siguiente:
-
 ```
 [redshift]
 
@@ -262,20 +260,20 @@ Crear los lanzadores y moverlos al directorio /home/tu\_usuario/.config/autostar
 
 Añadir soporte para 32 bits:
 
-```
-$ sudo dpkg --add-architecture i386
+```shell
+sudo dpkg --add-architecture i386
 ```
 
 Instalar Wine y otras dependencias:
 
-```
-$ sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+```shell
+sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 ```
 
 Instalamos el programa:
 
-```
-$ wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
+```shell
+wine DH\_SMARTPSS-Win64\_En\_IS\_V2.003.0000004.0.R.201021.exe
 ```
 
 Nota: dejamos marcada la casilla “Generate shorcuts” para que cree un lanzador automáticamente en el escritorio.
@@ -292,37 +290,34 @@ Probado en Debian 11 usando Firefox 94
 
 ### **Como activar el autocompletado del terminal**
 
-$ sudo apt install bash-completion
+sudo apt install bash-completion
 
 ### **Desactivar IPv6**
 
 Abrimos el fichero de configuración
 
-```
-$ sudo nano /etc/sysctl.conf
+```shell
+sudo nano /etc/sysctl.conf
 ```
 
 Dentro del fichero, insertamos al final:
 
-```
+```shell
 net.ipv6.conf.all.disable\_ipv6 = 1
-
 net.ipv6.conf.default.disable\_ipv6 = 1
 ```
 
 Reiniciamos la máquina y comprobamos que está desactivado:
 
-```
-$ ip a | grep inet6
+```shell
+ip a | grep inet6
 ```
 
 ### **Desactivar Bluetooth**
 
-```
-$ sudo systemctl stop bluetooth.service
-
-$ sudo systemctl disable bluetooth.service
-
+```shell
+sudo systemctl stop bluetooth.service
+sudo systemctl disable bluetooth.service
 systemctl status bluetooth.service
 ```
 
@@ -330,8 +325,8 @@ systemctl status bluetooth.service
 
 Editamos el fichero de configuración
 
-```
-$ sudo nano /boot/grub/grub.cfg
+```shell
+sudo nano /boot/grub/grub.cfg
 ```
 
 Tendremos que modificar la linea **set default=”0″**, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema Linux.
@@ -352,73 +347,71 @@ Cambiamos la contraseña y reiniciamos el equipo.
 
 ### **Instalar controladores para tarjeta Wi-Fi BCM4311**
 
-```
-$ sudo apt-get remove bcmwl-kernel-source
-
-$ sudo apt-get install firmware-b43-installer b43-fwcutter
+```shell
+sudo apt-get remove bcmwl-kernel-source
+sudo apt-get install firmware-b43-installer b43-fwcutter
 ```
 
 Reiniciamos y encendemos el adaptador *Wi-Fi* desde los ajustes de red.
 
 ### **Reiniciar en BIOS**
 
-```
-$ systemctl reboot --firmware-setup
+```shell
+systemctl reboot --firmware-setup
 ```
 
 Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si tenemos activado el *Fast Boot* no podremos acceder a ella.
 
 ### **Eliminar los repositorios externos**
 
-```
-$ sudo rm /etc/apt/sources.list.d/\*
-
-$ sudo apt update
+```shell
+sudo rm /etc/apt/sources.list.d/\*
+sudo apt update
 ```
 
 ### **Cambiar la ruta por defecto de los directorios principales del usuario**
 
-```
-$ nano .config/user-dirs.dirs
+```shell
+nano .config/user-dirs.dirs
 ```
 
 ### **Encontrar y eliminar ficheros duplicados**
 
-```
-$ sudo apt install fdupes
+```shell
+sudo apt install fdupes
 ```
 
 ### **Ver las fuentes instaladas en nuestro sistema**
 
-```
-$ fc-list
+```shell
+fc-list
 ```
 
 ### **Visualizar las últimas sesiones de un usuario**
 
-```
-$ last nombre_usuario
+```shell
+last nombre_usuario
 ```
 
 ### **Ocultar GRUB al inicio**
 
 Abrimos el fichero de configuración:
 
-```
-$ sudo nano /etc/default/grub
+```shell
+sudo nano /etc/default/grub
 ```
 
 Asignamos el valor 0 a la variable ***GRUB\_TIMEOUT*** y recargamos la configuración de *grub*:
 
-```
-$ sudo update-grub
+```shell
+sudo update-grub
 ```
 
 ### **Recuperar archivos con Photorec**
 
-```
-$ sudo apt install testdisk
-$ sudo photorec
+```shell
+sudo apt install testdisk
+sudo photorec
 ```
 
 Seleccionamos la unidad, luego la partición
@@ -435,42 +428,42 @@ Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en
 
 Los *backports* son repositorios oficiales de Debian que cuentan con paquetes algo más actualizados, pero fuera de la rama *stable*.
 
-```
-$ sudo nano /etc/apt/sources.list
+```shell
+sudo nano /etc/apt/sources.list
 ```
 
 Añadimos las dos siguientes líneas:
 
-```
+```shell
 deb <http://deb.debian.org/debian> bullseye-backports main contrib non-free
 deb-src <http://deb.debian.org/debian> bullseye-backports main contrib non-free
 ```
 
 Actualizar paquetes usando backports:
 
-```
-$ sudo apt -t bullseye-backports update
-$ sudo apt -t bullseye-backports upgrade
+```shell
+sudo apt -t bullseye-backports update
+sudo apt -t bullseye-backports upgrade
 ```
 
 Instalar paquetes usando backports:
 
-```
-$ sudo apt install "package-name" -t bullseye-backports
+```shell
+sudo apt install "package-name" -t bullseye-backports
 ```
 
 ### **Instalar temas LibreOffice**
 
-```
-$ sudo apt install libreoffice-style-*
+```shell
+sudo apt install libreoffice-style-*
 ```
 
 Reiniciar LibreOffice para aplicar cambios
 
 ### **El corrector ortográfico no funciona en LibreOffice**
 
-```
-$ sudo apt install hunspell hunspell-es
+```shell
+sudo apt install hunspell hunspell-es
 ```
 
 Reiniciar LibreOffice para aplicar cambios
@@ -479,8 +472,8 @@ Reiniciar LibreOffice para aplicar cambios
 
 Instalamos la siguiente herramienta de automatización (macro):
 
-```
-$ sudo apt install xdotool
+```shell
+sudo apt install xdotool
 ```
 
 Creamos un nuevo atajo de teclado:
@@ -491,65 +484,122 @@ Ajustes → Teclado → Atajos de aplicación
 
 Escribir un mensaje al pulsar la tecla *Return*:
 
-```
-$ bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
+```shell
+bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
 ```
 
 ### **Exportar todos los Writer a PDF**
 
-```
-$ lowriter --headless --convert-to pdf \*.odt
+```shell
+lowriter --headless --convert-to pdf \*.odt
 ```
 
 **Nota:** habrá tantos *.pdf* como *.odt* haya en el directorio actual.
 
 ### **Convertir múltiples PDF en uno solo**
 
-```
-$ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
+```shell
+pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 ```
 
 ### Visualizar los detalles de nuestra RAM
-```
-$ sudo dmidecode --type memory
+```shell
+sudo dmidecode --type memory
 ```
 
 ### Descargar paquete y sus dependencias
-```
-$ apt install --download-only pkg_name
+```shell
+sudo apt install --download-only pkg_name
 ```
 **Nota:** los empaquetados se guardarán en /var/cache/apt/archives/
 
 ### Instalar .deb desde terminal
-```
-$ sudo dpkg -i programa.deb
+```shell
+sudo dpkg -i programa.deb
 ```
 
 ### Instalar entorno de desarrollo (LAMP) en Debian
 [Tutorial completo](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10)
 
 ### Crear 10 ficheros rápidamente
+```shell
+touch test{1..10}.txt
 ```
-$ touch test{1..10}.txt
+
+### Visualizar el tamaño del directorio actual
+```shell
+du -sh .
 ```
 
 ### Ver los 20 comandos más usados
-```
-$ history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
-```
-
-## **Curiosidades**
-
-### **Calendario incompleto**
-
-```
-$ cal 9 1752
+```shell
+history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
 ```
 
-### **Mostrar la terminal como la película de Matrix**
-
+### Dos herramientas para gestionar el portapapeles desde el terminal
+```shell
+sudo apt install xclip xsel
+# Pegar portapapeles
+xclip -o
+xsel -o
+# Añadir al portapapeles el contenido de un fichero
+xclip -i ~/.bashrc
+xsel -i < ~/.bashrc
+# Borrar el contenido del portapapeles
+xclip -i /dev/null
+xsel -c
 ```
-$ sudo apt install cmatrix && cmatrix
+
+### Mostrar la terminal como la película de Matrix
+
+```shell
+sudo apt install cmatrix && cmatrix
+```
+
+### Mostrar mensaje indefinidamente por terminal
+```shell
+yes mensaje
+```
+
+### Imprimir con color arcoíris la salida de los comandos
+```shell
+ls | lolcat
+```
+
+### Dos herramientas para mostrar mensajes con tipografías grandes por terminal
+```shell
+sudo apt install toilet figlet
+toilet mensaje
+figlet mensaje
+```
+
+### Gato que persigue tu ratón por el terminal
+```shell
+sudo apt install oneko
+oneko
+```
+
+### Herramienta CLI para hacer sonar por el altavoz el texto introducido por teclado
+```shell
+sudo apt install espeak
+espeak
+```
+
+### **Mostrar el calendario por terminal**
+
+```shell
+# Año actual
+cal
+# Enero de 1990
+cal 1 1990
+```
+
+
+### Tres métodos para descomprimir multiples ficheros .zip de un mismo directo desde terminal
+```bash
+unzip '*.zip'
+unzip \*.zip
+for z in *.zip; do unzip "$z"; done
 ```
 
 ## **Productividad**
@@ -620,7 +670,7 @@ $ sudo apt install cmatrix && cmatrix
 
 ### **Alias básicos**
 
-```
+```shell
 # Actualiza los repositorios e instala las actualizaciones de todos los paquetes
 alias actualizar="sudo apt update && sudo apt upgrade"
 
@@ -647,8 +697,8 @@ alias reiniciar="systemctl reboot"
 
 Copia de seguridad
 
-```
-$ alias backup="tar -X exclusiones.txt --exclude="$HOME/.*" -czvf backup_$(date +%d.%m.%y).tar.gz $HOME/*"
+```shell
+alias backup="tar -X exclusiones.txt --exclude="$HOME/.*" -czvf backup_$(date +%d.%m.%y).tar.gz $HOME/*"
 ```
 
 **Parámetros:**
@@ -667,8 +717,8 @@ $ alias backup="tar -X exclusiones.txt --exclude="$HOME/.*" -czvf backup_$(date 
 
 ### **Activar cortafuegos**
 
-```
-$ sudo apt install gufw
+```shell
+sudo apt install gufw
 ```
 
 Activamos el firewall (si no lo está). Perfil "Casa". Entrante -> Denegar. Saliente -> Permitir
@@ -707,8 +757,8 @@ Activamos el firewall (si no lo está). Perfil "Casa". Entrante -> Denegar. Sali
 
 **Recomendación:** no instales un lector de PDF si tu distribución ya trae uno por defecto (aplicable para otras categorías). Si aún así deseas instalarlo, borra el otro para ahorrar espacio.
 
-```
-$ sudo apt install hardinfo gparted firefox thunderbird libreoffice gimp gnome-system-monitor qbittorrent redshift-gtk rhythmbox simplescreenrecorder handbrake soundconverter keepassxc synaptic xfce4-notes vlc evince nextcloud-desktop telegram-desktop lingot psensor catfish menulibre vrms neofetch mlocate virt-manager
+```shell
+sudo apt install hardinfo gparted firefox thunderbird libreoffice gimp gnome-system-monitor qbittorrent redshift-gtk rhythmbox simplescreenrecorder handbrake soundconverter keepassxc synaptic xfce4-notes vlc evince nextcloud-desktop telegram-desktop lingot psensor catfish menulibre vrms neofetch mlocate virt-manager
 ```
 
 Otros programas excelentes que no se encuentran en los repositorios:
@@ -726,18 +776,18 @@ Otros programas excelentes que no se encuentran en los repositorios:
 
 *Flatpak* es un repositorio de aplicaciones que se actualizan muy rápidamente a su última versión. Para instalarlo ponemos el comando:
 
-```
-$ sudo apt install flatpak
-$ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-$ reboot
+```shell
+sudo apt install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+reboot
 ```
 
 Programas *Flatpak* recomendados:
 
 * **FlatSeal:** Gestor de permisos de aplicaciones *Flatpak*
 
-```
-$ flatpak install flatseal
+```shell
+flatpak install flatseal
 ```
 
 ### Creación de atajos de teclado
@@ -763,8 +813,8 @@ $ flatpak install flatseal
 
 ### Limitar permisos de los ficheros copiados en el paso anterior
 
-```
-$ find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
+```shell
+find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type d -exec chmod 755 {} \\; && find $HOME/Documentos/ $HOME/Imágenes/ $HOME/Música/ $HOME/Plantillas/ -type f -exec chmod 644 {} \\;
 ```
 
 ### Otros ajustes

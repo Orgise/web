@@ -1,0 +1,242 @@
+.container {
+  margin: 0 auto;
+  height: 100%;
+  width: 588px;
+  min-width: 588px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container .top-row {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.container .top-row .note-group {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 52px;
+}
+.container .top-row .note-group.group-of-two {
+  width: 60px;
+}
+.container .top-row .note-group.group-of-three {
+  width: 93px;
+}
+.container .top-row .note-group.group-1 {
+  margin-left: 17px;
+}
+.container .top-row .note-group.group-2 {
+  margin-left: 36px;
+}
+.container .top-row .note-group.group-3 {
+  margin-left: 42px;
+}
+.container .top-row .note-group.group-4 {
+  margin-left: 39px;
+}
+.container .top-row .note-group.group-5 {
+  margin-left: 38px;
+}
+.container .top-row .note {
+  margin-top: auto;
+}
+.container .bottom-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.container .bottom-row .note > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.note {
+  width: 27px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 14px;
+  color: #333333;
+  text-align: center;
+  perspective: 200px;
+  user-select: none;
+}
+.note > div {
+  background-image: linear-gradient(-180deg, #E9D5D0 0%, #E6E5F2 98%);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  padding: 8px 0;
+  box-sizing: border-box;
+  transform-origin: top center;
+}
+.note:hover > div {
+  background-image: linear-gradient(-180deg, #E3C377 3%, #ADDC9D 98%);
+  transform: rotateX(-5deg);
+}
+.note.note-1 {
+  height: 183px;
+}
+.note.note-2 {
+  height: 178px;
+}
+.note.note-3 {
+  height: 168px;
+}
+.note.note-4 {
+  height: 163px;
+}
+.note.note-5 {
+  height: 153px;
+}
+.note.note-6 {
+  height: 148px;
+}
+.note.note-7 {
+  height: 143px;
+}
+.note.note-8 {
+  height: 133px;
+}
+.note.note-9 {
+  height: 128px;
+}
+.note.note-10 {
+  height: 118px;
+}
+.note.note-11 {
+  height: 113px;
+}
+.note.note-12 {
+  height: 108px;
+}
+.note.note-13 {
+  height: 183px;
+}
+.note.note-14 {
+  height: 178px;
+}
+.note.note-15 {
+  height: 173px;
+}
+.note.note-16 {
+  height: 168px;
+}
+.note.note-17 {
+  height: 163px;
+}
+.note.note-18 {
+  height: 158px;
+}
+.note.note-19 {
+  height: 153px;
+}
+.note.note-20 {
+  height: 148px;
+}
+.note.note-21 {
+  height: 143px;
+}
+.note.note-22 {
+  height: 138px;
+}
+.note.note-23 {
+  height: 133px;
+}
+.note.note-24 {
+  height: 128px;
+}
+.note.note-25 {
+  height: 123px;
+}
+.note.note-26 {
+  height: 118px;
+}
+.note.note-27 {
+  height: 113px;
+}
+.note.note-28 {
+  height: 108px;
+}
+.note.note-29 {
+  height: 103px;
+}
+.note.note-30 {
+  height: 98px;
+}
+
+.stick {
+  position: absolute;
+  height: 117px;
+  width: 22px;
+  left: 100px;
+  background-image: url(stick.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 9999;
+  transform-origin: 4px 50%;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+.stick .glow-1, .stick .glow-2 {
+  border-radius: 50%;
+  background-color: rgba(255, 243, 178, 0.25);
+  position: relative;
+  animation-name: bonyonyon;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+  animation-iteration-count: infinite;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+.stick .glow-1.hidden, .stick .glow-2.hidden {
+  opacity: 0;
+}
+.stick .glow-1 {
+  width: 34px;
+  height: 34px;
+  left: -6px;
+  top: -6px;
+  z-index: 9997;
+  animation-duration: 0.3s;
+}
+.stick .glow-2 {
+  width: 28px;
+  height: 28px;
+  left: -3px;
+  top: -37px;
+  z-index: 9998;
+  animation-duration: 0.2s;
+  animation-delay: 0.1s;
+}
+
+body {
+  background-image: url(background.svg);
+  background-color: #583864;
+  background-size: auto 100%;
+  display: flex;
+  align-items: center;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  cursor: none;
+}
+
+@keyframes bonyonyon {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}

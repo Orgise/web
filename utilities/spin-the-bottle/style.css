@@ -1,0 +1,45 @@
+html, body{
+	margin: 0;
+	padding: 0;
+}
+
+.vector{
+	position: absolute;
+	width: 2px;
+	background-color: black;
+	-ms-transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	background-color: transparent;
+	border-left: 2px dashed red;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	perspective: 100px;
+}
+
+#rotationPath{
+	position: absolute;
+	width: 280px;
+	height: 280px;
+	opacity: 0.5;
+	-webkit-border-radius: 1000px;
+	-moz-border-radius: 1000px;
+	border-radius: 1000px;
+	left: 50%;
+	margin-left: -140px;
+	top: 50%;
+	margin-top: -140px;
+	border: 2px dashed blue;
+	-webkit-perspective: 100px;
+	perspective: 100px;
+}
+
+#bottle{
+	position: absolute;
+	left: 50%;
+	margin-left: -43px;
+	top: 50%;
+	margin-top: -170px;
+	-webkit-perspective: 100px;
+	perspective: 100px;
+}

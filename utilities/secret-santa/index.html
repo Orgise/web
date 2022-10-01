@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Holiday Gift Exchange Name Picker</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<section>
+		<h2>Holiday Gift Exchange Name Picker</h2>
+		<p>Don't have the ability to draw names from a hat? Use this randomizer for your gift exchanges!<br />
+			<span class="note">(Not recommended for Secret Santa unless you have a 3rd party person use the tool and inform people of who they were matched with.)</span>
+		</p>
+		<p class="note">
+			<strong>Exclusions</strong> Participant names you do not want the current participant to match with.<br />
+			<em>Example:</em> Partners partaking in the a gift exchange with people outside of their household.</p>
+	</section>
+	<section>
+		<div class="col">
+			<h4>Add Participants</h4>
+			<div class="form">
+				<label>Participant Name
+					<input type="text" id="name" />
+				</label>
+				<label>Exclusions (comma separated)
+					<input type="text" id="exclusions" />
+				</label>
+				<p class="addButton">
+					<button onclick={handleAdd()}>Add Participant</button>
+				</p>
+			</div>
+		</div>
+		<div class="col">
+			<h4>Participant List
+				<div class="table-buttons">
+					<button id="generateButton" disabled onclick={generateMatches()}>Generate Matches</button>
+					<button id="reset" class="clear" onclick={handleReset()}>Reset</button>
+				</div>
+			</h4>
+			<table id="participants">
+				<thead>
+					<tr>
+						<td class="num"></td>
+						<td>Name</td>
+						<td>Exclusions</td>
+						<td>Match</td>
+						<td class="util"></td>
+					</tr>
+				</thead>
+				<tbody id="list">
+				</tbody>
+			</table>
+			<div id="message">
+				<p>Enter some participants on the left to get started.</p>
+				<p>In order to generate matches you must have at least 3 participants. What's the point if it's just going to be 2 people giving gifts to each other, right?</p>
+				<p>Once you have enough participants, click <strong>Generate Matches</strong> on the top right to see who matched with who!</p>
+			</div>
+			<div id="error" class="hide">Matches aren't possible with this list because at least 2 of the participants could only match with the same single participant. Please review your entries.</div>
+		</div>
+		
+		<div id="editModal" class="hide">
+			<div class="form">
+				<button id="closeModal" onclick={closeModal()}>
+					<i class="icons icon-close"></i>
+				</button>
+				<label>Participant Name
+					<input type="text" id="editName" />
+				</label>
+				<label>Exclusions (comma separated)
+					<input type="text" id="editExclusions" />
+				</label>
+				<p class="addButton">
+					<button id="saveButton" onclick={handleSave()}>Save</button>
+				</p>
+			</div>
+		</div>
+	</section>
+	<script src="./script.js"></script>
+</body>
+</html>

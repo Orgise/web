@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  color: #444444;
+}
+
+.hide {
+  display: none !important;
+}
+
+/* ---- Layout ---- */
+section {
+  display: block;
+  width: 100%;
+}
+
+.col {
+  display: inline-block;
+  vertical-align: top;
+  padding: 1rem;
+  width: 68%;
+}
+.col:first-of-type {
+  width: 30%;
+}
+
+/* ---- Buttons ---- */
+button {
+  cursor: pointer;
+  transition: all 0.5s;
+  color: #ffffff;
+  border: none;
+  background: #077ca9;
+  border: 2px solid #077ca9;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+button:hover {
+  background: #026186;
+}
+button[disabled], button[disabled]:hover {
+  opacity: 0.25;
+  background: #222222;
+  border: 2px solid #222222;
+  cursor: default;
+}
+button.clear {
+  background: transparent;
+  border: 2px solid #cccccc;
+  color: #777777;
+}
+
+.util button {
+  padding: 0.25em;
+  background: transparent;
+  border: none;
+  color: #222222;
+}
+.util button .icon.icon-trash {
+  color: red;
+}
+
+.addButton {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0 0;
+}
+.addButton button {
+  width: 100%;
+  display: block;
+}
+
+.table-buttons {
+  float: right;
+  margin-top: -0.5rem;
+}
+.table-buttons button {
+  padding: 0.5rem;
+}
+
+/* ---- Form ---- */
+.form {
+  background: #f8f8f8;
+  padding: 1rem;
+}
+.form label,
+.form input {
+  display: block;
+  margin-bottom: 15px;
+}
+.form label {
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+}
+.form input {
+  padding: 0.5em 1em;
+  display: block;
+  margin: 0.5rem 0 1rem;
+  width: 100%;
+}
+
+/* ---- Table ---- */
+table {
+  width: 100%;
+}
+table thead td {
+  background: #efefef;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+table thead td,
+table tbody td {
+  padding: 0.5em;
+  width: auto;
+}
+table thead td.num,
+table tbody td.num {
+  width: 40px;
+  text-align: center;
+}
+table thead td.util,
+table tbody td.util {
+  width: 60px;
+  text-align: center;
+}
+table tbody tr:nth-of-type(even) td {
+  background: #f8f8f8;
+}
+table tbody tr td.exclusions:not(:empty) {
+  color: #aaaaaa;
+}
+table tbody tr td.match {
+  color: #222222;
+}
+
+/* ---- Messages / Notes ---- */
+#message {
+  width: 100%;
+  padding: 1rem 0.5rem;
+}
+
+#error {
+  color: red;
+  padding: 0.5em;
+}
+
+.note {
+  font-style: italic;
+  color: #888888;
+}
+
+/* ---- Edit Participant Modal ---- */
+#editModal {
+  display: block;
+  width: 100%;
+  height: 100wh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  margin-top: -150px;
+  background: rgba(0, 0, 0, 0.8);
+}
+#editModal .form {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  width: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+#editModal #closeModal {
+  padding: 0;
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+}
+
+/* ---- Media Query ---- */
+@media screen and (max-width: 768px) {
+  .col {
+    display: block;
+    width: 100% !important;
+  }
+
+  label {
+    display: inline-block !important;
+    width: 48%;
+    margin: 0.5%;
+  }
+}

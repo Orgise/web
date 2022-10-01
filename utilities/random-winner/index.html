@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Picker</title>
+  <link rel='stylesheet' href='bootstrap.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+            <div class="page-header">
+                <h1>Random Picker</h1>
+            </div>
+            <p class="lead">Enter random choices.  Get your winner.</p>
+            <main>
+                <div class="row">
+                    <div class="col-xs-12 col-md-5">
+                        <h2>Enter choices</h2>
+                        <p>Enter each value on a new line.  Blank lines will be ignored.</p>
+                        <textarea id="values" class="form-control" rows="15"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-md-5 col-md-offset-2">
+                        <h2>Your Winner:</h2>
+                        <p id="instructions"><span class="label label-warning">You have to enter some values first!</span></p>
+                        <div id="results"></div>
+                        <div id="chooser" class="text-center">
+                            <hr>
+                            <button type="button" class="btn btn-success btn-lg">Pick Winner</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p class="text-center text-muted">Drawing, giveaway, random generation - nothing can be easier than just pressing the button!</p>
+            </main>
+        </div>
+        <footer>
+            <div class="container">
+                <p class="text-center"><a href="http://aaronsaray.com" title="A Milwaukee-based PHP Programmer">Aaron Saray</a> created this project - especially for <a href="http://mkepug.org">Milwaukee PHP Users Group</a>.</p>
+            </div>
+        </footer>
+        <script src='jquery.min.js'></script>
+        <script  src="./script.js"></script>
+</body>
+</html>
