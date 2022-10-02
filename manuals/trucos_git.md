@@ -216,7 +216,7 @@ git commit -am "Descripción del commit"
 
 ### git rm
 
-Eliminar ficheros
+Eliminar ficheros.
 
 ```shell
 git rm archivo.txt
@@ -256,10 +256,18 @@ git diff --staged
 
 ### git log
 
+Muestra todos los commits en el historial del repositorio.
+
+Por defecto, muestra los siguientes datos de cada commit:
+- Secure Hash Algorithm (SHA).
+- Autor.
+- Fecha.
+- Mensaje del commit.
+
 ```shell
-# Mostrar el historial de commits
 git log
-git log --oneline (formato corto)
+# Formato corto
+git log --oneline
 ```
 
 ### git branch
@@ -293,8 +301,8 @@ git checkout -b nombreRama
 git log
 git checkout SHA_copiado
 
-# Fusionar el contenido de otras ramas a la principal
-git checkout master (hay que situarse primero en la principal)
+# Fusionar el contenido de otras ramas a la principal. Lo primero es situarse en la principal 
+git checkout master
 git merge otraRama
 ```
 
