@@ -1,5 +1,5 @@
 # Servidor web para subir/descargar ficheros en la red local
-# Antes de ejecutarlo se debe definir su IP privada y el puerto deseado
+# Antes de ejecutarlo debe configurar su IP privada y el puerto deseado
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import urllib.parse
@@ -7,14 +7,20 @@ import cgi
 import shutil
 import os
 
-PLANTILLA_HTML = '''<html>
+# Puerto para el servidor web
+# Desactivar el cortafuegos si existen problemas de conexión de otros equipos al servidor
+PORT = 1234
+# Su dirección IP privada
+BIND = '192.168.1.2'
+
+PLANTILLA_HTML = f'''<html>
 <head>
     <meta charset="UTF-8">
     <title>Subir ficheros</title>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
 </head>
 <body>
-<form method="post" action="http://192.168.1.2:1234{}" enctype="multipart/form-data">
+<form method="post" action="http://{BIND}:{PORT}{{}}" enctype="multipart/form-data">
     <input type="file" name="file" multiple><br><br>
     <input type="submit" value="Enviar archivos">
 </form>
@@ -22,14 +28,14 @@ PLANTILLA_HTML = '''<html>
 </html>
 '''
 
-PLANTILLA_HTML_EXITO = '''<html>
+PLANTILLA_HTML_EXITO = f'''<html>
 <head>
     <meta charset="UTF-8">
     <title>Subir ficheros</title>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
 </head>
 <body>
-<form method="post" action="http://192.168.1.2:1234{}" enctype="multipart/form-data">
+<form method="post" action="http://{BIND}:{PORT}{{}}" enctype="multipart/form-data">
     <input type="file" name="file" multiple><br><br>
     <input type="submit" value="Enviar archivos">
 </form>
@@ -37,8 +43,6 @@ PLANTILLA_HTML_EXITO = '''<html>
 </body>
 </html>
 '''
-PORT = 1234  # Desactivar el cortafuegos si existen problemas de conexión de otros equipos al servidor
-BIND = '192.168.1.2'
 
 
 class MySimpleHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -100,7 +104,7 @@ def main():
     # os.environ["TMPDIR"] = "/home/user"
     httpd = HTTPServer((BIND, PORT), MySimpleHTTPRequestHandler)
     sa = httpd.socket.getsockname()
-    print("Servidor web activo en la IP", sa[0], "puerto", sa[1], "")
+    print("Servidor web activo (", sa[0], ":", sa[1], ")")
 
     try:
         httpd.serve_forever()

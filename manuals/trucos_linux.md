@@ -89,7 +89,7 @@ amixer set Capture 5%+
 amixer set Capture 5%-
 ```
 
-### Herramienta para buscar archivos
+### Herramienta para buscar ficheros
 
 ```shell
 sudo apt install catfish
@@ -97,7 +97,7 @@ sudo apt install catfish
 
 ### Personalizar LightDM (gestor de inicio de sesión)
 
-Editamos el archivo `/etc/lightdm/lightdm-gtk-greeter.conf`:
+Editamos el fichero `/etc/lightdm/lightdm-gtk-greeter.conf`:
 
 ```
 [greeter]
@@ -131,7 +131,7 @@ clock-format= %a %d %b, %H:%M
 
 **Nota:** para dejar un valor por defecto se comenta. Para añadir una foto de tu usuario la debemos ubicar en `/home/usuario/.face`.
 
-Editamos el archivo `/etc/lightdm/lightdm.conf`:
+Editamos el fichero `/etc/lightdm/lightdm.conf`:
 
 ```
 [Seat:\*]
@@ -155,16 +155,18 @@ apt purge*\*nvidia\**; apt autoremove; reboot
 
 ### Copias de seguridad con rsync (muy recomendado)
 
-Rsync (Remote Sync) es una herramienta de sincronización para copiar archivos y directorios en un sistema o entre sistemas. La mayor ventaja de rsync es que sólo copia los archivos modificados y, por lo tanto, reduce el consumo de CPU y ahorra el ancho de banda y el tiempo durante la copia de archivos.
+Rsync (Remote Sync) es una herramienta de sincronización para copiar ficheros y directorios en un sistema o entre sistemas. La mayor ventaja de rsync es que sólo copia los ficheros modificados y, por lo tanto, reduce el consumo de CPU y ahorra el ancho de banda y el tiempo durante la copia de ficheros.
 
 **Ejemplo 1:** Copiar los ficheros (solo si se encuentran cambios) del directorio A en el directorio Backup-A. 
 ```shell
 rsync A/ Backup-A/
 ```
 
-El ejemplo anterior copia los archivos del origen al destino. Pero si el sistema tenía algunos archivos extra que no estaban en el origen, esos no serán eliminados por la sincronización de una vía. Si quieres eso, tendrás que usar la **sincronización bidireccional**.
+> Ten en cuenta que, si tienes un directorio A, utiliza «A» para mencionarlo y no «A/». El uso de A/ se referirá a todos los ficheros del directorio A y no al directorio A en sí. Así que copiar A creará un nuevo directorio en el destino y luego copiará los ficheros en A. Pero copiar A/ copiará sólo los ficheros en A en el destino.
 
-Para mantener ambos puntos finales (directorios o archivos) en el mismo estado, con los mismos archivos y sin extras en ninguno de los dos lados, basta con añadir la opción `--delete` al comando original.
+El ejemplo anterior copia los ficheros del origen al destino. Pero si el sistema tenía algunos ficheros extra que no estaban en el origen, esos no serán eliminados por la sincronización de una vía. Si quieres eso, tendrás que usar la **sincronización bidireccional**.
+
+Para mantener ambos puntos finales (directorios o ficheros) en el mismo estado, con los mismos ficheros y sin extras en ninguno de los dos lados, basta con añadir la opción `--delete` al comando original.
 
 ```shell
 rsync --delete A/ Backup-A/
@@ -189,7 +191,7 @@ Otros parámetros importantes:
         - `--specials`: copiar ficheros especiales como FIFO o socket.
         
         Alguno de estos ficheros necesitarán permisos de root para poder copiarse, pero lo normal es que no nos encontremos con ellos cuando hagamos copias de nuestros directorios.
-> Un **fichero FIFO** es un tipo especial de archivo en el almacenamiento local que permite que dos o más procesos se comuniquen entre sí leyendo/escribiendo en/desde este archivo.
+> Un **fichero FIFO** es un tipo especial de fichero en el almacenamiento local que permite que dos o más procesos se comuniquen entre sí leyendo/escribiendo en/desde este fichero.
 >
 > Un **fichero socket** es un punto final de un enlace de comunicación bidireccional entre dos programas que se ejecutan en la red.
 
@@ -208,7 +210,7 @@ Otros parámetros importantes:
 
 ### Comando tar
 
-El comando tar permite empaquetar y comprimir un archivo o serie de archivos, incluso hasta el sistema de archivos completo. Compatible con copias incrementales.
+El comando tar permite empaquetar y comprimir un fichero o serie de ficheros, incluso hasta el sistema de ficheros completo. Compatible con copias incrementales.
 
 **Ejemplo:** copia total de nuestro directorio personal excluyendo los ficheros y directorios ocultos, además de usar un fichero con más exclusiones.
 
@@ -219,15 +221,15 @@ tar -X exclusiones-backup.txt --exclude="$HOME/.*" -czvf destino.tar.gz /home_tu
 **Parámetros:**
 
 - **-X exclusiones:** una lista de ficheros o directorios que deseo omitir
-- **-exclude="$HOME/.\*":** ignorar los archivos ocultos situados en esa ruta (los ficheros ocultos de los directorios hijos sí se copiarán)
+- **-exclude="$HOME/.\*":** ignorar los ficheros ocultos situados en esa ruta (los ficheros ocultos de los directorios hijos sí se copiarán)
 - **-c, --create:** crear un nuevo fichero
 - **-z, --gzip:** compresión gzip
 - **-v, --verbose:** verbosidad
-- **-f, --file:** indica que se dará un nombre al archivo tar.
+- **-f, --file:** indica que se dará un nombre al fichero tar.
 
 ### Solucionar el problema Redshift (Trying location provider \`geoclue2\`…)
 
-Lo que haremos será crear y editar el archivo de configuración de redshift.
+Lo que haremos será crear y editar el fichero de configuración de redshift.
 
 ```shell
 mkdir ~/.config/redshift && nano ~/.config/redshift/redshift.conf
@@ -276,7 +278,7 @@ wine nombre_programa.exe
 3. Escribimos `pcsc_scan` e introducimos el DNI. Se actualizará la pantalla y al final pondrá DNI Electrónico español (si tu tarjeta es compatible). Si no saliera, instalar los drivers de la página web `dnielectronico.es` correspondientes.
 4. Abrimos Firefox. Nos dirigimos a `Preferencias, Privacidad y Seguridad, Dispositivos de seguridad, Cargar`
     - **Nombre:** DNIe (o el que sea).
-    - **Archivo:** `/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so`.
+    - **Fichero:** `/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so`.
 5. Entramos en [este enlace](https://www.sede.fnmt.gob.es/certificados/persona-fisica/verificar-estado) para verificar que funciona correctamente. Nos pedirá la contraseña de nuestro DNIe.
 
 **Nota:** Esta guía ha funcionado usando Debian y Mozilla Firefox.
@@ -285,8 +287,45 @@ wine nombre_programa.exe
 ```shell
 sudo apt install bash-completion
 ```
-
 Pulsar la tecla Tabulador para activar el autocompletado.
+
+### Buscar ficheros y directorios
+```shell
+# Búsqueda en el directorio actual y sus subdirectorios para encontrar un fichero (no directorio) llamado fichero.txt sin distinción entre mayúsculas y minúsculas
+find . -type f -iname fichero.txt
+# Buscar fichero en varios directorios
+find ./location1 /second/location -type f -name "pattern"
+# Encontrar todos los ficheros y directorios vacíos en el directorio actual
+find . -empty
+# Buscar ficheros de más de 1 GB en el directorio actual
+find . -size +1G
+# Buscar más pequeños de 20 bytes
+find . -size -20c
+# Encontrar ficheros de más de 100 MB pero de menos de 2 GB de tamaño
+find . -size +100M -size -2G
+# Renombrar todos los resultados de la búsqueda con extensión .old
+find . -type f -name "*.txt" -exec mv {} {}.old \;
+# Listar detalladamente todos los resultados
+find . -type f -name "*.txt" | xargs ls -l
+# Buscar todos los ficheros .txt que contengan el término Alice
+find . -type f -name "*.txt" -exec grep -i alice {} +
+find . -type f -name "*.txt" | xargs grep -i alice
+```
+
+> Recuerda:
+>
+> **c:** bytes
+>
+> **k:** kilobytes
+>
+> **M:** Megabytes
+>
+> **G:** Gigabytes
+
+### Buscar texto en ficheros de un directorio
+```shell
+grep -Pri texto_a_buscar /ruta/directorio
+```
 
 ### Desactivar IPv6
 
@@ -297,9 +336,12 @@ Dentro del fichero, insertamos al final:
 ```shell
 net.ipv6.conf.all.disable\_ipv6 = 1
 net.ipv6.conf.default.disable\_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6=1
+# Actualizar cambios sin reiniciar la máquina
+sudo sysctl -p
 ```
 
-Reiniciamos la máquina y comprobamos que está desactivado:
+Comprobamos que está desactivado:
 
 ```shell
 ip a | grep inet6
@@ -319,6 +361,12 @@ Editamos el fichero de configuración `/boot/grub/grub.cfg`.
 
 Tendremos que modificar la línea `set default="0"`, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema GNU/Linux.
 
+### Mostrar el tamaño de los dispositivos de bloque (HDD, SDD, etc.)
+```shell
+df -h
+lsblk
+```
+
 ### Cambiar el nombre de un USB
 
 Abrimos la utilidad de discos `gnome-disk-utilities`.
@@ -332,6 +380,36 @@ Arrancamos desde un LiveCD con la utilidad de discos instalada y abierta.
 Seleccionamos la partición y desde el menú de la rueda de herramientas seleccionamos `Change Passphrase`.
 
 Cambiamos la contraseña y reiniciamos el equipo.
+
+### Apagar y reiniciar el sistema
+```shell
+# Apagar inmediatamente
+shutdown now
+# Apagar en 15 minutos
+shutdown +15
+# Apagar a las 16:00h de la tarde notificando a los usuarios
+shutdown 16:00 "Se apagará el equipo esta tarde"
+# Reiniciar el equipo inmediatamente
+shutdown -r now
+reboot
+# Cancelar apagado o reinicio
+shutdown -c
+```
+
+### Mostrar información del sistema
+```shell
+# Detalles de la CPU
+lscpu
+# Vel número de hilos de la CPU
+cat /proc/cpuinfo | grep processor | wc -l
+# Temperatura de la CPU
+watch -n 2 sensors
+# Información sobre todo el hardware de su sistema o de alguna parte concreta. Ejecutarlo con sudo para mayor información.
+lshw
+lshw -class CPU
+dmidecode
+dmidecode --type processor
+```
 
 ### Instalar controladores para tarjeta Wi-Fi BCM4311
 
@@ -392,7 +470,7 @@ Asignamos el valor `0` a la variable `GRUB_TIMEOUT`.
 sudo update-grub
 ```
 
-### Recuperar archivos con Photorec
+### Recuperar ficheros con Photorec
 
 ```shell
 sudo apt install testdisk
@@ -401,9 +479,9 @@ sudo photorec
 
 1. Seleccionamos la unidad, luego la partición.
 2. En `file opt` elegimos los formatos a recuperar.
-3. Pulsamos `search` y elegimos el sistema de archivos de la partición.
+3. Pulsamos `search` y elegimos el sistema de ficheros de la partición.
 4. Elegimos la opción `Whole` para que lo escanee todo.
-5. Elegimos un directorio donde guardar los archivos recuperados (hay que entrar en él y luego pulsar `c`).
+5. Elegimos un directorio donde guardar los ficheros recuperados (hay que entrar en él y luego pulsar `c`).
 
 ### Activar backports en Debian 11, instalar y actualizar los paquetes
 
@@ -446,6 +524,59 @@ sudo apt install hunspell hunspell-es
 
 Reiniciar LibreOffice para aplicar cambios.
 
+### Cerrar procesos
+```shell
+# Forzar terminación de todos los procesos ping
+pkill -9 ping
+# Cerrar solo el proceso exacto que se ha indicado sin distinción de mayúsculas y mostrando lo que ha cerrado
+pkill -fie "ping gnu.org"
+# Cerrar un proceso con ID 1234
+kill 1234
+# Cerrar todos los procesos hijos y el proceso padre a la vez
+killall ping
+# Cerrar proceso seleccionando con el ratón la ventana
+xkill
+```
+Señales más usadas de terminación de procesos:
+> 9 (SIGKILL): La señal que cierra inmediatamente un proceso, sin permitirle guardar su estado actual.
+>
+> 15 (SIGTERM): Solicita la terminación del proceso. Esta señal puede ser ignorada por un proceso. Pero esta es la forma preferida de terminar un proceso ya que puede liberar los recursos cuando el proceso recibe SIGTERM. Es la que se usa por defecto.
+
+### Mover o renombrar ficheros y directorios
+```shell
+# Mover varios ficheros a la vez
+mv fichero1.txt fichero2.txt fichero3.txt directorio_destino
+# Renombrar directorio
+mv directorio_de_origen nuevo_nombre_directorio
+# Evitar sobrescribir el fichero si ya existe en destino
+mv -n fichero_de_origen directorio_de_objetivo
+```
+
+Otros parámetros importantes:
+- `-n`: evitar sobrescribir si ya existe en destino.
+- `-i`: preguntar antes de sobrescribir.
+- `-b:` sobrescribir creando una copia de seguridad.
+
+### Contar el número de líneas, palabras y caracteres
+```shell
+# Número de líneas
+wc -l fichero.txt
+# Número de palabras
+wc -w fichero.txt
+# Número de caracteres
+wc -c fichero.txt
+```
+
+### Ejecutar comandos o scripts en un momento determinado usando cron y crontab
+[Tutorial](https://es.itsfoss.com/crontab-linux/)
+
+### Comprimir ficheros y directorios
+```shell
+sudo apt install zip unzip
+# Crear un comprimido a partir de un montón de ficheros y directorios
+zip -r fichero_salida.zip fichero1 carpeta1
+```
+
 ### Escribir y enviar texto automáticamente cuando se pulse una combinación de teclado
 
 Instalamos la siguiente herramienta de automatización (macro):
@@ -460,6 +591,110 @@ Creamos un nuevo atajo de teclado `Ajustes → Teclado → Atajos de aplicación
 
 ```shell
 bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
+```
+
+### Averiguar dirección IP
+```shell
+# IP privada
+ip address
+ip a
+hostname -I
+# IP privada + información adicional
+nmcli -p device show
+# IP pública
+host myip.opendns.com resolver1.opendns.com
+curl ifconfig.me
+```
+
+### Copiar
+```shell
+# Copiar un fichero en otro directorio
+cp /etc/issue ~/version.txt
+# Copiar múltiples directorios recursivamente a un destino
+cp -r directorio_origen_1 directorio_origen_2 directorio_origen_3 directorio_objetivo
+```
+
+### Comprobar que distribución estoy usando
+```shell
+lsb_release -d
+uname -a
+cat /etc/os-release
+hostnamectl
+```
+
+### Cambiar permisos
+**Nota:** Con chmod y sudo tienes el poder de cambiar los permisos en casi cualquier fichero. Esto no significa que debas hacerlo. Los permisos fuera de su directorio personal están establecidos de la manera que están por una razón. Cambiarlos es raramente la solución apropiada a cualquier problema.
+```shell
+# Otorgar permisos de ejecución al propietario para un fichero
+chmod o+x fichero.txt
+# Otorgar al propietario permiso de lectura y escritura mientras que el grupo y todos los demás tienen permiso de lectura
+chmod 644 fichero.txt
+```
+
+### Cambiar propiedad de ficheros o directorios
+```shell
+# Establecer tu usuario personal como propietario de todos los ficheros de su directorio personal
+sudo chown -R $USER:$USER $HOME
+```
+
+### Cambiar al último directorio de trabajo
+```shell
+cd -
+```
+
+### Moverse al directorio personal
+```shell
+# La virgulilla se obtiene pulsando AltGr + 4 o AltGr + ñ
+cd ~
+```
+
+### Reutilizar el último parámetro pasado al último comando
+Pulsamos `Alt + .` para obtener el último parámetro de los comandos anteriormente introducidos.
+Otra forma es la siguiente:
+```shell
+# La virgulilla se obtiene pulsando AltGr + 4 o AltGr + ñ
+ls $HOME
+# Nos moveremos al directorio personal
+cd !$
+```
+
+### Invocar al último comando introducido
+Lo hacemos con `!!`. Ejemplo:
+```shell
+# Dará error porque no tenemos permiso para instalar el software
+apt install vlc
+sudo !! # Es equivalente a sudo apt install vlc
+```
+
+### Vaciar el contenido de un fichero
+```shell
+> fichero.txt
+```
+
+### Descargar ficheros de Internet
+```shell
+sudo apt install wget
+wget URL
+# Descargar varios ficheros, cuyas URL estarán en fichero.txt
+wget -i fichero.txt
+# Descargar ficheros con un nombre diferente
+wget -O nombre_del_fichero URL
+# Reanudar la descarga anterior
+wget -c
+```
+
+### Tuberías y redirecciones
+[Tutorial](https://www.ochobitshacenunbyte.com/2020/11/05/tuberias-y-redirecciones-en-linux/)
+
+### Concatenar comandos
+[Tutorial](https://javiermartinalonso.github.io/linux/2018/01/23/linux-tips-concatenar-comandos.html)
+
+### Abrir un fichero o URL usando la aplicación favorita del usuario
+```shell
+# Abrir el directorio actual en el explorador de ficheros
+xdg-open .
+# Abrir la URL proporcionada en su navegador
+xdg-open https://gnu.org
 ```
 
 ### Exportar todos los Writer a PDF
@@ -505,9 +740,38 @@ touch test{1..10}.txt
 du -sh .
 ```
 
+### Ordenar ficheros
+```shell
+# Ordenar numéricamente y enviar el resultado a otro fichero
+sort filename.txt -n > filename_ordenado.txt
+# Ordenar quitando duplicados
+sort filename.txt -u
+```
 ### Ver los 20 comandos más usados
 ```shell
 history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
+```
+
+### Mostrar contenido de ficheros por pantalla
+```shell
+cat fichero.txt
+more fichero.txt
+less fichero.txt
+# Mostrar las primeras 15 líneas de varios ficheros
+head -n 15 fichero.txt fichero2.txt
+# Mostrar las últimas 15 líneas de varios ficheros
+tail -n 15 fichero.txt fichero2.txt
+# Actualizar las líneas a medida que se le añade contenido
+tail -f fichero.txt
+# Mostrar el contenido y el número de linea
+nl fichero.txt
+```
+
+### Crear directorios
+```shell
+mkdir dir1
+# Crear los directorios padre si no existen
+mkdir -p dir1/dir2/dir3
 ```
 
 ### Dos herramientas para gestionar el portapapeles
@@ -582,7 +846,7 @@ for z in *.zip; do unzip "$z"; done
 
 **Deja-dup**: programa muy fácil de usar que divide la copia en muchos ficheros usando el formato .diffpart. Permite el cifrado del resguardo (con GNUPG) y restaurar copias previas. Puede realizar copias remotas o en la nube, programar copias periódicas y realizar copias incrementales.
 
-**Back In Time**: front-end de rsync. Permite tomar o restaurar backups, excluir archivos o por patrones. Programar copias. Copias locales o remotas.
+**Back In Time**: front-end de rsync. Permite tomar o restaurar backups, excluir ficheros o por patrones. Programar copias. Copias locales o remotas.
 
 **Grsync** (recomendada): es un front-end de rsync. Muestra la explicación de cada opción al situar encima el ratón. Al iguar que rsync, permite simular que pasaría antes de hacer nada. Muy recomendado.
 
@@ -592,7 +856,7 @@ for z in *.zip; do unzip "$z"; done
 * **Super + n.º:** Abrir aplicaciones ancladas al panel o ejecutándose
 * **Super + Mayus + n.º:** Abrir una nueva ventana de las aplicaciones del panel
 * **Super + D / Ctrl + Alt + D:** Mostrar el Escritorio
-* **Super + E:** Abrir el Explorador de archivos
+* **Super + E:** Abrir el Explorador de ficheros
 * **Super + S:** Mostrar miniaplicaciones del Escritorio
 * **Alt + F2:** Ejecutar aplicaciones o abrir directorios
 * **Alt + F4:** Cerrar ventana
@@ -651,7 +915,7 @@ for z in *.zip; do unzip "$z"; done
 * **Tab:** Autocompletar búsqueda
 
 ### Alias básicos
-
+Un alias es un nombre (generalmente corto) que el shell traduce a otro nombre o comando (generalmente más largo).
 ```shell
 # Actualiza los repositorios e instala las actualizaciones de todos los paquetes
 alias actualizar="sudo apt update && sudo apt upgrade"
@@ -706,7 +970,7 @@ Perfil `Casa`:
 * **LibreOffice:** Procesador de textos
 * **GIMP:** Manipular imágenes. **Extra:** instalar el plug-in "resynthesizer" para eliminar objetos y defectos
 * **gnome-system-monitor o lxtask**: Gestor de tareas
-* **qBitTorrent:** Descarga archivos torrent
+* **qBitTorrent:** Descargar ficheros torrent
 * **RedShift:** Activa un filtro para visualizar la pantalla de noche a gusto
 * **Rhythmbox:** Orquestador de música por grupos
 * **Simplescreenrecorder:** Graba tu pantalla
@@ -727,7 +991,7 @@ Perfil `Casa`:
 * **neofetch:** Información del sistema en el terminal
 * **mlocate:** Utilidad para buscar ficheros y directorios
 * **OpenShot:** Editor de vídeo simple y poderoso
-* [virt-manager](https://www.christitus.com/vm-setup-in-linux): Gestor de máquinas virtuales veloces gracias a la tecnología KVM/QEMU
+* [virt-manager](https://www.christitus.com/vm-setup-in-linux): Gestor de máquinas virtuales ultrarápidas gracias a la tecnología KVM/QEMU.
 
 **Recomendación:** no instales un lector de PDF si tu distribución ya trae uno por defecto (aplicable para otras categorías). Si aún así deseas instalarlo, borra el otro para ahorrar espacio.
 
@@ -777,9 +1041,9 @@ flatpak install flatseal
 * **Imprimir ventana actual (Alt + Imp Pant):** xfce4-screenshooter -w
 * **Apagar, reiniciar, cerrar sesión (Ctrl + Alt + Supr):** xfce4-session-logout
 * **Bloquear pantalla (Ctrl + Alt + L):** xflock4
-* **Abrir el explorador de archivos (Super + E):** exo-open --launch FileManager
+* **Abrir el explorador de ficheros (Super + E):** exo-open --launch FileManager
 * **Navegador prederminado (Ctrl + Alt + I):** exo-open --launch WebBrowser
-* **Matar ventana (Ctrl + Alt + Esc):** xkill
+* **Forzar cierre ventana (Ctrl + Alt + Esc):** xkill
 * **Diálogo de ejecución (Alt + Space):** xfrun4
 * **Menú de operaciones de ventanas (Mayus + Menú contextual)**
 * **Desplegar menú de aplicaciones (Super R):** xfce4-popup-whiskermenu
@@ -818,7 +1082,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
     - Exportar configuración de las extensiones
     - Cerrar sesión en Firefox Accounts
     - Borrar todos los datos (cookies, historial, etc.)
-- Sistema de archivos
+- Sistema de ficheros
     - Comprobar y limpiar descargas, programas y vídeos
 - Software
     - Cerrar sesión de todos los programas importantes
