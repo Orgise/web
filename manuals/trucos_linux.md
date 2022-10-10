@@ -411,6 +411,23 @@ dmidecode
 dmidecode --type processor
 ```
 
+### Visualizar detalles de la tarjeta Wi-Fi
+```shell
+lspci
+```
+
+Para encontrar el resultado buscado, fíjate bien en términos como *Intel*, *Realtek* o *Wireless*.
+
+### Instalar controladores para tarjetas Wi-Fi Intel y Realtek
+
+Si estamos en Debian, debemos añadir el repositorio *non-free*.
+
+```shell
+sudo apt install firmware-iwlwifi # Intel
+sudo apt install firmware-realtek # Realtek
+# Reiniciamos el equipo para aplicar cambios
+```
+
 ### Instalar controladores para tarjeta Wi-Fi BCM4311
 
 ```shell

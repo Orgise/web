@@ -104,7 +104,7 @@ def main():
     # os.environ["TMPDIR"] = "/home/user"
     httpd = HTTPServer((BIND, PORT), MySimpleHTTPRequestHandler)
     sa = httpd.socket.getsockname()
-    print("Servidor web activo (", sa[0], ":", sa[1], ")")
+    print(f"Servidor web activo ({sa[0]}:{sa[1]})")
 
     try:
         httpd.serve_forever()
