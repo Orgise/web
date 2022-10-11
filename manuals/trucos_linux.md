@@ -739,9 +739,13 @@ sudo apt install --download-only pkg_name
 ```
 **Nota:** los empaquetados se guardarán en `/var/cache/apt/archives/`.
 
-### Instalar paquetes .deb
+
+### Instalar programas *.deb* junto a sus dependencias
 ```shell
+sudo apt install ./programa.deb
+# Otra forma
 sudo dpkg -i programa.deb
+sudo apt install -f
 ```
 
 ### Instalar entorno de desarrollo (LAMP) en Debian

@@ -1,0 +1,36 @@
+body {
+  background: #000;
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container--video,
+.container--log {
+  display: flex;
+  flex-direction: column;
+}
+
+#video {
+  border: 1px solid gray;
+  width: 50vw;
+}
+
+.error {
+  color: #ff4040;
+}
+
+.warn {
+  color: #ff8000;
+}
+
+.info {
+  color: white;
+}
