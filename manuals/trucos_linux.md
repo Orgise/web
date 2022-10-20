@@ -55,10 +55,10 @@ history -c
 
 1. [Descargar](https://www.mate-look.org/) algún paquete de iconos o de temas.
 2. Descomprimir el fichero descargado.
-3. Mover la carpeta extraída a `/home/tu_usuario/.icons` o `/home/tu_usuario/.themes`.
+3. Mover el directorio extraída a `/home/tu_usuario/.icons` o `/home/tu_usuario/.themes`.
 4. Ir a las opciones de apariencia y marcar el estilo deseado.
 
-**Nota:** la instalación de un tema para todos los usuarios del sistema se hace moviendo la carpeta descomprimida a /usr/share/icons o /usr/share/themes.
+**Nota:** la instalación de un tema para todos los usuarios del sistema se hace moviendo el directorio descomprimida a /usr/share/icons o /usr/share/themes.
 
 **Extra:** también puedes aplicar el tema o los iconos para tu gestor de inicio de sesión como lightdm. Un tema que a mi me gusta es Arc que se puede instalar escribiendo el comando:
 
@@ -172,7 +172,7 @@ Para mantener ambos puntos finales (directorios o ficheros) en el mismo estado, 
 rsync --delete A/ Backup-A/
 ```
 
-**Ejemplo 2:** Copia de seguridad local de nuestra carpeta personal omitiendo ficheros y directorios ocultos usando un dispositivo externo como destino.
+**Ejemplo 2:** Copia de seguridad local de nuestro directorio personal omitiendo ficheros y directorios ocultos usando un dispositivo externo como destino.
 
 ```shell
 rsync -avh --delete --progress --exclude=".[!.]*" $HOME /media/USB_NAME/backup
@@ -334,8 +334,8 @@ Abrimos el fichero de configuración `/etc/sysctl.conf`:
 Dentro del fichero, insertamos al final:
 
 ```shell
-net.ipv6.conf.all.disable\_ipv6 = 1
-net.ipv6.conf.default.disable\_ipv6 = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.lo.disable_ipv6=1
 # Actualizar cambios sin reiniciar la máquina
 sudo sysctl -p
@@ -364,6 +364,9 @@ Tendremos que modificar la línea `set default="0"`, en la que cambiaremos el 0 
 ### Mostrar el tamaño de los dispositivos de bloque (HDD, SDD, etc.)
 ```shell
 df -h
+# Mostrar el formato del sistema de ficheros
+df -m --print-type
+
 lsblk
 ```
 
@@ -400,7 +403,7 @@ shutdown -c
 ```shell
 # Detalles de la CPU
 lscpu
-# Vel número de hilos de la CPU
+# Ver número de hilos de la CPU
 cat /proc/cpuinfo | grep processor | wc -l
 # Temperatura de la CPU
 watch -n 2 sensors
@@ -587,11 +590,15 @@ wc -c fichero.txt
 ### Ejecutar comandos o scripts en un momento determinado usando cron y crontab
 [Tutorial](https://es.itsfoss.com/crontab-linux/)
 
+### Ejecutar comandos o scripts en un momento determinado usando at
+[Tutorial](https://noviello.it/es/como-programar-la-ejecucion-de-tareas-con-el-comando-at-en-linux/)
+
+
 ### Comprimir ficheros y directorios
 ```shell
 sudo apt install zip unzip
 # Crear un comprimido a partir de un montón de ficheros y directorios
-zip -r fichero_salida.zip fichero1 carpeta1
+zip -r fichero_salida.zip fichero1 directorio1
 ```
 
 ### Escribir y enviar texto automáticamente cuando se pulse una combinación de teclado
@@ -746,6 +753,23 @@ sudo apt install ./programa.deb
 # Otra forma
 sudo dpkg -i programa.deb
 sudo apt install -f
+```
+
+### Contar el número de paquetes que tenemos instalados
+```shell
+dpkg-query -l | wc -l
+```
+
+### Instalar Docker
+```shell
+sudo apt install docker.io docker-compose
+sudo usermod -a -G docker $USER
+```
+
+### Visualizar la fecha, operación y nombre de los últimos paquetes gestionados
+El fichero `/var/log/dpkg.log` contiene información sobre la totalidad de paquetes instalados y desinstalados mediante el comando dpkg. Dpkg es el administrador de paquetes de Debian.
+```shell
+tac /var/log/dpkg.log | less
 ```
 
 ### Instalar entorno de desarrollo (LAMP) en Debian
@@ -1108,7 +1132,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 - Software
     - Cerrar sesión de todos los programas importantes
 
-**Importante:** Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada carpeta (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
+**Importante:** Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada directorio (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
 
 ### ¿Qué no debo copiar en mis copias de seguridad?
 - Descargas/ (pesan muchos gigas, sobre todo las películas)
@@ -1127,6 +1151,11 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 - Dominios bloqueados/permitidos de NoScript
 - Reglas de uBlock Origin
 - Recetas de GNOME
+
+
+### Enlaces útiles relacionados con GNU/Linux
+- Visualizar la última versión de los paquetes que usan las distribuciones: https://repology.org/
+- Revisar las distribuciones más usadas: https://distrowatch.com/
 
 #### Extra
 Crear directorio "Copias de seguridad" dentro de Documentos.
