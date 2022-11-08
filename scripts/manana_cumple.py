@@ -1,20 +1,27 @@
-# Software usado para recordarte felicitar a tus conocidos que cumplen al día siguiente.
-# Ejemplo del formato del fichero .txt necesario: nombre_pesona:dia:mes:info_extra
+# Software que te recuerda felicitar a tus conocidos que cumplen al día siguiente.
+# Formato del fichero .txt necesario: nombre_pesona:dia:mes:info_extra
 
-from datetime import datetime
+import calendar
+import datetime
 
 
 def main():
-    """ Comprobar de quién es el cumpleaños mañana
-		usando un fichero con fechas de cumpleaños y personas."""
     # ~ dia_actual = 31
     # ~ mes_actual = 7
     # ~ ano_actual = 2027
-    dia_actual = datetime.now().day
-    mes_actual = datetime.now().month
+    dia_actual = datetime.datetime.now().day
+    mes_actual = datetime.datetime.now().month
     meses = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-				'julio', 'agosto', 'septiempre', 'octubre',
-				'noviembre', 'diciembre')
+             'julio', 'agosto', 'septiempre', 'octubre',
+             'noviembre', 'diciembre')
+    nombres_dia_semana = ('lunes', 'martes', 'miércoles', 'jueves',
+                          'viernes', 'sábado', 'domingo')
+    nombres_dia_semana_ingles = ('monday', 'tuesday', 'wednesday',
+                                 'thursday', 'friday', 'saturday', 'sunday')
+    fecha_manana = datetime.datetime.today() + datetime.timedelta(days=1)
+    indice_nombre_dia_manana = nombres_dia_semana_ingles.index(
+        calendar.day_name[fecha_manana.weekday()].lower())
+    nombre_dia_manana = nombres_dia_semana[indice_nombre_dia_manana]
 
     # Consideración de días especiales
     if mes_actual in (1, 3, 5, 7, 8, 10, 12):  # Meses de 31 días
@@ -33,7 +40,7 @@ def main():
             dia_actual = 0
             mes_actual += 1
 
-    with open('../cumples.txt', 'r') as fich:
+    with open('../cumpleanos.txt', 'r') as fich:
         cumpleanos = fich.readlines()
 
     hay_cumple = False
@@ -49,8 +56,8 @@ def main():
             dia = 28
 
         if mes_actual == mes and dia_actual + 1 == dia:
-            print(f'Mañana día {dia} de {meses[mes_actual-1]} '
-            f'cumple {nombre} ({desc}).')
+            print(f'Mañana {nombre_dia_manana} {dia} de {meses[mes_actual-1]} '
+                  f'cumple {nombre} ({desc}).')
             hay_cumple = True
         # print('Día actual', dia_actual)
         # print('Mes actual', mes_actual)
@@ -58,8 +65,8 @@ def main():
         # print('Mes', mes)
 
     if not hay_cumple:
-        print(f'Nadie cumple mañana día {dia_actual+1} de '
-				f'{meses[mes_actual-1]}.')
+        print(f'Nadie cumple mañana {nombre_dia_manana} {dia_actual+1} de '
+              f'{meses[mes_actual-1]}.')
 
 
 if __name__ == '__main__':

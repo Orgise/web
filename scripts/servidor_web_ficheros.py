@@ -1,17 +1,24 @@
 # Servidor web para subir/descargar ficheros en la red local
-# Antes de ejecutarlo debe configurar su IP privada y el puerto deseado
+# Desactivar el cortafuegos si existen problemas de conexión de otros equipos al servidor
 
+import argparse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import urllib.parse
 import cgi
 import shutil
+import socket
 import os
+import random
 
-# Puerto para el servidor web
-# Desactivar el cortafuegos si existen problemas de conexión de otros equipos al servidor
-PORT = 1234
-# Su dirección IP privada
-BIND = '192.168.1.2'
+parser = argparse.ArgumentParser(description='Servidor web de subida/bajada de ficheros')
+parser.add_argument('-i', '--ip', nargs='?', type=str, help='Su dirección IP privada')
+parser.add_argument('-p', '--port', nargs='?', type=int, help='Puerto de escucha deseado para el servidor web')
+args = parser.parse_args()
+
+# Detectar IP privada automáticamente en caso de no se haya introducido como argumento
+ip = args.ip if args.ip is not None else socket.gethostbyname(socket.gethostname())
+# El puerto se asignará de forma aleatoria en caso de no especificarse ninguno
+puerto = args.port if args.port is not None else random.randrange(1024, 65535)
 
 PLANTILLA_HTML = f'''<html>
 <head>
@@ -20,7 +27,7 @@ PLANTILLA_HTML = f'''<html>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
 </head>
 <body>
-<form method="post" action="http://{BIND}:{PORT}{{}}" enctype="multipart/form-data">
+<form method="post" action="http://{ip}:{puerto}{{}}" enctype="multipart/form-data">
     <input type="file" name="file" multiple><br><br>
     <input type="submit" value="Enviar archivos">
 </form>
@@ -35,7 +42,7 @@ PLANTILLA_HTML_EXITO = f'''<html>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
 </head>
 <body>
-<form method="post" action="http://{BIND}:{PORT}{{}}" enctype="multipart/form-data">
+<form method="post" action="http://{ip}:{puerto}{{}}" enctype="multipart/form-data">
     <input type="file" name="file" multiple><br><br>
     <input type="submit" value="Enviar archivos">
 </form>
@@ -102,7 +109,7 @@ class MySimpleHTTPRequestHandler(SimpleHTTPRequestHandler):
 def main():
     # Cambiar la ruta base de subida temporal de ficheros
     # os.environ["TMPDIR"] = "/home/user"
-    httpd = HTTPServer((BIND, PORT), MySimpleHTTPRequestHandler)
+    httpd = HTTPServer((ip, puerto), MySimpleHTTPRequestHandler)
     sa = httpd.socket.getsockname()
     print(f"Servidor web activo ({sa[0]}:{sa[1]})")
 

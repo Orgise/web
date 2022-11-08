@@ -208,6 +208,18 @@ Otros parámetros importantes:
 - `--include-from=FILE`: incluir los ficheros o directorios incluidos en el fichero de exclusión.
 - `--progress`: muestra una barra de progreso de la transferencia.
 
+Importante a tener en cuenta para los ficheros de inclusiones y exclusiones de rsync:
+* No cambiar /home/usuario por $HOME porque da problemas
+* No poner comentarios en la misma línea que el fichero a excluir
+* Puedes poner ficheros que no existan
+* No es importante que los ficheros contengan espacios
+* No pongas la barra (/) al final de cada ruta
+
+Importante a tener en cuenta antes de ejecutar el comando:
+* Probar antes de realizar la transferencia con `--dry-run`
+* Comprobar que la ruta de origen y de destino sean la correcta
+
+
 ### Comando tar
 
 El comando tar permite empaquetar y comprimir un fichero o serie de ficheros, incluso hasta el sistema de ficheros completo. Compatible con copias incrementales.
@@ -877,12 +889,55 @@ cal
 cal 1 1990
 ```
 
-
 ### Tres métodos para descomprimir multiples ficheros .zip de un mismo directorio
 ```bash
 unzip '*.zip'
 unzip \*.zip
 for z in *.zip; do unzip "$z"; done
+```
+
+### Cambiar el grupo principal de un usuario de forma teporal
+Útil cuando añadimos a nuestro usuario a un grupo nuevo y no queremos cerrar sesión y entrar de nuevo para aplicar los cambios.
+```shell
+newgrp group_name
+```
+
+### Dividir la terminal en varias usando tmux
+https://www.hostinger.com/tutorials/tmux-beginners-guide-and-cheat-sheet/
+
+
+### Cambiar la distribución predeterminada del teclado
+```shell
+# Español
+setxkbmap es
+```
+
+### Reiniciar el equipo en caso de congelamiento severo
+Pulsamos `Alt + Impr Pant`.
+Sin dejar de soltarlas pulsamos las teclas `REISUB`.
+
+[Más información](https://es.wikipedia.org/wiki/REInicia_SUBnormal)
+
+### Añadir ruta al PATH
+**Método temporal**
+
+Expirará al cerrar el terminal actual.
+```shell
+export PATH=$PATH:/ruta
+```
+
+**Método permanente**
+
+Añadimos el comando del método temporal en alguno de estos ficheros:
+```
+# Para todos los usuarios
+/etc/profile
+/etc/environment
+# Para un usuario concreto
+~/.bashrc
+~/.bash_profile
+~/.bash_login
+~/.profile
 ```
 
 ## Productividad
