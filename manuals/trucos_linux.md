@@ -1,4 +1,5 @@
 # Trucos GNU/Linux
+A continuación se detallan algunos comandos, herramientas y errores interesantes para los usuarios de GNU/Linux. La distribución base es Debian GNU/Linux aunque la mayoría de los comandos tiene su equivalente en otras distribuciones.
 
 ## Comandos
 
@@ -64,12 +65,6 @@ history -c
 
 ```shell
 sudo apt install arc-theme
-```
-
-### Mostrar información de un paquete
-
-```shell
-sudo apt-cache show nombre_paquete
 ```
 
 ### Subir, bajar y mutear el volumen del altavoz
@@ -267,19 +262,6 @@ Deberás cambiar la latitud y longitud a la adecuada para ti. Reabrimos Redshift
 ### Ejecutar lanzadores al iniciar sesión
 
 Crear los lanzadores y moverlos al directorio `/home/tu_usuario/.config/autostart/`.
-
-### Instalar SmartPSS en GNU/Linux con Wine
-
-[Descargar el programa](https://dahuawiki.com/SmartPSS)
-
-```shell
-# Añadir soporte para 32 bits
-sudo dpkg --add-architecture i386
-#  Instalar Wine y otras dependencias:
-sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
-# Instalar el programa
-wine nombre_programa.exe
-```
 
 **Nota:** cuando ejecutemos el instalador, dejamos marcada la casilla `Generate shorcuts` para que cree un lanzador automáticamente en el escritorio.
 
@@ -515,31 +497,6 @@ sudo photorec
 4. Elegimos la opción `Whole` para que lo escanee todo.
 5. Elegimos un directorio donde guardar los ficheros recuperados (hay que entrar en él y luego pulsar `c`).
 
-### Activar backports en Debian 11, instalar y actualizar los paquetes
-
-Los *backports* son repositorios oficiales de Debian que cuentan con paquetes algo más actualizados, pero fuera de la rama *stable*.
-
-```shell
-sudo nano /etc/apt/sources.list
-```
-
-Añadimos las dos siguientes líneas:
-
-```shell
-deb <http://deb.debian.org/debian> bullseye-backports main contrib non-free
-deb-src <http://deb.debian.org/debian> bullseye-backports main contrib non-free
-```
-
-Ejemplos:
-
-```shell
-# Actualizar paquetes usando backports
-sudo apt -t bullseye-backports update
-sudo apt -t bullseye-backports upgrade
-# Instalar paquetes usando backports
-sudo apt install "package-name" -t bullseye-backports
-```
-
 ### Instalar temas LibreOffice
 
 ```shell
@@ -752,36 +709,10 @@ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 sudo dmidecode --type memory
 ```
 
-### Descargar paquete y sus dependencias
-```shell
-sudo apt install --download-only pkg_name
-```
-**Nota:** los empaquetados se guardarán en `/var/cache/apt/archives/`.
-
-
-### Instalar programas *.deb* junto a sus dependencias
-```shell
-sudo apt install ./programa.deb
-# Otra forma
-sudo dpkg -i programa.deb
-sudo apt install -f
-```
-
-### Contar el número de paquetes que tenemos instalados
-```shell
-dpkg-query -l | wc -l
-```
-
 ### Instalar Docker
 ```shell
 sudo apt install docker.io docker-compose
 sudo usermod -a -G docker $USER
-```
-
-### Visualizar la fecha, operación y nombre de los últimos paquetes gestionados
-El fichero `/var/log/dpkg.log` contiene información sobre la totalidad de paquetes instalados y desinstalados mediante el comando dpkg. Dpkg es el administrador de paquetes de Debian.
-```shell
-tac /var/log/dpkg.log | less
 ```
 
 ### Instalar entorno de desarrollo (LAMP) en Debian
@@ -912,6 +843,9 @@ https://www.hostinger.com/tutorials/tmux-beginners-guide-and-cheat-sheet/
 setxkbmap es
 ```
 
+### Cambiar la ubicación de los directorios por defecto del usuario
+[Manual de referencia](https://wiki.archlinux.org/title/XDG_user_directories)
+
 ### Reiniciar el equipo en caso de congelamiento severo
 Pulsamos `Alt + Impr Pant`.
 Sin dejar de soltarlas pulsamos las teclas `REISUB`.
@@ -939,6 +873,23 @@ Añadimos el comando del método temporal en alguno de estos ficheros:
 ~/.bash_login
 ~/.profile
 ```
+
+### No se muestran correctamente todos los iconos de Adwaita en XFCE
+Instalamos otro paquete de iconos como Papirus
+```shell
+sudo apt install papirus-icon-theme
+```
+
+### Visualizar idioma del sistema
+```shell
+cat /etc/locale.conf
+```
+
+### Cambiar idioma del sistema a español de España
+```shell
+sudo localectl set-locale LANG=es_ES.UTF-8
+```
+
 
 ## Productividad
 

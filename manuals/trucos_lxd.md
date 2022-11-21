@@ -272,7 +272,9 @@ sudo snap install distrobuilder --classic
 sudo apt install wimtools libwin-hivex-perl
 # Instalar el visor de máquinas virtuales
 sudo apt install virt-viewer
-# Creamos la imagen. Debemos ubicarnos en el directorio donde esté la ISO. Este proceso tardará varios minutos. El resultado de este comando es una nueva imagen de Windows con la que LXD puede trabajar
+# Creamos la imagen. Debemos ubicarnos en el directorio donde esté la ISO.
+# Este proceso tardará varios minutos.
+# El resultado de este comando es una nueva imagen de Windows con la que LXD puede trabajar
 sudo distrobuilder repack-windows Win11_22H2_Spanish_x64v1.iso win11.lxd.iso
 # Creamos una máquina virtual vacía
 lxc init win11 --vm --empty
