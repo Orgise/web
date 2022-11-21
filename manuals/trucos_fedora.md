@@ -1,9 +1,19 @@
 # Trucos Fedora GNU/Linux
 
+## Enlaces
+
+[Documentación oficial](https://docs.fedoraproject.org/en-US/docs/)
+
+[Descargar Fedora](https://getfedora.org/)
+
+[Descargar entornos de escritorios alternativos de Fedora](https://spins.fedoraproject.org/)
+
+[Buscador de paquetes](https://packages.fedoraproject.org/)
+
 ## Comandos
 
 ###  DNF
-DNF es la herramienta para la gestión de paquetes RPM de Fedora.
+DNF es la herramienta para la gestión de paquetes RPM de Fedora. Veamos algunos ejemplos:
 ```shell
 # Actualizar paquetes
 sudo dnf up
@@ -71,16 +81,23 @@ dnf provides crontab
 
 ### Acelerar actualizaciones
 Fedora por defecto limita las descargas simultáneas de paquetes y no selecciona por defecto el servidor más rápido para la descarga de los repositorios. Vamos a modificarlo.
-Editamos el fichero de configuración de DNF.
-```shell
-sudo nano /etc/dnf/dnf.conf
-```
 
-Agregamos las dos siguientes líneas:
-```
+Editamos el fichero de configuración de DNF `/etc/dnf/dnf.conf` y agregamos las dos siguientes líneas:
+```shell
 # Establecemos el máximo de descargas paralelas. Si tu velocidad de Internet es alta, puedes incrementarlo
 max_parallel_downloads=10
 # Elegimos el servidor que más rápido nos responda
 fastestmirror=True
 ```
+
 Refrescamos los cambios con `sudo dnf upgrade --refresh`.
+
+### Actualizar a una versión nueva de Fedora
+[Guía oficial](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/)
+
+### Activar los repositorios RPM Fusion
+RPM Fusion es el repositorio adicional más importante (y casi obligatorio de agregar) en Fedora. Incluye gran parte de la paquetearía que Red Hat no incluye por omisión en sus distribuciones por motivos de licenciamiento o patentes, por lo que éste repositorio es indispensable para, por ejemplo, instalar los códecs de reproducción multimedia. Esto se debe a que Fedora pretende ofrecemos alternativas libres frente al código y contenidos propietarios para hacer que sea completamente libre y redistribuible.
+
+Hay dos repositorios disponibles de RPM Fusion: el de código abierto (Free) y otro que incluye software privativo (NonFree)
+
+[Guía oficial](https://docs.fedoraproject.org/en-US/quick-docs/setup_rpmfusion/)
