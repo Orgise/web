@@ -96,8 +96,8 @@ Refrescamos los cambios con `sudo dnf upgrade --refresh`.
 [Guía oficial](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/)
 
 ### Activar los repositorios RPM Fusion
-RPM Fusion es el repositorio adicional más importante (y casi obligatorio de agregar) en Fedora. Incluye gran parte de la paquetearía que Red Hat no incluye por omisión en sus distribuciones por motivos de licenciamiento o patentes, por lo que éste repositorio es indispensable para, por ejemplo, instalar los códecs de reproducción multimedia. Esto se debe a que Fedora pretende ofrecemos alternativas libres frente al código y contenidos propietarios para hacer que sea completamente libre y redistribuible.
+RPM Fusion es el repositorio adicional más importante (y casi obligatorio de agregar) en Fedora. Incluye gran parte de la paquetería que Red Hat no incluye por omisión en sus distribuciones por motivos de licenciamiento o patentes, por lo que éste repositorio es indispensable para, por ejemplo, instalar los códecs de reproducción multimedia. Esto se debe a que Fedora pretende ofrecemos alternativas libres frente al código y contenidos propietarios para hacer que sea completamente libre y redistribuible.
 
-Hay dos repositorios disponibles de RPM Fusion: el de código abierto (Free) y otro que incluye software privativo (NonFree)
+Hay dos repositorios disponibles de RPM Fusion: el de código abierto (Free) y otro que incluye software privativo (NonFree).
 
 [Guía oficial](https://docs.fedoraproject.org/en-US/quick-docs/setup_rpmfusion/)

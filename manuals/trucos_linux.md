@@ -134,16 +134,12 @@ Editamos el fichero `/etc/lightdm/lightdm.conf`:
 greeter-hide-users=false
 ```
 
-### Añadir tu usuario al grupo sudo para tener permisos de administrador
-```shell
-sudo usermod -aG sudo nombre_usuario
-```
-
 ### Restaurar controlador de vídeo abierto (error driver NVIDIA pantalla negra)
 
 Este error se origina cuando en Linux Mint aplicamos desde `Ajustes → Gestor de controladores` los gráficos privativos que nos ofrece Nvidia para nuestra tarjeta gráfica y la pantalla se nos queda en negro tras reiniciar.
 
 ```shell
+# El comando su, abreviatura de «switch user» («cambiar de usuario» en español), permite a los usuarios ejecutar un programa como si fueran otro usuario.
 sudo su
 apt purge*\*nvidia\**; apt autoremove; reboot
 ```
@@ -630,33 +626,29 @@ chmod 644 fichero.txt
 sudo chown -R $USER:$USER $HOME
 ```
 
-### Cambiar al último directorio de trabajo
+### Cambiar de directorio
 ```shell
+# Cambiar al último directorio de trabajo
 cd -
-```
-
-### Moverse al directorio personal
-```shell
+# Moverse al directorio personal.
 # La virgulilla se obtiene pulsando AltGr + 4 o AltGr + ñ
 cd ~
-```
-
-### Reutilizar el último parámetro pasado al último comando
-Pulsamos `Alt + .` para obtener el último parámetro de los comandos anteriormente introducidos.
-Otra forma es la siguiente:
-```shell
-# La virgulilla se obtiene pulsando AltGr + 4 o AltGr + ñ
+# Cambiar al directorio pasado como último argumento al comando anterior. Ejemplo:
 ls $HOME
-# Nos moveremos al directorio personal
-cd !$
+cd !$ # Nos moveremos al directorio personal
 ```
 
 ### Invocar al último comando introducido
 Lo hacemos con `!!`. Ejemplo:
 ```shell
-# Dará error porque no tenemos permiso para instalar el software
+# Típico error al instalar un software sin tener permisos para ello
 apt install vlc
 sudo !! # Es equivalente a sudo apt install vlc
+```
+
+### Obtener el código de salida del último comando introducido
+```shell
+echo $?
 ```
 
 ### Vaciar el contenido de un fichero
@@ -724,6 +716,7 @@ touch test{1..10}.txt
 ```
 
 ### Visualizar el tamaño del directorio actual
+El comando du se puede usar para verificar cuánto espacio de almacenamiento ocupa una carpeta o directorio. Es útil para identificar qué parte de un sistema está usando una cantidad excesiva de espacio de almacenamiento.
 ```shell
 du -sh .
 ```
@@ -890,6 +883,107 @@ cat /etc/locale.conf
 sudo localectl set-locale LANG=es_ES.UTF-8
 ```
 
+### Visualizar ejemplos comunes de uso de un comando
+```shell
+sudo apt install tldr
+# Actualizar caché local
+tldr -u
+# Ejemplos de un comando específico
+tldr rsync
+```
+
+### Herramienta para gestionar la papelera de reciclaje del usuario
+```shell
+sudo apt install trash-cli
+# Eliminar fichero
+trash file_name
+# Listar elementos de la papelera
+trash-list
+# Recuperar fichero eliminado
+trash-restore
+```
+
+### Alternativa al comando cd para navegar más rápido por el árbol de directorios
+```shell
+sudo apt install autojump
+# Cambiar al directorio que contiene 'foo'
+j foo
+# Cambiar al directorio hijo que contenga 'bar'
+jc bar
+# Abrir el directorio con el explorador de ficheros que contenga 'music'
+jo music
+```
+
+### Establecer el idioma de GIMP a castellano
+```shell
+sudo apt install language-pack-gnome-es
+```
+
+### Programa para grabar y reproducir vídeos de los comandos que introduces
+```shell
+sudo apt install asciinema
+```
+[Página web](https://asciinema.org/)
+
+### Cifrar fichero y descifrarlo
+```shell
+# Cifrar
+gpg -c fichero
+# Descifrar (nos pedirá autenticación)
+gpg fichero
+```
+
+### Añadir y eliminar a tu usuario del grupo sudo
+```shell
+# Añadir
+sudo adduser user sudo
+sudo usermod -aG sudo user
+# Eliminar
+sudo deluser user sudo
+```
+
+### Deshabilitar cuenta del superusuario (root)
+```shell
+sudo passwd -dl root
+```
+
+
+### Convertir imagen a texto
+Para ello usaremos la tecnología OCR.
+```shell
+# Instalar motor OCR de línea de comandos y el paquete de idiomas en castellano
+sudo apt install tesseract tesseract-langpack-spa
+# Ejemplo de uso donde le indicamos como primer idioma el español y de segundo el inglés
+# Tesseract es compatible con múltiples formatos de imagen
+tesseract imagen.png salida -l spa+eng
+```
+[TextSnatcher](https://github.com/RajSolai/TextSnatcher) es una interfaz gráfica muy fácil de usar de Tesseract.
+
+### Comparar ficheros
+```shell
+# El comando cmp se puede usar para verificar si dos archivos son idénticos
+cmp fich1 fich2
+# El comando comm permite combinar las funcionalidades de los comandos diff y cmp. Compara dos archivos ordenados líneas por línea, mostrando los resultados en tres columnas, si no se usan opciones.
+comm fich1 fich2
+# El comando diff, abreviatura de «difference», se usa para encontrar diferencias entre dos archivos. Compara el contenido de ambos archivos, línea a línea, y muestra las partes que no coinciden.
+diff fich1 fich2
+```
+
+### Mostrar información de un comando
+```shell
+# Usos del comando
+whatis comando
+# Ubicación del ejecutable del comando
+which comando
+# Encontrar la ruta del comando
+whereis comando
+```
+
+### Mostrar el nombre de tu usuario
+```shell
+whoami
+who
+```
 
 ## Productividad
 
@@ -936,11 +1030,11 @@ sudo localectl set-locale LANG=es_ES.UTF-8
 * **Ctrl + G:** Salir de la búsqueda de comandos inversa
 * **Ctrl + H:** Borrar carácter anterior (igual que Retroceso)
 * **Ctrl + I:** Mostrar comandos disponibles (igual que Tab)
-* **Ctrl + K:** Borrar todo lo siguiente
+* **Ctrl + K:** Borrar todo el texto situado después del cursor
 * **Ctrl + L:** Limpiar consola
 * **Ctrl + N:** Siguiente comando en el historial (igual que flecha abajo)
 * **Ctrl + Mayus + N:** Abrir nueva ventana
-* **Ctrl + O:** Ejecutar comando
+* **Ctrl + O:** Ejecutar comando (igual que Intro)
 * **Ctrl + P:** Ver comandos anteriores (igual que flecha arriba)
 * **Crl + Q:** Reanudar proceso en pausa
 * **Ctrl + Mayus + Q:** Cerrar ventana
@@ -949,18 +1043,20 @@ sudo localectl set-locale LANG=es_ES.UTF-8
 * **Ctrl + Mayus + T:** Abrir nueva ventana
 * **Ctrl + U:** Cortar todo lo anterior
 * **Ctrl + Mayus + V:** Pegar lo seleccionado
-* **Ctrl + W:** Cortar la última palabra
+* **Ctrl + W:** Borrar todo el texto situado antes del cursor
 * **Ctrl + Mayus + W:** Cerrar pestaña
 * **Ctrl + Z:** Poner proceso en segundo plano
 * **Ctrl + ←:** Mover el cursor una palabra a la derecha
 * **Ctrl + →:** Mover el cursor una palabra a la izquierda
 * **Ctrl + Re Pág:** Cambiar a la pestaña izquierda
 * **Ctrl + Av Pág:** Cambiar a la pestaña derecha
-* **Ctrl ++:** Aumentar tamaño de la fuente
-* **Ctrl +-:** Reducir tamaño de la fuente
-* **Ctrl + 0:** Tamaño de fuente predeterminado
+* **Ctrl + +:** Aumentar tamaño de la fuente
+* **Ctrl + -:** Reducir tamaño de la fuente
+* **Ctrl + 0:** Cambiar al tamaño de fuente predeterminado
 * **Alt + B:** Retroceder un bloque
 * **Alt + F:** Avanzar un bloque
+* **Alt + Número:** Cambiar al terminal número X
+* **Alt + .:** Cambiar al último parámetro introducido en el comando anterior
 * **Flecha arriba:** Comando anterior
 * **Flecha abajo:** Comando siguiente
 * **Tab:** Autocompletar búsqueda
@@ -998,14 +1094,16 @@ Copias de seguridad
 alias backup="insertar el comando para copias de seguridad"
 ```
 
-## Tareas a realizar antes de instalar GNU/Linux
+### Navegar entre directorios usando el navegador navegador web
+Accedemos a file:///
+
+## Tareas a realizar después de instalar GNU/Linux
 
 ### Activar cortafuegos
 Activamos el firewall para protegernos de los ataques informáticos y el malware.
 
 ```shell
 sudo apt install gufw
-gufw &
 ```
 
 Perfil `Casa`:
@@ -1162,6 +1260,8 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 ### Enlaces útiles relacionados con GNU/Linux
 - Visualizar la última versión de los paquetes que usan las distribuciones: https://repology.org/
 - Revisar las distribuciones más usadas: https://distrowatch.com/
+- Nano cheatsheet https://www.nano-editor.org/dist/latest/cheatsheet.html
+- Vim cheatsheet https://vim.rtorr.com/
 
 #### Extra
 Crear directorio "Copias de seguridad" dentro de Documentos.

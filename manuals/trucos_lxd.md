@@ -292,3 +292,17 @@ lxc start win11 --console=vga
 lxc console win11 -–type=vga
 # Para mayor comodidad cuando trabaje con la VM, puede instalar los drivers de virIO
 ```
+
+
+## Errores comunes
+
+### Instancias LXD sin Internet
+Los contenedores no tienen salida a Internet, aunque en el anfitrión funcione sin problemas. Solución:
+```shell
+# Convertirnos en superusuario
+sudo su
+# Vaciamos todas las reglas de iptables
+for ipt in iptables iptables-legacy ip6tables ip6tables-legacy; do $ipt --flush; $ipt --flush -t nat; $ipt --delete-chain; $ipt --delete-chain -t nat; $ipt -P FORWARD ACCEPT; $ipt -P INPUT ACCEPT; $ipt -P OUTPUT ACCEPT; done
+# Reiniciamos el servicio LXD
+systemctl reload snap.lxd.daemon 
+```
