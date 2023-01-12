@@ -240,12 +240,6 @@ AND ordenes.fecha_orden < '2022-01-01';
 DELETE FROM productos
 WHERE id_producto IN (SELECT id_producto FROM ordenes WHERE fecha_orden < '2022-01-01');
 
---- Eliminar registros con una transacción
-START TRANSACTION;
-DELETE FROM productos WHERE id_producto = 2;
-DELETE FROM categorías WHERE id_categoría = 5;
-COMMIT;
-
 --- Eliminar registros con un JOIN
 DELETE productos, detalles_orden
 FROM productos
@@ -264,7 +258,6 @@ LIMIT 10;
 Modificar los objetos de la base de datos, como tablas, vistas, procedimientos almacenados y esquemas, entre otros.
 
 ```sql
---- Cambiar el nombre de una tabla
 --- Cambiar el nombre de una tabla
 ALTER TABLE clientela RENAME TO clientes;
 
@@ -355,7 +348,7 @@ DESCRIBE clientes edad;
 ## Instrucción REPLACE
 Insertar o actualizar un registro en una tabla específica. Si el registro ya existe, es actualizado.
 
-- REPLACE funciona igual que la instrucción INSERT, excepto que si la fila anterior en la tabla tiene el mismo valor que una fila nueva para una PK o un índice UNIQUE, la fila nueva se inserta después de eliminar la fila anterior.
+REPLACE funciona igual que la instrucción INSERT, excepto que si la fila anterior en la tabla tiene el mismo valor que una fila nueva para una PK o un índice UNIQUE, la fila nueva se inserta después de eliminar la fila anterior.
 
 ```sql
 --- Reemplazar un registro existente
