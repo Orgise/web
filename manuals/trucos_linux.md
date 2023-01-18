@@ -985,6 +985,20 @@ whoami
 who
 ```
 
+### Eliminar por completo un fichero sin posibilidad de recuperación
+No se puede recuperar ya que el comando sobrescribe con información aleatoria antes de eliminarlo.
+**Atención:** no se recomienda usar este comando en un SSD.
+```shell
+shred -u fichero.txt
+```
+
+### Sistema operativo lento o se apaga solo, y al arrancar nos manda a BusyBox con el mensaje "initramfs"
+Este error ocurre cuando hay un error en algún fichero del sistema, bien por alguna actualización que ha salido mal, o bien porque se ha tocado sin querer algún fichero del sistema.
+Comprobamos el sistema de archivos en busca de errores, y los intentará reparar (hay que cambiar la X por la partición que requiera chequeo):
+```shell
+fsck -f /dev/sdaX
+```
+
 ## Productividad
 
 ### Herramientas gráficas para copias de seguridad

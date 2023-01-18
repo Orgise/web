@@ -306,3 +306,13 @@ for ipt in iptables iptables-legacy ip6tables ip6tables-legacy; do $ipt --flush;
 # Reiniciamos el servicio LXD
 systemctl reload snap.lxd.daemon 
 ```
+
+### Instancias LXD sin IPv4
+Los contenedores no tienen asignada ninguna dirección IP, normalmente en su versión 4. Esto puede ser debido a restricciones del cortafuegos, así que añadiremos unas cuantas excepciones para nuestra adaptador virtual puenteado "lxdbr0":
+```shell
+sudo ufw allow in on lxdbr0
+sudo ufw route allow in on lxdbr0
+sudo ufw route allow out on lxdbr0
+```
+
+[Fuente](https://discuss.linuxcontainers.org/t/lxd-bridge-doesnt-work-with-ipv4-and-ufw-with-nftables/10034/27)

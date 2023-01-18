@@ -23,8 +23,7 @@ Reemplazamos lo primero por lo segundo:
 
 > if (false)
 
-Reiniciamos el servicio `	
-systemctl restart pveproxy.service`.
+Reiniciamos el servicio `systemctl restart pveproxy.service`.
 
 La próxima vez que nos logeemos habiendo borrado la caché, no nos saldrá la alerta.
         
