@@ -714,20 +714,8 @@ lowriter --headless --convert-to pdf \*.odt
 **Nota:** habrá tantos *.pdf* como *.odt* haya en el directorio actual.
 
 ### Convertir múltiples PDF en uno solo
-
 ```shell
 pdftk mypdf1.pdf mypdf2 cat output salida.pdf
-```
-
-### Visualizar los detalles de nuestra RAM
-```shell
-sudo dmidecode --type memory
-```
-
-### Instalar Docker
-```shell
-sudo apt install docker.io docker-compose
-sudo usermod -a -G docker $USER
 ```
 
 ### Instalar entorno de desarrollo (LAMP) en Debian
@@ -984,10 +972,9 @@ Para salir pulsamos Ctrl+C.
 ```shell
  # Reproducir grabación
 asciinema play [<file>|<url>]
+# Duplicar velocidad de reproducción
+asciinema play demo.cast -s 2
 ```
-
-Parámetros:
--s 2: duplicar velocidad de reproducción
 
 #### asciinema upload
 Subir grabación sin cuenta. La grabación se conserva 7 días, luego es archivada y no es accesible.
@@ -997,7 +984,7 @@ asciinema upload <file>
 
 #### asciinema auth
 Iniciar sesión en el servidor.
-Cada vez que ejecutemos asciinema se generará un UUID en ~/.config/asciinema/install-id si no existe ya el fichero.
+Cada vez que ejecutemos asciinema se generará un UUID en `~/.config/asciinema/install-id` si no existe ya el fichero.
 Este UUID será el que vinculemos con nuestra cuenta que deberemos haber creado previamente.
 Las próximas grabaciones se subirán automáticamente a nuestra cuenta si hemos vinculado el UUID, si no, se subirán de forma anónima y estarán disponibles durante 7 días.
 
@@ -1395,19 +1382,21 @@ Para verificar qué atributos se han establecido, use el comando `lsattr`.
 lsattr -Ra /path
 ```
 
-### Parámetros firefox
-Podemos enviar tantas URL como queramos acompañadas del parámetro.
+### Parámetros Firefox
+Podemos enviar tantas URL como queramos.
 
---kiosk: abrir una URL sin que esté presente ninguna de las interfaces de usuario de Firefox. Es como un modo de pantalla completa permanente
---search "gnu": realizar una búsqueda con el motor de búsqueda establecido
---setDefaultBrowser: establecer firefox como navegar predeterminado del sistema
---new-window URL: abrir URL nueva ventana
---new-tab URL: abrir URL en nueva pestaña
---private-window URL: abrir URL en nueva ventana privada
---safe-mode: abrir en modo seguro. Se deshabilitan las extensiones y temas
---ProfileManager: usar el Administrador de perfiles de Firefox para crear, eliminar o cambiar el nombre de los perfiles.
--P "john": iniciar Firefox bajo un perfil específico
---preferences: abrir las preferencias
+| Parámetro | Descripción
+|-|-|
+| --kiosk | Abrir una URL sin que esté presente ninguna de las interfaces de usuario de Firefox. Es como un modo de pantalla completa permanente
+| --search "gnu" | Realizar una búsqueda con el motor de búsqueda establecido
+| --setDefaultBrowser | Establecer firefox como navegar predeterminado del sistema
+| --new-window URL | Abrir URL nueva ventana
+| --new-tab URL | Abrir URL en nueva pestaña
+| --private-window URL | Abrir URL en nueva ventana privada
+| --safe-mode | Abrir en modo seguro. Se deshabilitan las extensiones y temas
+| --ProfileManager | Usar el Administrador de perfiles de Firefox para crear, eliminar o cambiar el nombre de los perfiles.
+| -P "john" | Iniciar Firefox bajo un perfil específico
+| --preferences | Abrir las preferencias
 
 ## Productividad
 

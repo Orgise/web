@@ -108,7 +108,7 @@ Add a description for your token. Use something that indicates where the token w
 Cerrar sesión en repositorios de contenedores.
 ```shell
 # Cerrar sesión de docker.io
-podman logout docker.io
+docker logout docker.io
 # Eliminar la caché de las credenciales del fichero de autenticación para todos los repositorios
 docker logout --all
 ```
@@ -163,7 +163,7 @@ docker run httpd
 # Asignar un volumen
 docker run -v /tmp/testdir:/root/testdir httpd
 # Crear e iniciar un contenedor basado en una imagen Ubuntu 18.04, que ejecuta una Shell en modo interactivo (-it) como entrypoint.
-docker run –name <nombre_contenedor> -h ubuntuDocker -it ubuntu:18.04 /bin/bash
+docker run –-name <nombre_contenedor> -h ubuntuDocker -it ubuntu:18.04 /bin/bash
 # Publicar el puerto 80 del contenedor al 8080 del host.
 docker run -it --name test -p 8080:80 debian test
 # Publicar todos los puertos expuestos a puertos aleatorios del host.
@@ -439,6 +439,7 @@ echo 'unqualified-search-registries=["docker.io"]' >> /etc/containers/registries
 
 ### Error al iniciar sesión en un repositorio de contenedores
 [Solución oficial](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users)
+
 Este error se produce en Ubuntu cuando escribimos el comando `docker login` y tras poner nuestras credenciales nos aparece el error:
 
 Error saving credentials: error storing credentials - err: exit status 1, out: Error calling StartServiceByName for org.freedesktop.secrets: Timeout was reached.

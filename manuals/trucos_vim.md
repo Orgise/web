@@ -50,11 +50,18 @@ Establecemos el inicio y el final de una sección de configuración de plugins p
 
 Por último abrimos Vim y escribimos `:PlugInstall`. Se instalarán los plugins especificados.
 
-Para comprobar que está instalado, creamos un fichero cualquiera con extensión HTML y escribimos `html:5`. Seguidamente pulsamos la combinación **Ctrl + Y ,** para generar una plantilla HTML5.
+Para comprobar que está instalado, creamos un fichero cualquiera con extensión HTML y escribimos `html:5`. Seguidamente pulsamos la combinación `Ctrl + Y ,` para generar una plantilla HTML5.
 
 
 ### Descargar e instalar diccionario español
 Muy útil para corregir faltas ortográficas.
+
+Si nuestra distribución trae por defecto, el diccionario de palabras en español, ponemos el siguiente comando:
+```shell
+sudo apt install vim-spell-es
+```
+
+Si no, realizaremos los siguientes pasos que se muestran an continuación.
 1. Visitamos el siguiente [enlace](http://ftp.vim.org/vim/runtime/spell/).
 2. Descargamos el fichero `es.utf-8.spl`.
 3. Movemos el fichero a `/usr/share/vim/vim90/spell`.
@@ -67,9 +74,9 @@ setlocal spell spelllang=es
 
 ### Guardar parte de un fichero en otro
 1. Pulse  v  y mueva el cursor hasta donde desee. Vea que el texto es resaltado.
-2. Pulse el carácter  :  . En la parte inferior de la pantalla aparecerá :'<,'>
-3. Pulse  w TEST  , donde TEST es el nombre de archivo donde guardar lo seleccionado.
-4. Verifique que vea  :'<,'>w TEST  antes de pulsar INTRO.
+2. Pulse el carácter `:`. En la parte inferior de la pantalla aparecerá `:'<,'>`.
+3. Escriba `w TEST`, donde TEST es el nombre de archivo donde guardar lo seleccionado.
+4. Verifique que visualice  `:'<,'>w TEST`  antes de pulsar INTRO.
 
 ## Modos de Vim
 
@@ -150,8 +157,6 @@ El modo normal de Vim es uno de los tres modos principales de edición de Vim. E
 | ]] | Mueve el cursor al final del siguiente bloque de código
 | [] | Mueve el cursor al final de la línea anterior
 | ][ | Mueve el cursor al comienzo de la siguiente línea
-
-
 | ESC | Volver al modo Normal, o cancelar una orden no deseada o incompleta
 | Ctrl + i | Ir a la línea siguiente
 | Ctrl + o | Ir a la línea previa
@@ -207,5 +212,4 @@ El modo normal de Vim es uno de los tres modos principales de edición de Vim. E
 | zg | Añadir una palabra al diccionario
 | zug | Deshacer la adición de una palabra al diccionario
 | zw | Eliminar una palabra del diccionario
-
 | d3w | Borrar 3 palabras
