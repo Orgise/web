@@ -181,6 +181,9 @@ SELECT COUNT(DISTINCT nombre) FROM empleados;
 
 --- Seleccionar el nombre, fecha de nacimiento y edad de la tabla "clientes"
 SELECT nombre, f_nac, TIMESTAMPDIFF(YEAR, f_nac, '2013-08-02') AS edad FROM clientes;
+
+--- Generar un identificador único universal aleatorio (UUID)
+SELECT UUID();
 ```
 
 
@@ -258,7 +261,10 @@ LIMIT 10;
 Modificar los objetos de la base de datos, como tablas, vistas, procedimientos almacenados y esquemas, entre otros.
 
 ```sql
---- Cambiar el nombre de una tabla
+--- Cambiar la contraseña de un usuario
+ALTER USER 'user'@'localhost' IDENTIFIED BY 'new-password';
+
+--- Renombrar una tabla
 ALTER TABLE clientela RENAME TO clientes;
 
 --- Agregar una columna a una tabla
@@ -267,8 +273,8 @@ ALTER TABLE ordenes ADD COLUMN total_orden DECIMAL(10,2);
 --- Modificar una columna existente
 ALTER TABLE productos MODIFY COLUMN precio_producto DECIMAL(10,2) NOT NULL;
 
---- Cambiar la estructura de una tabla
-ALTER TABLE empleados MODIFY COLUMN id_empleado INT(11) NOT NULL AUTO_INCREMENT;
+--- Renombrar columna
+ALTER TABLE productos RENAME COLUMN precioo TO precio;
 
 --- Eliminar una columna
 ALTER TABLE ordenes DROP COLUMN total_orden;
@@ -327,6 +333,8 @@ SHOW CREATE TABLE productos;
 
 --- Mostrar los triggers existentes
 SHOW TRIGGERS;
+SHOW TRIGGERS LIKE 'mytable%';
+SHOW TRIGGERS FROM clientes;
 
 --- Mostrar los privilegios de un usuario
 SHOW GRANTS FOR 'user'@'localhost';

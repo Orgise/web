@@ -351,15 +351,6 @@ Editamos el fichero de configuración `/boot/grub/grub.cfg`.
 
 Tendremos que modificar la línea `set default="0"`, en la que cambiaremos el 0 por el 4, que es el número que corresponde a la partición de Windows que está instalada junto a tu sistema GNU/Linux.
 
-### Mostrar el tamaño de los dispositivos de bloque (HDD, SDD, etc.)
-```shell
-df -h
-# Mostrar el formato del sistema de ficheros
-df -m --print-type
-
-lsblk
-```
-
 ### Cambiar el nombre de un USB
 
 Abrimos la utilidad de discos `gnome-disk-utilities`.
@@ -390,18 +381,52 @@ shutdown -c
 ```
 
 ### Mostrar información del sistema
+Se recomienda ejecutar los comandos con sudo para visualizar mayor información.
 ```shell
 # Detalles de la CPU
 lscpu
+lshw -class CPU
+dmidecode --type processor
 # Ver número de hilos de la CPU
 cat /proc/cpuinfo | grep processor | wc -l
 # Temperatura de la CPU
 watch -n 2 sensors
-# Información sobre todo el hardware de su sistema o de alguna parte concreta. Ejecutarlo con sudo para mayor información.
+# RAM
+dmidecode --type 17
+lshw -short -C memory
+free -h
+# Información general
 lshw
-lshw -class CPU
 dmidecode
-dmidecode --type processor
+hwinfo --short --all
+# Almacenamiento secundario
+sudo fdisk -l
+lsblk
+# Resoluciones disponibles
+xrandr
+# Dispositivos conectados al bus PCI
+lspci
+# Dispositivos USB conectados
+lsusb
+# Idioma del sistema y distribución del teclado
+localectl status
+# Muestra información básica sobre el kernel y la versión del sistema operativo
+uname -a
+# Nombre, versión y entorno de escritorio usado
+cat /etc/*release
+hostnamectl
+# Visualizar uso del disco
+df -h
+# IP privada
+ip address
+ip a
+hostname -I
+# IP privada + información adicional
+nmcli -p device show
+# IP pública
+host myip.opendns.com resolver1.opendns.com
+curl ifconfig.me
+```
 ```
 
 ### Visualizar detalles de la tarjeta Wi-Fi
@@ -443,6 +468,17 @@ Este comando reiniciará el PC y entrará automáticamente a la BIOS ya que si t
 ```shell
 sudo rm /etc/apt/sources.list.d/\*
 sudo apt update
+```
+
+### Retener paquetes
+Útil para evitar que un paquete se actualice.
+```shell
+# Retener
+sudo apt-mark hold <package-name>
+# Liberar
+sudo apt-mark unhold <package-name>
+# Listar retenidos
+sudo apt-mark showhold
 ```
 
 ### Cambiar la ruta por defecto de los directorios principales del usuario
@@ -580,19 +616,6 @@ Creamos un nuevo atajo de teclado `Ajustes → Teclado → Atajos de aplicación
 
 ```shell
 bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
-```
-
-### Averiguar dirección IP
-```shell
-# IP privada
-ip address
-ip a
-hostname -I
-# IP privada + información adicional
-nmcli -p device show
-# IP pública
-host myip.opendns.com resolver1.opendns.com
-curl ifconfig.me
 ```
 
 ### Copiar
@@ -780,7 +803,7 @@ sudo apt install cmatrix && cmatrix
 yes mensaje
 ```
 
-### Imprimir con efecto arcoíris la salida de los comandos
+### Imprimir con efecto arco iris la salida de los comandos
 ```shell
 ls | lolcat
 ```
@@ -923,7 +946,60 @@ sudo apt install language-pack-gnome-es
 ```shell
 sudo apt install asciinema
 ```
+
 [Página web](https://asciinema.org/)
+
+#### asciinema rec
+Comenzar grabación y guardarla en /tmp si no se desea subir al servidor.
+Ctrl+D o exit para finalizar grabación
+Ctrl+\ para pausar grabación. Para escribir la barra invertida usamos AltGr.
+```shell
+# Comenzar grabación y guardarla en <file>
+asciinema rec <file>
+# Grabar a tu ritmo, reproducir rápido
+asciinema rec original.cast
+asciinema rec -c "asciinema play -s 5 -i 2 original.cast" -t "Proyecto final" final.cast
+```
+
+Parámetros:
+| Parámetro | Descripción
+|-|-|
+| --append | Insertar nueva grabación en un fichero existente
+| --overwrite | Reemplazar grabación
+| --raw | Guardar la salida en su formato original, sin medidas de tiempo ni metadatos. Usando este parámetro no se puede subir al servidor.
+| -c command | Especificar un comando para grabar, por defecto es $SHELL (/bin/bash)
+| --rows | Establecer el número de filas del terminal que desee grabar
+| --columns | Establecer el número de columnas del terminal que desee grabar
+| -t, --title "title" | Título para la grabación
+| -i seconds | Limita el tiempo de inactividad entre un fotograma y el siguiente. Útil cuando no hay cambios en la consola durante muchos segundos. Disponible a la hora de grabar y reproducir.
+| -y | Subida automática
+| -q | Salida silenciosa (implica subida automática)
+
+
+#### asciinema play
+Si pulsamos la tecla Espacio se conmutará la reproducción.
+Si pulsamos el punto cuando está pausado avanzamos un fotograma.
+Para salir pulsamos Ctrl+C.
+
+```shell
+ # Reproducir grabación
+asciinema play [<file>|<url>]
+```
+
+Parámetros:
+-s 2: duplicar velocidad de reproducción
+
+#### asciinema upload
+Subir grabación sin cuenta. La grabación se conserva 7 días, luego es archivada y no es accesible.
+```shell
+asciinema upload <file>
+```
+
+#### asciinema auth
+Iniciar sesión en el servidor.
+Cada vez que ejecutemos asciinema se generará un UUID en ~/.config/asciinema/install-id si no existe ya el fichero.
+Este UUID será el que vinculemos con nuestra cuenta que deberemos haber creado previamente.
+Las próximas grabaciones se subirán automáticamente a nuestra cuenta si hemos vinculado el UUID, si no, se subirán de forma anónima y estarán disponibles durante 7 días.
 
 ### Cifrar fichero y descifrarlo
 ```shell
@@ -998,6 +1074,340 @@ Comprobamos el sistema de archivos en busca de errores, y los intentará reparar
 ```shell
 fsck -f /dev/sdaX
 ```
+
+### Eliminar software preinstalado en Linux Mint para ahorrar espacio y acelerar actualizaciones
+Los podremos reinstalar en cualquier momento.
+```shell
+sudo apt purge libreoffice-* thunderbird rhythmbox hexchat transmission-common pix hypnotix warpinator
+rmdir ~/Warpinator
+```
+
+### Personalizar variable PS1
+La variable PS1 se utiliza para especificar el prompt del shell. Esta se puede adaptar para que contenga información como el nombre de usuario, el nombre del servidor, la ruta actual, etc.
+```shell
+vim .bashrc
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+```
+
+En este ejemplo, usamos el formato que usa Linux Mint con el nombre del usuario y la máquina en verde, y la ruta actual en azul claro.
+
+### Eliminar credenciales de sudo almacenadas en caché
+Útil cuando necesitamos realizar una tarea simple como ejecutar un comando y luego desconectarse de los privilegios de superusuario.
+```shell
+sudo -K
+```
+
+### Modificar listas de acceso para un fichero (permisos extendidos)
+El símbolo + en `-rw-r-xr--+` índica que ese fichero tiene permisos extendidos.
+```shell
+# Otorgar permisos recursivos de ejecución al usuario QEMU en nuestro directorio de Descargas
+setfacl -R -m u:qemu:x ~/Descargas/
+# Eliminar permisos extendidos
+setfacl -b <file>
+```
+
+### Obtener listas de control de acceso a un fichero
+```shell
+getfacl <file>
+```
+
+
+### Eliminar enlace simbólico
+```shell
+unlink <file>
+```
+
+### QEMU/KVM
+QEMU/KVM es una tecnología para GNU/Linux que permite la ejecución de máquinas virtuales muy rápidas y eficientes, ya que se integra con el propio kernel.
+Comandos útiles:
+
+#### virsh
+Administración de máquinas virtuales.
+
+Un dominio en virsh es una máquina virtual creada y administrada por la biblioteca libvirt. Esta biblioteca proporciona una capa de abstracción entre la máquina virtual y el hipervisor, permitiendo a los administradores controlar y configurar la máquina virtual con comandos sencillos.
+
+Un pool en virsh es un grupo de recursos de almacenamiento que pueden ser compartidos entre varias máquinas virtuales. Estos recursos pueden ser discos duros, tarjetas de red y otros dispositivos que se pueden conectar a una máquina virtual. Los pools se definen mediante un archivo XML y pueden ser creados, modificados y eliminados usando una interfaz de línea de comandos (CLI) o una API para el lenguaje de programación.
+
+```shell
+# Entrar en consola interactiva
+virsh
+# Mostrar información del nodo
+virsh hostname
+
+# Mostrar información básica del dispositivo
+virsh nodeinfo
+
+# Mostrar uso del procesador
+virsh nodecpustats --percent
+
+# Mostrar uso de memoria
+virsh nodememstats
+
+# Listar máquinas virtuales creadas
+virsh list --all
+# Apagar
+virsh shutdown <domain>
+# Forzar apagado
+virsh destroy <domain>
+# Reiniciar
+virsh restart <domain>
+# Forzar reinicio
+firsh reset <domain>
+# Iniciar
+virsh start <domain>
+# Conectarse a la consola
+virsh console <domain>
+# Iniciar cuando se arranque el anfitrión
+virsh autostart <domain>
+# Desactivar inicio automático
+virsh autostart <domain> --disable
+# Pausar
+virsh suspend <domain>
+# Reanudar
+virsh resume <domain>
+# Crear instantánea (snapshot)
+virsh snapshot-create-as --domain <domain> --name "snapshot-name" --description "description"
+# Listar snapshots
+virsh snapshot-list <domain>
+# Mostrar información detallada de un snapshot
+virsh snapshot-info <domain> <snapshot_name>
+# Restaurar dominio al snapshot indicado (el estado actual se perderá)
+virsh snapshot-revert <domain> <snapshot_name>
+# Eliminar snapshot
+virsh snapshot-delete <domain> <snapshot_name>
+# Renombrar
+virsh domrename <currentName> <newName>
+# Cambiar configuración
+virsh edit <domain>
+# Guardar estado en un fichero
+virsh save <domain> <file>
+# Restaurar estado de un dominio desde un fichero
+virsh restore <file>
+# Establecer nº de núcleos para el dominio
+virsh setvcpus <domain> --maximum <core_numbers> --config
+virsh setvcpus <domain> --count <core_numbers> --config
+# Establecer uso de RAM
+sudo virsh setmaxmem test 2G --config
+sudo virsh setmem test 2G --config
+# Refrescar pool del almacenamiento
+virsh pool-refresh default
+# Eliminar dominio y sus volúmenes asociados
+virsh destroy <domain>
+virsh undefine <domain>
+virsh pool-refresh default
+virsh vol-delete --pool default <domain>.qcow2
+# Insertar disco virtual a un dominio
+virsh attach-disk --domain test \
+  --source /var/lib/libvirt/images/test_vol2.qcow2 \
+  --persistent --target vdb \
+  --subdriver qcow2 \
+  --driver qemu \
+  --type disk
+# Retirar disco virtual de un dominio
+virsh detach-disk --domain test --persistent --live --target vdb
+
+# Crear volumen
+virsh vol-create-as <pool> <name> <capacity>
+# Listar volumenes de un grupo
+virsh vol-list <pool>
+
+
+# Listar todas las redes
+virsh net-list
+# Iniciar una red
+virsh net-start <network>
+# Apagar una red
+virsh net-shutdown <network>
+# Mostrar información de una red
+virsh net-info <network_name>
+# Editar configuración de una red
+virsh net-edit <network_name>
+
+# Mostrar información de un dominio
+virsh dominfo <domain>
+# Listar todos los dispositivos de bloque asociados a un dominio
+virsh domblklist <domain>
+# Mostrar información sobre un dispositivo de bloque
+virsh domblkinfo <domain> <device>
+virsh domblkinfo debian11 vda --human
+# Mostrar estadísticas sobre un dispositivo de bloque (el dominio debe estar ejecutándose)
+virsh domblkstat <domain> <device>
+# Mostrar errores de un dispositivo de bloque (el dominio debe estar ejecutándose)
+virsh domblkerror <domain>
+```
+
+Para los siguientes comandos es necesario instalar libguestfs-tools
+```shell
+# Listar ficheros
+virt-ls -l -d <domain> <file>
+# Mostrar el contenido de ficheros
+virt-cat -d <domain><file_path>
+# Editar ficheros
+virt-edit -d <domain> <file>
+# Mostrar espacio en disco
+virt-df -d <domain>
+# Listar sistema de ficheros
+virt-filesystems --all --long --uuid -h -d <domain>
+# Monitorear el uso de recursos
+virt-top
+# Mostrar logs
+virt-log -d <domain> | less
+```
+
+#### virt-clone
+Clonar dominio.
+```shell
+# Clonar dominio (debe estar parado)
+virt-clone --original test --name test_clone --file /var/lib/libvirt/images/test_clone.qcow2 
+```
+
+#### virt-install
+Crear una nueva máquina virtual.
+```shell
+# Listar todas las variantes de sistemas operativos que se pueden usar
+virt-install --os-variant list
+# Ejemplo de creación de VM de Fedora 37
+virt-install \
+    # Nombre
+    --name fedora37 \
+    # RAM
+    --memory 2048 \
+    # CPU
+    --vcpus 2 \
+    # Crear disco duro virtual de 30 GB
+    --disk size=30 \
+    # Especificar el sistema operativo
+    --os-variant fedora37 \
+    # Ubicación de la imagen
+    --cdrom /ruta/fichero.iso \
+    # Red a la que se conectará
+    --network default \
+    # Visualizar usando el protocolo spice con protección por contraseña
+    --graphics spice,password=secret \
+
+    # Instalación desatendida (automática)
+    --install fedora37 --unattended 
+    # Ruta de la contraseña para el administrador
+    admin-password-file=/path/to/password
+    # Usuario principal
+    user-login=<user>
+    # Contraseña del usuario principal
+    user-password-file=/path/to/password \
+    # Establecer hipervisor al que conectarse
+    --connect qemu:///system \
+    # Ubicación de la imagen
+    --location [<url>|<iso>] \
+    # Arquitectura del huesped
+    --arch armv71 \
+    # Establecer el orden de arranque
+    --boot cdrom,hd \
+    # Forzar apagado cuando se cierre la ventana
+    --destroy-on-exit
+    # Solicitar un dispositivo TPM emulado
+    --tpm emulator \
+    # Redirigir dispositivo USB mediante un canal de spice
+    --redirdev usb,type=spicevmc
+    # Redirigir tarjetas inteligentes
+    --smartcard passthrough,type=spicevmc
+    # Mountar un directorio del anfitrión en el invitado
+    --filesystem /source/on/host,/target/point/in/guest \
+    # Impedir que se cierre virt-viewer cuando se reinicie
+    --wait \
+    # Evitar que se abra una consola
+    --noautoconsole \
+    # Probar configuración
+    --dry-run
+```
+De no especificar alguna opción durante la creación de la VM, coge el valor por defecto.
+
+
+#### qemu-img
+Manipular imágenes de disco. Las máquinas virtuales asociadas al disco deben estar apagadas.
+```shell
+# Expandir un disco virtual a 50 GB
+qemu-img resize /path/to/kvm-harddisk-file.qcow2 +50G
+# Convertir una imagen RAW en QCOW2
+qemu-img convert -f raw -O qcow2 imagen.img nombre_nuevo.qcow2 -p
+```
+
+#### Problemas frecuentes
+
+##### Error de permisos durante la creación de una VM
+Tras seleccionar una ISO dentro de **virt-manager** durante la creación de una máquina virtual, aparece un error similar al siguiente: "El emulador podría no tener permisos de búsqueda para la ruta. ¿Desea corregir esto ahora?".
+La opción "Sí" funciona a la perfección, pero aprenderemos a solucionarlo por nuestra cuenta creando una ACL para el usuario correspondiente que necesita acceso a nuestro directorio.
+Para ello, deberemos ejecutar el siguiente comando en cada directorio a partir del $HOME hasta llegar a la ubicación donde se almacena la ISO, en este caso en Descargas:
+```shell
+setfacl -m u:<user>:x $HOME
+setfacl -m u:<user>:x $HOME/Descargas
+```
+
+Nota: según la distribución que estés usando, el usuario a modificar puede ser `libvirt-qemu` o `qemu`. Comprueba en el fichero **/etc/passwd** cual de estos dos usuarios existen.
+
+### SELinux
+Security-Enhanced Linux (SELinux) es una arquitectura de seguridad para los sistemas GNU/Linux que otorga a los administradores mayor control sobre quién puede tener acceso a los recursos del sistema, así como qué acciones pueden realizar. Esto se logra mediante el uso de políticas de acceso que definen quién puede acceder a qué recursos y qué acciones pueden realizar. Estas políticas pueden ser muy precisas, permitiendo que los administradores controle con precisión quién puede hacer qué en el sistema.
+
+#### Cambiar y visualizar contexto de seguridad para un fichero
+En este ejemplo, cambiamos el contexto de seguridad para autorizar el acceso a los contenedores (virtualización) al fichero especificado recursivamente.
+```shell
+# Activar
+chcon -R -t container_file_t /ruta
+# Desactivar contexto de seguridad previamente modificado
+# user_home_t significa acceso exclusivo para el usuario al que le pertenece
+chcon -R -t user_home_t /ruta
+# Comprobar el contexto de seguridad de un fichero
+ls -Z
+```
+
+### Cambiar atributos de un fichero
+"+" para agregar, "-" para eliminar y "=" para establecer un único atributo.
+No todos los atributos son compatibles o utilizados por todos los sistemas de archivos
+
+|Atributo|Descripción
+|-|-|
+| **a** | anexar solo
+| **A** | sin actualizaciones temporales de acceso. Ahorra numerosas I/O del disco
+| c | comprimido
+| C | sin copia al escribir
+| d | sin volcado
+| D | actualizaciones de directorio sincrónicas
+| e | formato de extensión
+| E | cifrado
+| F | las búsquedas de directorio no distingue entre mayúsculas y minúsculas
+| **i** | inmutable. No se puede renombrar, eliminar o crear un enlace
+| I | indexado usando árboles de hash
+| j | toda la información se actualiza en el diario ext3 antes que el archivo en sí
+| P | jerarquía del proyecto
+| m | Excluir de compresión
+| S | los cambios se actualizarán sincrónicamente en el disco
+| t | sin fusión de cola
+| T | parte superior de la jerarquía de directorios
+
+```shell
+# Bloquear recursivamente el borrado y modificación
+chattr -R +i ~/Documentos
+```
+
+### Listar atributos de un fichero
+Para verificar qué atributos se han establecido, use el comando `lsattr`.
+
+```shell
+# Mostrar recursivamente todos los ficheros ocultos
+lsattr -Ra /path
+```
+
+### Parámetros firefox
+Podemos enviar tantas URL como queramos acompañadas del parámetro.
+
+--kiosk: abrir una URL sin que esté presente ninguna de las interfaces de usuario de Firefox. Es como un modo de pantalla completa permanente
+--search "gnu": realizar una búsqueda con el motor de búsqueda establecido
+--setDefaultBrowser: establecer firefox como navegar predeterminado del sistema
+--new-window URL: abrir URL nueva ventana
+--new-tab URL: abrir URL en nueva pestaña
+--private-window URL: abrir URL en nueva ventana privada
+--safe-mode: abrir en modo seguro. Se deshabilitan las extensiones y temas
+--ProfileManager: usar el Administrador de perfiles de Firefox para crear, eliminar o cambiar el nombre de los perfiles.
+-P "john": iniciar Firefox bajo un perfil específico
+--preferences: abrir las preferencias
 
 ## Productividad
 

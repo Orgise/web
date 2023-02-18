@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cursed Text Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        textarea {
+            width: 50%;
+            height: 300px;
+        }
+
+        textarea,
+        p {
+            font-size: 2em;
+        }
+
+        body {
+            margin: 50px;
+        }
+
+        #lulz_container {
+            padding: 100px;
+        }
+
+        form {
+            text-align: center;
+        }
+    </style>
+    <script>
+        var zalgo_up = ["̍", "̎", "̄", "̅", "̿", "̑", "̆", "̐", "͒", "͗", "͑", "̇", "̈", "̊", "͂", "̓", "̈́", "͊", "͋", "͌", "̃", "̂", "̌", "͐", "̀", "́", "̋", "̏", "̒", "̓", "̔", "̽", "̉", "ͣ", "ͤ", "ͥ", "ͦ", "ͧ", "ͨ", "ͩ", "ͪ", "ͫ", "ͬ", "ͭ", "ͮ", "ͯ", "̾", "͛", "͆", "̚"],
+            zalgo_down = ["̖", "̗", "̘", "̙", "̜", "̝", "̞", "̟", "̠", "̤", "̥", "̦", "̩", "̪", "̫", "̬", "̭", "̮", "̯", "̰", "̱", "̲", "̳", "̹", "̺", "̻", "̼", "ͅ", "͇", "͈", "͉", "͍", "͎", "͓", "͔", "͕", "͖", "͙", "͚", "̣"],
+            zalgo_mid = ["̕", "̛", "̀", "́", "͘", "̡", "̢", "̧", "̨", "̴", "̵", "̶", "͏", "͜", "͝", "͞", "͟", "͠", "͢", "̸", "̷", "͡", "҉"];
+
+        function rand(n) {
+            return Math.floor(Math.random() * n)
+        }
+
+        function rand_zalgo(n) {
+            return n[Math.floor(Math.random() * n.length)]
+        }
+
+        function toggle(n) {
+            "none" == document.getElementById(n).style.display ? document.getElementById(n).style.display = "block" : document.getElementById(n).style.display = "none"
+        }
+
+        function is_zalgo_char(n) {
+            var t;
+            for (t = 0; t < zalgo_up.length; t++)
+                if (n == zalgo_up[t]) return !0;
+            for (t = 0; t < zalgo_down.length; t++)
+                if (n == zalgo_down[t]) return !0;
+            for (t = 0; t < zalgo_mid.length; t++)
+                if (n == zalgo_mid[t]) return !0;
+            return !1
+        }
+
+        function draw_zalgo_table(n) {
+            var t = document.getElementById(n),
+                e = "";
+            e += "<b>Chars going up:</b><br />\n", e += '<table class="zalgo_ref_table">\n', e += "<tr>\n";
+            for (var a = 0; a < zalgo_up.length; a++) a % 10 || (e += "</tr><tr>"), e += '<td class="zalgo_td">' + zalgo_up[a] + "</td>\n";
+            e += "</tr>\n", e += "</table>\n", e += "<br /><b>Chars staying in the middle:</b><br />\n", e += '<table class="zalgo_ref_table">\n', e += "<tr>\n";
+            for (a = 0; a < zalgo_mid.length; a++) a % 10 || (e += "</tr><tr>"), e += '<td class="zalgo_td">' + zalgo_mid[a] + "</td>\n";
+            e += "</tr>\n", e += "</table>\n", e += "<br /><b>Chars going down:</b><br />\n", e += '<table class="zalgo_ref_table">\n', e += "<tr>\n";
+            for (a = 0; a < zalgo_down.length; a++) a % 10 || (e += "</tr><tr>"), e += '<td class="zalgo_td">' + zalgo_down[a] + "</td>\n";
+            e += "</tr>\n", e += "</table>\n", t.innerHTML = e
+        }
+
+        function zalgo_textarea(n) {
+            for (var t = document.getElementById(n).value, e = "", a = 0; a < t.length; a++)
+                if (!is_zalgo_char(t.substr(a, 1))) {
+                    var o, l, r;
+                    if (e += t.substr(a, 1), document.getElementById("zalgo_opt_mini").checked ? (o = rand(8), l = rand(2), r = rand(8)) : document.getElementById("zalgo_opt_normal").checked ? (o = rand(16) / 2 + 1, l = rand(6) / 2, r = rand(16) / 2 + 1) : (o = rand(64) / 4 + 3, l = rand(16) / 4 + 1, r = rand(64) / 4 + 3), document.getElementById("zalgo_opt_up").checked)
+                        for (var d = 0; d < o; d++) e += rand_zalgo(zalgo_up);
+                    if (document.getElementById("zalgo_opt_mid").checked)
+                        for (d = 0; d < l; d++) e += rand_zalgo(zalgo_mid);
+                    if (document.getElementById("zalgo_opt_down").checked)
+                        for (d = 0; d < r; d++) e += rand_zalgo(zalgo_down)
+                }
+            for (var g = document.getElementById("lulz_container"); g.childNodes.length;) g.removeChild(g.childNodes[0]);
+            var _ = e.split("\n");
+            for (a = 0; a < _.length; a++) {
+                var c = document.createElement("p");
+                c.innerHTML = _[a], g.appendChild(c);
+                var i = document.createElement("br");
+                g.appendChild(i)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Cursed Text Generator</h1>
+    <div class="flex-container">
+        <form id="zalgo_form">
+            <input id="zalgo_btn" onclick="zalgo_textarea('zalgo_txt');" type="button"
+                value="Generar">
+            <table>
+                <tr>
+                    <td>
+                        <input checked id="zalgo_opt_up" type="checkbox">Arriba<br>
+                        <input checked id="zalgo_opt_mid" type="checkbox">Centro<br>
+                        <input checked id="zalgo_opt_down" type="checkbox">Abajo<br>
+                    </td>
+                    <td>
+                        <input checked id="zalgo_opt_mini" name="optval" type="radio">Mínimo<br>
+                        <input id="zalgo_opt_normal" name="optval" type="radio">Normal<br>
+                        <input id="zalgo_opt_maxi" name="optval" type="radio">Máximo<br>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <textarea autofocus id="zalgo_txt" onkeyup="zalgo_textarea('zalgo_txt');"
+            placeholder="Introduzca su texto aquí"></textarea>
+        <div id="lulz_container">
+            <p id="lulz"></p>
+        </div>
+    </div>
+</body>
+
+</html>

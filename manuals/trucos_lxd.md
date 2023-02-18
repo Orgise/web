@@ -5,6 +5,8 @@ Linux Container Daemon es una herramienta de gestión de contenedores en GNU/Lin
 
 Para usarla no es necesario instalar LXC.
 
+[Documentación oficial](https://linuxcontainers.org/lxd/docs/master/)
+
 ## Instalación
 LXD se instala mediante snap, a no ser que uses Alpine Linux, Fedora, Arch Linux o Gentoo, donde podrás realizar la [instalación](https://linuxcontainers.org/lxd/getting-started-cli/) con un solo comando.
 
@@ -230,6 +232,13 @@ lxc config set container_name limits.cpu 0-0
 lxc config set container_name limits.memory 100MB
 # Limitar la cantidad de tiempo de CPU que puede usar el contenedor
 lxc config set container_name limits.cpu.allowance 10ms/100ms
+# Activar modo privilegiado
+lxc config set container_name security.privileged true
+```
+
+### lxc config device
+Manejar dispositivos.
+```shell
 # Reducir el uso de almacenamiento a 5 GB. Primero le asignamos el disco raíz al contenedor
 lxc config device add container_name root disk pool=default path=/
 lxc config device set container_name root size 7GB
@@ -237,13 +246,10 @@ lxc config device set container_name root size 7GB
 lxc config device add container_name eth0 nic name=eth0 nictype=bridged parent=lxdbr0
 lxc config device set container_name eth0 limits.ingress 1Mbit
 lxc config device set container_name eth0 limits.egress 1Mbit
-```
-
-### lxc config device
-Manejar dispositivos.
-```shell
 # Eliminar la ISO de una VM ya instalada
 lxc config device remove vm_name iso
+# Montar directorio local dentro del contenedor
+lxc config device add my-container disk-storage-device disk source=/share/c1 path=/opt
 ```
 
 ### lxc snapshot
@@ -290,8 +296,9 @@ lxc config device add win11 install disk source=/home/mionaalex/Downloads/win11.
 lxc start win11 --console=vga
 # Abrir de nuevo el visor en caso de que se reinicie la VM
 lxc console win11 -–type=vga
-# Para mayor comodidad cuando trabaje con la VM, puede instalar los drivers de virIO
 ```
+
+Para mayor comodidad cuando trabaje con la VM, puede instalar los drivers de virtIO.
 
 
 ## Errores comunes
