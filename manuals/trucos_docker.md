@@ -77,6 +77,7 @@ Muestra información de Docker y del sistema anfitrión.
 
 ### docker version
 Muestra la versión de Docker.
+
 ```shell
 # Otra forma de ver la versión
 docker -v
@@ -84,14 +85,15 @@ docker -v
 
 ### docker login
 Loguearse en Docker Hub, será necesario estar autenticado para subir una imagen.
+
 ```shell
 docker login
 docker login -u <usuario> -p <password>
 ```
 
 Si ya estamos logeados y volvemos a poner el comando, nos aparece:
-Authenticating with existing credentials...
-Login Succeeded
+> Authenticating with existing credentials...
+> Login Succeeded
 
 Autenticarse usando token en vez de nuestra contraseña:
 [Guía oficial](https://docs.docker.com/docker-hub/access-tokens/)
@@ -103,9 +105,9 @@ Autenticarse usando token en vez de nuestra contraseña:
 6. Almacene el token en un lugar seguro ya que solo se mostrará una vez.
 7. Introducimos el comando `docker login -u <username>`. Cuando le pida la contraseña use el token generado.
 
-Add a description for your token. Use something that indicates where the token will be used, or set a purpose for the token. You can view the following access permissions from the drop-down:
 ### docker logout
 Cerrar sesión en repositorios de contenedores.
+
 ```shell
 # Cerrar sesión de docker.io
 docker logout docker.io
@@ -114,43 +116,56 @@ docker logout --all
 ```
 ### docker push
 Subir una imagen a un repositorio (Docker Hub).
+
 ```shell
 docker push <imagen_local>
 ```
 
 ### docker commit
-Crear una imagen de un contenedor personalizado en ejecución.
+Guardar los cambios realizados de un contenedor en una nueva imagen.
+
 ```shell
 docker commit <ID o nombre_contenedor> <nombre_imagen_nueva>
 ```
 
-### docker commit
-Para subir una imagen creada a un repositorio como puede ser Docker Hub, es necesario "tagearla" antes.
+Para subir una imagen creada a un repositorio como puede ser Docker Hub, es necesario etiquetarla antes.
+
 ```shell
 docker tag <imagen_local> <nombre_tag_imagen>
 docker push <nombre_tag_imagen_creada>
 ```
+
 ### docker build
 Construir una imagen a partir de un Dockerfile (--file será necesario si el nombre del fichero no es "Dockerfile" y no está situado el mismo directorio).
 ```shell
 docker build -t my-image:1.0 .
+docker build --tag <nombre_imagen> --file <fichero_dockerfile>
 ```
 
 **Importante:** no se nos debe olvidar el punto final.
 
+### docker image
+Administrar imágenes.
+
 ```shell
-docker build --tag <nombre_imagen> --file <fichero_dockerfile>
+# Eliminar imágenes no usadas
+docker image prune
+# Descargar imagen
+docker image pull <imagen>
+# Comprobar existencia de imagen. No devuelve nada, solo 1 si no existe y 0 de lo contrario.
+docker image exists <imagen>
 ```
 
 ### docker images
 Muestra las imágenes instaladas localmente.
+
 ```shell
-# Otra forma de ver la versión
-docker -v
+docker images
 ```
 
 ### docker pull
 Descargar imagen desde un repositorio público.
+
 ```shell
 docker pull httpd
 docker pull ubuntu:18.04
@@ -158,8 +173,9 @@ docker pull ubuntu:18.04
 
 ### docker run
 Lanzar un contenedor desde la imagen.
+
 ```shell
-docker run httpd
+docker run <image>
 # Asignar un volumen
 docker run -v /tmp/testdir:/root/testdir httpd
 # Crear e iniciar un contenedor basado en una imagen Ubuntu 18.04, que ejecuta una Shell en modo interactivo (-it) como entrypoint.
@@ -176,12 +192,14 @@ docker run -m 100m --cpus=2 debian
 
 ### docker exec
 Ejecutar comandos dentro del contenedor.
+
 ```shell
 docker exec -it nombre_contenedor /bin/bash
 ```
 
 ### docker stop
 Dettener un contenedor.
+
 ```shell
 # Para hacer referencia al contenedor que queramos eliminar, introducimos su identificador o su nombre.
 docker stop httpd
@@ -192,6 +210,7 @@ docker stop $(docker ps -aq)
 
 ### docker kill
 Finalizar (matar) contenedor.
+
 ```shell
 docker kill <id o nombre_imagen>
 ```
@@ -200,6 +219,7 @@ docker kill <id o nombre_imagen>
 Añadir un nombre adicional a una imagen.
 
 Antes de poder subir una imagen al repositorio debemos asegurarnos de que contenga nuestro nombre de usuario, para que el repositorio sepa a qué cuenta de usuario subir la imagen. Ejemplo:
+
 ```shell
 # docker tag <local_image>:<tag> <your_registry_username>/<local_image>:<tag>
 docker tag httpd:2.4 <username>/appweb:latest
@@ -207,12 +227,14 @@ docker tag httpd:2.4 <username>/appweb:latest
 
 ### docker top
 Mostrar procesos en ejecución contenedor.
+
 ```shell
 docker top <id o nombre_imagen>
 ```
 
 ### docker rmi
 Eliminar imagen.
+
 ```shell
 # Para hacer referencia a la imagen que queramos eliminar, introducimos su identificador o su nombre.
 docker rmi bf756fb1ae65
@@ -220,22 +242,29 @@ docker rmi bf756fb1ae65
 
 ### docker rm
 Eliminar contenedor.
+
 ```shell
-docker rm e7e8165c699a
+docker rm <container>
 # Eliminar todos los contenedores
 docker rm $(docker ps -aq)
+# Forzar eliminación
+docker rm -f <container>
 ```
 
 ### docker ps
 Listar contenedores.
+
 ```shell
 docker ps
 # Listar contenedores que no se encuentran en ejecución en este momento
 docker ps -a
+# Listar contenedores ejecutándose cuyo nombre empiece por "php"
+docker ps --filter "name=php*"
 ```
 
 ### docker volume
 Administrar volúmenes.
+
 ```shell
 # Listar volúmenes
 docker volume ls
@@ -251,6 +280,7 @@ docker volume prune
 
 ### docker network
 Administrar redes.
+
 ```shell
 # Crear red
 docker network create
@@ -269,23 +299,44 @@ docker network prune
 ```
 
 ### docker cp
-Copiar información del contenedor a local.
+Copiar información del contenedor a local o viceversa.
+
 ```shell
+# Del contenedor a local
 docker cp <id_contenedor>:<path_contenedor> <path_host_local>
+# De local al contenedor
+docker cp <path_host_local> <id_contenedor>:<path_contenedor>
 ```
+
 ### docker-compose
 Trabajar con Docker Compose.
+
 ```shell
+# Crear y arrancar la pila completa en segundo plano
+docker-compose up -d
 # Parar y eliminar todos los contenedores que Docker Compose ha creado
 docker-compose down
 # Si tu fichero de Docker Compose no tiene el nombre por defecto, le indicamos el nuevo nombre con -f.
 docker-compose -f compose_name.yml up -d
 # Listar servicios
 docker-compose ps
+# Mostrar procesos en ejecución
+docker-compose top
+# Reiniciar contenedores
+docker-compose restart
+# Arrancar servicio
+docker-compose start <service>
+# Parar servicio
+docker-compose stop <service>
+# Ejecutar comando
+docker-compose exec <service> <command>
+# Mostrar registros
+docker-compose logs
 ```
 
 ### docker exec
 Ejecutar comandos sobre un contenedor en ejecucción.
+
 ```shell
 # Entrar en un contenedor como root
 docker exec -u 0 -ti your_container bash
@@ -293,26 +344,30 @@ docker exec -u 0 -ti your_container bash
 
 ### docker search
 Buscar imagen en repositorio.
+
 ```shell
-docker search <término>
+docker search <img>
 ```
 
 ### docker save
 Guardar imagen en un fichero `.tar`.
+Pasos para realizar
 ```shell
-docker save --outpout <nombre_contenedor> <nombre_empaquetado_contenido.tar>
-docker export --output <nombre_contenedor> <nombre_empaquetado_contenido.tar>
-docker import <nombre_empaquetado_contenido.tar> <nombre_contenedor>
+docker save --output <cont> name.tar
+docker export --output <cont> name.tar
+docker import name.tar <cont>
 ```
 
 ### docker load
 Cargar una imagen desde un archivo tar o STDIN (Standard Input).
+
 ```shell
 docker load --input <test.tar>
 ```
 
 ### docker diff
 Inspeccionar cambios de archivos o directorios de contenedores.
+
 ```shell
 docker diff <id o nombre_imagen>
 ```
@@ -321,19 +376,22 @@ docker diff <id o nombre_imagen>
 Mostrar el uso del disco por Docker.
 
 ### docker create
-Crear contenedores. El contenedor se crea pero no se inicia.
+Crear contenedores. El contenedor se crea pero no se ejecuta.
+
 ```shell
 docker create -it --storage-opt size=120G fedora /bin/bash
 ```
 
 ### docker restart
 Reiniciar contenedor.
+
 ```shell
-docker restart container_name;
+docker restart <cont>;
 ```
 
 ### docker stats
 Mostrar estadísticas de uso de los recursos de contenedores (CPU, Memoria, I/O, PIDs).
+
 ```shell
 # Estadísticas generales
 docker stats
@@ -343,18 +401,21 @@ docker stats <id o nombre_imagen>
 
 ### docker update
 Actualizar recursos asignados a un contenedor.
+
 ```shell
 docker update <id o nombre_imagen>
 ```
 
 ### docker unpause
 Reanudar contenedores parados.
+
 ```shell
 docker unpause <container>
 ```
 
 ### docker system
 Administrar Docker.
+
 ```shell
 # Eliminar todos contenedores, redes, imágenes o volúmenes "colgantes" sin referencia o no utilizados
 docker system prune
@@ -364,6 +425,7 @@ docker system info
 
 ### docker events
 Obtener eventos en tiempo real desde el servidor. Estos eventos incluyen detalles sobre contenedores, imágenes, redes y volúmenes, como creación, eliminación, inicio, detención y otros cambios de estado. Esta información puede ser útil para comprender mejor el comportamiento de los contenedores y para la monitorización de los recursos.
+
 ```shell
 docker events
 ```
@@ -371,22 +433,25 @@ docker events
 ## Ejemplos prácticos
 
 ### Contenedor de MariaDB
-Crear un contenedor de MariaDB para tener un SGBD para testeo.
+Crear un contenedor de MariaDB para tener un SGBD donde probar consultas SQL.
+
 ```shell
 docker run --name some-mariadb -e MYSQL_ROOT_PASSWORD=root -d mariadb:latest
 docker exec -it some-mariadb mariadb -u root -p
 ```
 
 ### Contenedor de Apache
-Crear un contenedor de Apache para desarrollo web montando nuestra ruta actual en el directorio por defecto del servidor web
+Crear un contenedor de Apache para desarrollo web montando nuestra ruta actual en el directorio por defecto del servidor web.
+
 ```shell
 docker run -dit --name my-apache-app -p 8080:80 -v .:/usr/local/apache2/htdocs/ httpd:alpine
 ```
 
 ### Entorno LAMP usando Docker Compose
 Se recomienda cambiar las versiones de MariaDB y PHP por las últimas estables.
+
 ```yml
-version: "3"
+version: "3.9"
 services:
   db:
     image: mariadb:10.6
@@ -416,6 +481,7 @@ volumes:
 
 ### Al crear un volumen e intentar acceder a los ficheros compartidos compruebo que no tengo permisos
 Esto se debe a SELinux que está previniendo que un contenedor sea capaz de acceder al sistema de ficheros del anfitrión. Para autorizar el acceso, crearemos un nuevo contexto de seguridad para el directorio que vayamos a emplear como volumen.
+
 ```shell
 # Activar contexto de seguridad
 chcon -R -t container_file_t /ruta
@@ -427,12 +493,14 @@ ls -Z
 
 ### No puedo conectarme a MariaDB fuera del contenedor
 Solución: añadir el parámetro --protocol=TCP al comando. Recuerda añadir el parámetro `-P` si el puerto es diferente al 3306.
+
 ```shell
 mariadb -u root -p --protocol=TCP
 ```
 
 ### Añadir Docker Hub como repositorio de contenedores
 Este error se produce cuando intentamos descargar o buscar una imagen y se produce el error `Error: error creating build container: short-name "<image>:<tag>" did not resolve to an alias and no unqualified-search registries are defined in "/etc/containers/registries.conf"` porque no se ha especificado una fuente donde encontrar los contenedores. Solución:
+
 ```shell
 echo 'unqualified-search-registries=["docker.io"]' >> /etc/containers/registries.conf
 ```

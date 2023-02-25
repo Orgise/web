@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset=utf-8>
+	<title>Windows 11 Update</title>
+	<style>
+		body {
+			cursor: none;
+			background: #000;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			font-family: Segoe UI Light, Segoe UI, Arial;
+			font-size: 22px;
+			color: #fff;
+			font-weight: 600
+		}
+
+		.mainholder {
+			display: block;
+			position: absolute;
+			min-width: 100%;
+			min-height: 100%;
+			margin: 0;
+			padding: 0
+		}
+
+		.main {
+			width: 500px;
+			margin: 0 auto
+		}
+
+		.content {
+			position: absolute;
+			top: 50%;
+			height: 70px;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			width: 500px;
+			margin-top: -5%
+		}
+
+		.spinnerloading {
+			position: relative;
+			width: 50px;
+			margin: auto;
+			padding-top: 2px
+		}
+
+		.spinnerloading .dots {
+			position: absolute;
+			width: 48px;
+			height: 48px;
+			opacity: 0;
+			transform: rotate(225deg);
+			animation-iteration-count: infinite;
+			animation-name: roundspin;
+			animation-duration: 5.5s
+		}
+
+		.spinnerloading .dots:after {
+			content: '';
+			position: absolute;
+			width: 6px;
+			height: 6px;
+			border-radius: 5px;
+			background: #fff
+		}
+
+		.spinnerloading .dots:nth-child(2) {
+			animation-delay: 240ms
+		}
+
+		.spinnerloading .dots:nth-child(3) {
+			animation-delay: 480ms
+		}
+
+		.spinnerloading .dots:nth-child(4) {
+			animation-delay: 720ms
+		}
+
+		.spinnerloading .dots:nth-child(5) {
+			animation-delay: 960ms
+		}
+
+		@keyframes roundspin {
+			0% {
+				transform: rotate(225deg);
+				opacity: 1;
+				animation-timing-function: ease-out
+			}
+
+			7% {
+				transform: rotate(345deg);
+				animation-timing-function: linear
+			}
+
+			30% {
+				transform: rotate(455deg);
+				animation-timing-function: ease-in-out
+			}
+
+			39% {
+				transform: rotate(690deg);
+				animation-timing-function: linear
+			}
+
+			70% {
+				transform: rotate(815deg);
+				opacity: 1;
+				animation-timing-function: ease-out
+			}
+
+			75% {
+				transform: rotate(945deg);
+				animation-timing-function: ease-out
+			}
+
+			76% {
+				transform: rotate(945deg);
+				opacity: 0
+			}
+
+			to {
+				transform: rotate(945deg);
+				opacity: 0
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class=mainholder>
+		<div class=main>
+			<div class=content>
+				<div class=update>
+					<div class=spinnerloading>
+						<div class=dots></div>
+						<div class=dots></div>
+						<div class=dots></div>
+						<div class=dots></div>
+						<div class=dots></div>
+					</div><br><br>
+					<span>You're <span id=percent>0</span>% there.</span><br>
+					<span>Please keep your computer on.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// Desactivar clic derecho
+		document.oncontextmenu = new Function("return false");
+		// Nodo donde colocar el porcentaje
+		const percent_span = document.getElementById("percent");
+		// Contador del porcentaje
+		var percent = 0;
+		// Intervalo de actualización del porcentaje
+		const percent_interval = setInterval(update_percent, 10000);
+
+		/** Incrementar en uno el porcentaje cada 10 segundos.
+		 * Al llegar al 100% se elimina el intervalo.
+		 */
+		function update_percent() {
+			percent_span.textContent = ++percent;
+
+			if (percent > 99) {
+				clearInterval(percent_interval);
+			}
+		}
+	</script>
+</body>
+
+</html>

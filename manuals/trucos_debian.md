@@ -5,14 +5,14 @@ Estos trucos también se aplican para las distribuciones basadas en Debian GNU/L
 
 ### Descargar paquete y sus dependencias
 ```shell
-sudo apt install --download-only pkg_name
+sudo apt install --download-only <pkg>
 ```
 **Nota:** los empaquetados se guardarán en `/var/cache/apt/archives/`.
 
 ### Mostrar información de un paquete
 
 ```shell
-sudo apt-cache show nombre_paquete
+sudo apt-cache show <pkg>
 ```
 
 ### Instalar programas *.deb* junto a sus dependencias
@@ -71,3 +71,6 @@ sudo apt update && sudo apt install wine wine32 wine64 libwine libwine:i386 font
 # Instalar el programa
 wine nombre_programa.exe
 ```
+
+### Visualizar registros de los paquetes
+En sistemas basados en Debian, cuando se instala/desinstala software utilizando la herramienta DPKG, los logs generados se almacenan en el fichero `/var/log/dpkg.log` lo cual puede ser útil para saber qué programas se han ido instalando con esta utilidad.

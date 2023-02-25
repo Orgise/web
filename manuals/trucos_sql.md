@@ -307,6 +307,9 @@ SHOW DATABASES;
 --- Mostrar tablas en una base de datos específica
 SHOW TABLES FROM db;
 
+-- Visualizar la definición de una tabla
+SHOW CREATE TABLE clientes
+
 --- Mostrar estructura de una tabla
 SHOW COLUMNS FROM clientes;
 

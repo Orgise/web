@@ -144,6 +144,17 @@ sudo su
 apt purge*\*nvidia\**; apt autoremove; reboot
 ```
 
+### Ubuntu inicia en la consola después de actualizar la versión de Python
+Esto ocurre porque la versión de Ubuntu no es compatible con la nueva versión de Python. Para solucionarlo, volvemos a reinstalar los paquetes y la configuración de Ubuntu por defecto con el siguiente comando:
+```shell
+sudo apt reinstall ubuntu-desktop
+```
+
+Si todavía deseas tener la última versión de Python, puedes elegir alguna de las siguientes opciones:
+- Usar [pyenv](https://realpython.com/intro-to-pyenv/).
+- Actualizar a la última versión de Ubuntu.
+- Probar con otra distribución GNU/Linux.
+
 ### Copias de seguridad con rsync (muy recomendado)
 
 Rsync (Remote Sync) es una herramienta de sincronización para copiar ficheros y directorios en un sistema o entre sistemas. La mayor ventaja de rsync es que sólo copia los ficheros modificados y, por lo tanto, reduce el consumo de CPU y ahorra el ancho de banda y el tiempo durante la copia de ficheros.
@@ -503,6 +514,7 @@ fc-list
 
 ```shell
 last nombre_usuario
+lastlog -u <user>
 ```
 
 ### Ocultar GRUB al inicio
@@ -591,6 +603,31 @@ wc -c fichero.txt
 ### Ejecutar comandos o scripts en un momento determinado usando cron y crontab
 [Tutorial](https://es.itsfoss.com/crontab-linux/)
 
+Notas:
+- Crontab es el fichero de configuración que contiene la lista de tareas programadas que el demonio Cron va a ejecutar.
+- El fichero /etc/crontab es compartido por todos los usuarios.
+- Crontab solo obtiene algunas variables de entorno del usuario.
+- Para hacer que crontab lance aplicaciones gráficas hay que establecer la variable de entorno `DISPLAY=:0` ya sea en el propio crontab o en el script.
+
+Ejemplos comando crontab:
+```shell
+# Crear/Editar crontab
+crontab -e
+# Borrar crontab del usuario actual solicitando confirmación
+crontab -ir
+# Ver crontab del usuario john
+crontab -u john -l
+```
+
+Ejemplos tareas Crontab:
+```shell
+# Comprobar las variables de entorno que recibe crontab del usuario
+* * * * * env > /tmp/cron.env
+# Subir el volumen al 100% cada vez que arranque el equipo. También se puede usar pactl o pacmd
+@reboot amixer -c 0 -- sset Master 100%
+```
+
+
 ### Ejecutar comandos o scripts en un momento determinado usando at
 [Tutorial](https://noviello.it/es/como-programar-la-ejecucion-de-tareas-con-el-comando-at-en-linux/)
 
@@ -659,6 +696,32 @@ cd ~
 # Cambiar al directorio pasado como último argumento al comando anterior. Ejemplo:
 ls $HOME
 cd !$ # Nos moveremos al directorio personal
+```
+
+Usando pushd, popd y dirs para navegar con mayor facilidad entre directorios:
+- pushd: añadir directorios a la pila.
+- popd: eliminar directorios de la pila.
+- dirs: listar directorios de la pila.
+
+La pila se utiliza para guardar rutas de directorios en la memoria. Se mantiene hasta que se cierra la consola.
+El historial de la pila se ordena de más reciente a más antiguo.
+La posición número 0 de la pila se irá reescribiendo y siempre será el directorio de trabajo actual.
+Ejemplos:
+```shell
+# Guardar directorio actual en la pila
+pushd <dir>
+# Rotar la pila para que el número introducido de la pila sea el primero, permitiéndonos cambiar a ese directorio
+pushd +2
+# Cambiar al directorio 3 de la pila sin que se agregue un nuevo elemento a la misma
+cd ~3
+# Borra y cambia al directorio cero de la pila
+popd
+# Agregar directorio a la pila sin cambiar de directorio
+pushd -n <dir>
+# Eliminar el elemento 2 de la pila
+popd +n 2
+# Listar pila en formato largo (ruta absoluta) y numerado
+dirs -l -v
 ```
 
 ### Invocar al último comando introducido
@@ -1398,6 +1461,10 @@ Podemos enviar tantas URL como queramos.
 | -P "john" | Iniciar Firefox bajo un perfil específico
 | --preferences | Abrir las preferencias
 
+### El fichero /var/log/syslog
+Es uno de los ficheros más importantes de registro en el sistema. Está diseñado para almacenar los mensajes de errores y advertencias generados por los procesos del sistema. Estos mensajes pueden ser enviados por el kernel, los procesos de sistema o aplicaciones de usuario, y contienen información sobre cualquier cosa que pueda estar fallando en el sistema, como problemas de hardware, errores de software o problemas de red. Es una herramienta valiosa para los administradores de sistemas para diagnosticar problemas.
+Para visualizarlo en tiempo real usamos el comando `tail -f /var/log/syslog`.   
+
 ## Productividad
 
 ### Herramientas gráficas para copias de seguridad
@@ -1523,54 +1590,49 @@ Perfil `Casa`:
 - Entrante: Denegar
 - Saliente: Permitir
 
-### Instalamos diversos programas escogidos entre los mejores de uso frecuente
-
-* **Hardinfo:** Muestra muchas estadísticas de tu equipo y componentes
-* **Gparted:** Administra dispositivos y particiones
-* **Firefox:** Navega por la web
-* **Thunderbird:** Gestor de correo electrónico
-* **LibreOffice:** Procesador de textos
-* **GIMP:** Manipular imágenes. **Extra:** instalar el plug-in "resynthesizer" para eliminar objetos y defectos
-* **gnome-system-monitor o lxtask**: Gestor de tareas
-* **qBitTorrent:** Descargar ficheros torrent
-* **RedShift:** Activa un filtro para visualizar la pantalla de noche a gusto
-* **Rhythmbox:** Orquestador de música por grupos
-* **Simplescreenrecorder:** Graba tu pantalla
-* **Handbrake:** Conversor de formatos de vídeo
-* **Soundconverter:** Conversor simple de audio
-* **KeepassXC:** Gestor de contraseñas local
-* **Synaptic:** Interfaz gráfica para la gestión de paquetes
-* **xfce4-notes**: Apuntar cosas
-* **VLC:** Reproductor de vídeo y audio
-* **Evince:** Visor PDF ligero
-* **Nextcloud:** Cliente de almacenamiento en la nube
-* **Telegram:** Aplicación de mensajería con muchas funcionalidades
-* **Lingot:** Afinador de instrumentos
-* **Psensor:** Sensores de temperatura del hardware
-* **Catfish:** Buscar en el sistema de archvivos
-* **MenuLibre:** Añadir o eliminar aplicaciones del menú
-* **vrms:** Comprobar si tenemos instalado software privativo en nuestro sistema
-* **neofetch:** Información del sistema en el terminal
-* **mlocate:** Utilidad para buscar ficheros y directorios
-* **OpenShot:** Editor de vídeo simple y poderoso
-* [virt-manager](https://www.christitus.com/vm-setup-in-linux): Gestor de máquinas virtuales ultrarápidas gracias a la tecnología KVM/QEMU.
+### Selección personal de software libre de calidad
+| Software | Descripción |
+|-|-|
+| Hardinfo | Muestra muchas estadísticas de tu equipo y componentes
+| Gparted | Administra dispositivos y particiones
+| Firefox | Navega por la web
+| Thunderbird | Gestor de correo electrónico
+| LibreOffice | Procesador de textos
+| GIMP | Manipular imágenes. **Extra:** instalar el plug-in "resynthesizer" para eliminar objetos y defectos
+| gnome-system-monitor o lxtask | Gestor de tareas
+| qBitTorrent | Descargar ficheros torrent
+| RedShift | Activa un filtro para visualizar la pantalla de noche a gusto
+| Rhythmbox | Orquestador de música por grupos
+| SimpleScreenRecorder  | Graba tu pantalla
+| HandBrake | Conversor de formatos de vídeo
+| SoundConverter | Conversor simple de audio
+| KeepassXC | Gestor de contraseñas local
+| Synaptic | Interfaz gráfica para la gestión de paquetes
+| xfce4-notes | Apuntar cosas
+| VLC | Reproductor de vídeo y audio
+| Evince | Visor PDF ligero
+| Nextcloud | Cliente de almacenamiento en la nube
+| Telegram | Aplicación de mensajería con muchas funcionalidades
+| Lingot | Afinador de instrumentos
+| Psensor | Sensores de temperatura del hardware
+| Catfish | Buscar en el sistema de archvivos
+| MenuLibre | Añadir o eliminar aplicaciones del menú
+| vrms | Comprobar si tenemos instalado software privativo en nuestro sistema
+| neofetch | Información del sistema en el terminal
+| mlocate | Utilidad para buscar ficheros y directorios
+| OpenShot | Editor de vídeo simple y poderoso
+| KDiskMark | Herramienta de benchmarking de HDD y SDD
+| virt-manager | Gestor de máquinas virtuales ultrarápidas gracias a la tecnología KVM/QEMU. [Instalación](https://www.christitus.com/vm-setup-in-linux)
+| Tor Browser | Navegación privada usando la red Tor. [Instalación](https://www.howtogeek.com/423866/how-to-install-and-use-the-tor-browser-on-linux/)
+| FreeTube | YouTube sin anuncios. [Instalación](https://freetubeapp.io/)
+| Signal | Mensajería instantánea privada. [Instalación](https://signal.org/)
+| Element | Cliente oficial de Matrix. [Instalación](https://element.io/)
+| Librewolf | Navegador web derivado de Firefox. [Instalación](https://librewolf.net/)
+| Codium | Visual Studio Code libre. [Instalación](https://github.com/VSCodium/vscodium)
+| Eclipse | IDE de Java. [Instalación](https://www.eclipse.org/downloads/)
+| PyCharm | IDE de Python. [Instalación](https://www.jetbrains.com/pycharm/)
 
 **Recomendación:** no instales un lector de PDF si tu distribución ya trae uno por defecto (aplicable para otras categorías). Si aún así deseas instalarlo, borra el otro para ahorrar espacio.
-
-```shell
-sudo apt install hardinfo gparted firefox thunderbird libreoffice gimp gnome-system-monitor qbittorrent redshift-gtk rhythmbox simplescreenrecorder handbrake soundconverter keepassxc synaptic xfce4-notes vlc evince nextcloud-desktop telegram-desktop lingot psensor catfish menulibre vrms neofetch mlocate virt-manager
-```
-
-Otros programas excelentes que no se encuentran en los repositorios:
-
-* [tor-browser](https://www.howtogeek.com/423866/how-to-install-and-use-the-tor-browser-on-linux/): Navegación privada usando la red Tor
-* [FreeTube](https://freetubeapp.io/): YouTube sin anuncios
-* [Signal](https://signal.org/): Mensajería instantánea privada
-* [Element](https://element.io/): Cliente oficial de Matrix
-* [Librewolf](https://librewolf.net/): Navegador web derivado de Firefox
-* [Codium](https://github.com/VSCodium/vscodium): Visual Studio Code libre
-* [Eclipse](https://www.eclipse.org/downloads/): IDE de Java
-* [PyCharm](https://www.jetbrains.com/pycharm/): IDE de Python
 
 ### Activar soporte para flatpaks e instalación de software
 
@@ -1583,11 +1645,9 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 reboot
 ```
 
-Programas Flatpak recomendados:
-
-* **FlatSeal:** Gestor de permisos de aplicaciones Flatpak.
-
+Ejemplo de instalación de un programa usando Flatpak:
 ```shell
+# FlatSeal es un programa para administrar los permisos usados por aplicaciones Flatpak
 flatpak install flatseal
 ```
 
