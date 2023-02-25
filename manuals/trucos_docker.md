@@ -6,8 +6,10 @@ Docker es una plataforma creada con el fin de desarrollar, implementar y ejecuta
 Como alternativa a Docker podemos usar Podman, el cual es un motor de contenedores desarrollado por RedHat. Si bien es similar a Docker en muchos aspectos, se diferencia de esta última en que su arquitectura no utiliza un demonio. Tampoco necesita permisos de administrador. Esto significa que podman puede ejecutar contenedores directamente en el sistema sin necesidad de un demonio de fondo, lo que lo hace más seguro y fácil de usar. Podman también ofrece una interfaz de línea de comandos (CLI) similar a la de Docker, por lo que la mayoría de los usuarios pueden simplemente asignar un alias de Docker a Podman para realizar la misma tarea.
 
 ## Instalación
+
 ### Instalación simple
 Abrimos el terminal y escribimos los siguientes comandos:
+
 ```shell
 sudo apt install docker.io docker-compose
 sudo usermod -aG docker your_user
@@ -54,21 +56,102 @@ El archivo Dockerfile debe de llamarse así.
 El Dockerfile usa la caché de intrucciones anteriormente ejecutadas por eficiencia.
 Para que la caché no se cancele si instalamos muchos paquetes, usamos solo una instrucción con ampersand (&). Docker en este caso solo ejecutaría una capa.
 
-CMD interpreta shell.
-[Saber más](https://www.ionos.es/digitalguide/servidores/know-how/dockerfile/)
+| Instrucción | Descripción
+|-|-|
+| MAINTAINER | Define el nombre y la dirección de correo electrónico del mantenedor de la imagen
+| FROM | Especifica la imagen base que se utilizará para construir la imagen actual
+| RUN | Ejecuta un comando dentro del contenedor mientras se está construyendo la imagen
+| CMD | Especifica el comando que se ejecutará cuando se inicie el contenedor
+| ENTRYPOINT | Especifica el comando o script que se ejecutará cuando se inicie el contenedor, aunque se pueden agregar argumentos a la línea de comandos
+| COPY | Copia archivos desde el sistema de archivos del host al contenedor
+| ADD | Copia archivos desde el sistema de archivos del host al contenedor, pero también admite la extracción de archivos comprimidos
+| EXPOSE | Especifica los puertos que deben estar expuestos en el contenedor
+| VOLUME | Crea un volumen de Docker para el contenedor
+| WORKDIR | Establece el directorio de trabajo dentro del contenedor
+| ENV | Define una variable de entorno dentro del contenedor
+| USER | Establece el usuario y el grupo de usuario que se utilizarán dentro del contenedor
+
+La instrucción EXPOSE no expone los puertos hacia el anfitrión, sino a los contenedores que están en la misma red.
 
 ### Docker Compose
 Es un orquestador de contenedores, es decir, configura varios contenedores vinculados entre sí. Usa el formato `.yml`.
 Un ejemplo de Docker Compose es la pila LAMP.
 [Saber más](https://keepcoding.io/blog/que-es-docker-compose/)
 
+| Instrucción | Descripción
+|-|-|
+| version | Definir la versión de Docker Compose a usar en el fichero
+| services | Define los contenedores que se deben crear
+| image | Especifica la imagen que se utilizará para construir el servicio
+| context | Ruta donde se encuentra el Dockerfile
+| build | Especifica la ubicación del Dockerfile que se utilizará para construir la imagen
+| command | Especifica el comando que se ejecutará cuando se inicie el servicio
+| environment | Define una variable de entorno que se utilizará en el servicio
+| ports | Especifica los puertos que deben estar expuestos en el servicio
+| volumes | Crea un volumen de Docker para el servicio
+| networks | Especifica las redes que deben estar disponibles para el servicio
+| depends_on | Especifica los servicios que deben estar en ejecución antes de iniciar este servicio
+| restart | Define la política de reinicio para los contenedores
+| env_file | Permite cargar variables de entorno desde un archivo en lugar de definirlas en el archivo YAML
+| labels | Define las etiquetas que se deben aplicar a los contenedores
+| container_name | Especifica el nombre que se utilizará para el contenedor
+| healthcheck | Define un comando que se ejecutará periódicamente para verificar la salud del contenedor
+| extends | Permite extender un servicio existente en un archivo YAML diferente. Esto evita la necesidad de repetir la definición del servicio en cada archivo YAML
+| secrets | Permite el uso de secretos en el archivo de Docker Compose, lo que permite a los contenedores acceder a datos confidenciales sin exponerlos en el archivo de configuración
+| configs | Similar a la directiva secrets, pero se utiliza para archivos de configuración en lugar de datos confidenciales
+| deploy | Define opciones de implementación para servicios, como la cantidad de réplicas que se deben crear o cómo se debe equilibrar la carga
+| scale | Define el número de instancias de un servicio que se deben crear. Esta opción es una forma más rápida de crear varias instancias del mismo servicio
+| tmpfs | Permite la creación de sistemas de archivos temporales en memoria para los contenedores
+| stop_grace_period | Define el tiempo que se debe esperar antes de detener un contenedor. Esto puede ser útil para permitir que los procesos en el contenedor finalicen correctamente antes de detener el contenedor
+| logging | Define cómo se deben registrar los registros del contenedor, como dónde se deben almacenar y cómo se deben formatear
+| external_links | Permite conectar los contenedores de una pila a los contenedores que se ejecutan fuera de la pila
+| extra_hosts | Permite agregar entradas de host adicionales al archivo `/etc/hosts` del contenedor. Esto es útil cuando se necesita conectar con un host que no se puede resolver mediante DNS
+| stop_signal | Define la señal que se enviará al contenedor para detenerlo. Por defecto, Docker envía una señal SIGTERM, pero esto puede ser cambiado con esta directiva
+| tty | Permite asignar una TTY (Terminal Type) al contenedor. Esto puede ser útil para ejecutar aplicaciones interactivas que requieren una terminal
+|
+
+Ejemplo instrucción `healthcheck`:
+Healtcheck va a ejecutar un curl a localhost, cada minuto y medio, una vez hayan pasado 40 segundos, si el comando tarda más de 10 segundos en devolver un resultado lo considerará como un fallo y si un fallo ocurre más de 3 veces el servicio se considerará "no saludable".
+
+```yml
+version: '3.8'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file: common.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+```
+
+Intrucción `volumes`:
+
+- El volumen puede ser una ubicación en tu sistema o también el nombre de un volumen que hayas creado con Docker.
+- Opcionalmente podemos especificar si el uso de volúmenes será de solo lectura o de lectura y escritura, con “ro” y “rw”, respectivamente.
+- La propiedad `volumes` fuera de `services` indica los volúmenes que pueden ser usados por cualquier servicio que lo necesite, permitiendo usar el mismo volumen en varios contenedores.
+- La propiedad `volumes` dentro de un servicio, indica el volúmen que vamos a utilizar seguido de la ruta del contenedor donde va a ser montado el volumen.
+
+Podemos aplicar las siguientes políticas de reinicio a nuestros servicios con la instrucción `restart`:
+
+- no: nunca reinicia el contenedor
+- always: siempre lo reinicia
+- on-failure: lo reinicia si el contenedor devuelve un estado de error
+- unless-stopped: lo reinicia en todos los casos excepto cuando se detiene
+
+
+
+
 ### Docker Swarm
 Docker Swarm es una herramienta software que permite ejecutar los contenedores en una granja de nodos, esto implica uno o varios balanceadores de carga implementados en uno o varios nodos maestros y los nodos que prestan el servicio, implementados en nodos trabajadores. Los contenedores que se ejecutan en modo Swarm se les denomina en ocasiones como modo enjambre.
-[Saber más][https://www.makingscience.es/blog/que-es-docker-swarm/]
+[Saber más](https://www.makingscience.es/blog/que-es-docker-swarm/)
 
 ### Docker Machine
 Docker Machine es una herramienta que nos ayuda a crear, configurar y manejar máquinas (virtuales o físicas) con Docker Engine. Con Docker Machine podemos iniciar, parar o reiniciar los nodos docker, actualizar el cliente o el demonio docker y configurar el cliente docker para acceder a los distintos Docker Engine. El propósito principal del uso de esta herramienta es la de crear máquinas con Docker Engine en sistemas remotos y centralizar su gestión.
-[Saber más][https://www.josedomingo.org/pledin/2016/05/creando-servidores-docker-con-docker-machine/]
+[Saber más](https://www.josedomingo.org/pledin/2016/05/creando-servidores-docker-con-docker-machine/)
 
 ## Comandos
 
@@ -97,6 +180,7 @@ Si ya estamos logeados y volvemos a poner el comando, nos aparece:
 
 Autenticarse usando token en vez de nuestra contraseña:
 [Guía oficial](https://docs.docker.com/docker-hub/access-tokens/)
+
 1. Logearse en [Docker Hub](https://hub.docker.com).
 2. Haga clic en su nombre de usuario arriba a la derecha y pulse Ajustes de cuenta.
 3. Seleccione Seguridad > Nuevo token de acceso.
@@ -137,6 +221,7 @@ docker push <nombre_tag_imagen_creada>
 
 ### docker build
 Construir una imagen a partir de un Dockerfile (--file será necesario si el nombre del fichero no es "Dockerfile" y no está situado el mismo directorio).
+
 ```shell
 docker build -t my-image:1.0 .
 docker build --tag <nombre_imagen> --file <fichero_dockerfile>
@@ -314,10 +399,12 @@ Trabajar con Docker Compose.
 ```shell
 # Crear y arrancar la pila completa en segundo plano
 docker-compose up -d
-# Parar y eliminar todos los contenedores que Docker Compose ha creado
+# Parar y eliminar todos los contenedores y redes que Docker Compose ha creado
 docker-compose down
 # Si tu fichero de Docker Compose no tiene el nombre por defecto, le indicamos el nuevo nombre con -f.
 docker-compose -f compose_name.yml up -d
+# Construir imágenes de los servicios específicados
+docker-compose build
 # Listar servicios
 docker-compose ps
 # Mostrar procesos en ejecución
@@ -326,8 +413,12 @@ docker-compose top
 docker-compose restart
 # Arrancar servicio
 docker-compose start <service>
+# Arrancar servicios
+docker-compose start
 # Parar servicio
 docker-compose stop <service>
+# Parar servicios
+docker-compose stop
 # Ejecutar comando
 docker-compose exec <service> <command>
 # Mostrar registros
@@ -447,14 +538,28 @@ Crear un contenedor de Apache para desarrollo web montando nuestra ruta actual e
 docker run -dit --name my-apache-app -p 8080:80 -v .:/usr/local/apache2/htdocs/ httpd:alpine
 ```
 
-### Entorno LAMP usando Docker Compose
-Se recomienda cambiar las versiones de MariaDB y PHP por las últimas estables.
+### Entorno LAMP usando Docker Compose y Dockerfile
+Al hacer uso de un Dockerfile para instalar dependencias para nuestro proyecto, evitamos tener que poner la directiva `command`, la cual ejecutará lo que hayamos indicado cada vez que se inicie Docker Compose, malgastando recursos y aumentando el tiempo de arranque del contenedor.
+
+```shell
+FROM php:apache
+# Soporte para PDO
+RUN docker-php-ext-install pdo_mysql
+```
+
+Usando el Dockerfile, creamos una imagen personalizada con todo lo que necesitamos una única vez. Podemos construir la imagen con el siguiente comando:
+
+```shell
+docker build -t php:apache-pdo .
+```
+
+O bien, la construimos automáticamente al lanzar el Compose, con el nombre que le hayamos indicado al servicio. Será la opción que elegiremos para construir el siguiente Docker Compose:
 
 ```yml
 version: "3.9"
 services:
   db:
-    image: mariadb:10.6
+    image: mariadb:latest
     container_name: mariadb_server
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -463,7 +568,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
   web:
-    image: php:8.2.2-apache
+    build: .
     container_name: php_web_server
     ports:
       - "8080:80"
@@ -471,8 +576,6 @@ services:
       - ./public:/var/www/html
     depends_on:
       - db
-    # Soporte para PDO
-    command: ["bash", "-c", "docker-php-ext-install pdo_mysql && apache2-foreground"]
 volumes:
   db_data:
 ```

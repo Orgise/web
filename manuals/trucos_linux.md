@@ -17,6 +17,7 @@ sudo mkfs.ntfs -n nombre_para_el_usb /dev/sdXX
 ```
 
 ### Expulsar el dispositivo del equipo
+
 ```shell
 sudo eject /dev/sdX
 ```
@@ -94,7 +95,7 @@ sudo apt install catfish
 
 Editamos el fichero `/etc/lightdm/lightdm-gtk-greeter.conf`:
 
-```
+```shell
 [greeter]
 # Fondo de pantala de inicio de sesión
 background=/ruta/imagen/fondo
@@ -128,7 +129,7 @@ clock-format= %a %d %b, %H:%M
 
 Editamos el fichero `/etc/lightdm/lightdm.conf`:
 
-```
+```shell
 [Seat:\*]
 # Mostrar el nombre de todos los usuarios
 greeter-hide-users=false
@@ -146,6 +147,7 @@ apt purge*\*nvidia\**; apt autoremove; reboot
 
 ### Ubuntu inicia en la consola después de actualizar la versión de Python
 Esto ocurre porque la versión de Ubuntu no es compatible con la nueva versión de Python. Para solucionarlo, volvemos a reinstalar los paquetes y la configuración de Ubuntu por defecto con el siguiente comando:
+
 ```shell
 sudo apt reinstall ubuntu-desktop
 ```
@@ -160,6 +162,7 @@ Si todavía deseas tener la última versión de Python, puedes elegir alguna de 
 Rsync (Remote Sync) es una herramienta de sincronización para copiar ficheros y directorios en un sistema o entre sistemas. La mayor ventaja de rsync es que sólo copia los ficheros modificados y, por lo tanto, reduce el consumo de CPU y ahorra el ancho de banda y el tiempo durante la copia de ficheros.
 
 **Ejemplo 1:** Copiar los ficheros (solo si se encuentran cambios) del directorio A en el directorio Backup-A. 
+
 ```shell
 rsync A/ Backup-A/
 ```
@@ -181,6 +184,7 @@ rsync -avh --delete --progress --exclude=".[!.]*" $HOME /media/USB_NAME/backup
 ```
 
 Otros parámetros importantes:
+
 - `-a`: equivale a `-rlptgoD`, es decir:
     - `-r:` copiar directorios recursivamente.
     - `-l`: copiar enlaces simbólicos.
@@ -193,6 +197,7 @@ Otros parámetros importantes:
         - `--specials`: copiar ficheros especiales como FIFO o socket.
         
         Alguno de estos ficheros necesitarán permisos de root para poder copiarse, pero lo normal es que no nos encontremos con ellos cuando hagamos copias de nuestros directorios.
+
 > Un **fichero FIFO** es un tipo especial de fichero en el almacenamiento local que permite que dos o más procesos se comuniquen entre sí leyendo/escribiendo en/desde este fichero.
 >
 > Un **fichero socket** es un punto final de un enlace de comunicación bidireccional entre dos programas que se ejecutan en la red.
@@ -250,7 +255,8 @@ mkdir ~/.config/redshift && nano ~/.config/redshift/redshift.conf
 ```
 
 Y pegaremos lo siguiente:
-```
+
+```shell
 [redshift]
 
 location-provider=manual
@@ -285,12 +291,14 @@ Crear los lanzadores y moverlos al directorio `/home/tu_usuario/.config/autostar
 **Nota:** Esta guía ha funcionado usando Debian y Mozilla Firefox.
 
 ### Como activar el autocompletado del terminal
+
 ```shell
 sudo apt install bash-completion
 ```
 Pulsar la tecla Tabulador para activar el autocompletado.
 
 ### Buscar ficheros y directorios
+
 ```shell
 # Búsqueda en el directorio actual y sus subdirectorios para encontrar un fichero (no directorio) llamado fichero.txt sin distinción entre mayúsculas y minúsculas
 find . -type f -iname fichero.txt
@@ -313,17 +321,17 @@ find . -type f -name "*.txt" -exec grep -i alice {} +
 find . -type f -name "*.txt" | xargs grep -i alice
 ```
 
-> Recuerda:
->
-> **c:** bytes
->
-> **k:** kilobytes
->
-> **M:** Megabytes
->
-> **G:** Gigabytes
+Recuerda:
+
+| Acrónimo | Significado
+|-|-|
+| c | bytes
+| k | kilobytes
+| M | Megabytes
+| G | Gigabytes
 
 ### Buscar texto en ficheros de un directorio
+
 ```shell
 grep -Pri texto_a_buscar /ruta/directorio
 ```
@@ -377,6 +385,7 @@ Seleccionamos la partición y desde el menú de la rueda de herramientas selecci
 Cambiamos la contraseña y reiniciamos el equipo.
 
 ### Apagar y reiniciar el sistema
+
 ```shell
 # Apagar inmediatamente
 shutdown now
@@ -392,7 +401,8 @@ shutdown -c
 ```
 
 ### Mostrar información del sistema
-Se recomienda ejecutar los comandos con sudo para visualizar mayor información.
+En algunos de los siguientes comandos se recomienda ejecutar con `sudo` para obtener mayor información.
+
 ```shell
 # Detalles de la CPU
 lscpu
@@ -415,7 +425,7 @@ sudo fdisk -l
 lsblk
 # Resoluciones disponibles
 xrandr
-# Dispositivos conectados al bus PCI
+# Dispositivos conectados al bus PCI, como la tarjeta Wi-Fi
 lspci
 # Dispositivos USB conectados
 lsusb
@@ -438,17 +448,10 @@ nmcli -p device show
 host myip.opendns.com resolver1.opendns.com
 curl ifconfig.me
 ```
-```
-
-### Visualizar detalles de la tarjeta Wi-Fi
-```shell
-lspci
-```
 
 Para encontrar el resultado buscado, fíjate bien en términos como *Intel*, *Realtek* o *Wireless*.
 
 ### Instalar controladores para tarjetas Wi-Fi Intel y Realtek
-
 Si estamos en Debian, debemos añadir el repositorio *non-free*.
 
 ```shell
@@ -483,6 +486,7 @@ sudo apt update
 
 ### Retener paquetes
 Útil para evitar que un paquete se actualice.
+
 ```shell
 # Retener
 sudo apt-mark hold <package-name>
@@ -558,6 +562,7 @@ sudo apt install hunspell hunspell-es
 Reiniciar LibreOffice para aplicar cambios.
 
 ### Cerrar procesos
+
 ```shell
 # Forzar terminación de todos los procesos ping
 pkill -9 ping
@@ -571,11 +576,14 @@ killall ping
 xkill
 ```
 Señales más usadas de terminación de procesos:
-> 9 (SIGKILL): La señal que cierra inmediatamente un proceso, sin permitirle guardar su estado actual.
->
-> 15 (SIGTERM): Solicita la terminación del proceso. Esta señal puede ser ignorada por un proceso. Pero esta es la forma preferida de terminar un proceso ya que puede liberar los recursos cuando el proceso recibe SIGTERM. Es la que se usa por defecto.
+
+| Señal | Descripción
+|-|-|
+| 9 (SIGKILL) | Cierra inmediatamente un proceso, sin permitirle guardar su estado actual
+| 15 (SIGTERM) | Solicita la terminación del proceso. Esta señal puede ser ignorada por un proceso. Pero esta es la forma preferida de terminar un proceso ya que puede liberar los recursos cuando el proceso recibe SIGTERM. Es la que se usa por defecto
 
 ### Mover o renombrar ficheros y directorios
+
 ```shell
 # Mover varios ficheros a la vez
 mv fichero1.txt fichero2.txt fichero3.txt directorio_destino
@@ -586,11 +594,13 @@ mv -n fichero_de_origen directorio_de_objetivo
 ```
 
 Otros parámetros importantes:
+
 - `-n`: evitar sobrescribir si ya existe en destino.
 - `-i`: preguntar antes de sobrescribir.
 - `-b:` sobrescribir creando una copia de seguridad.
 
 ### Contar el número de líneas, palabras y caracteres
+
 ```shell
 # Número de líneas
 wc -l fichero.txt
@@ -604,12 +614,14 @@ wc -c fichero.txt
 [Tutorial](https://es.itsfoss.com/crontab-linux/)
 
 Notas:
+
 - Crontab es el fichero de configuración que contiene la lista de tareas programadas que el demonio Cron va a ejecutar.
 - El fichero /etc/crontab es compartido por todos los usuarios.
 - Crontab solo obtiene algunas variables de entorno del usuario.
 - Para hacer que crontab lance aplicaciones gráficas hay que establecer la variable de entorno `DISPLAY=:0` ya sea en el propio crontab o en el script.
 
 Ejemplos comando crontab:
+
 ```shell
 # Crear/Editar crontab
 crontab -e
@@ -620,6 +632,7 @@ crontab -u john -l
 ```
 
 Ejemplos tareas Crontab:
+
 ```shell
 # Comprobar las variables de entorno que recibe crontab del usuario
 * * * * * env > /tmp/cron.env
@@ -633,6 +646,7 @@ Ejemplos tareas Crontab:
 
 
 ### Comprimir ficheros y directorios
+
 ```shell
 sudo apt install zip unzip
 # Crear un comprimido a partir de un montón de ficheros y directorios
@@ -655,7 +669,8 @@ Creamos un nuevo atajo de teclado `Ajustes → Teclado → Atajos de aplicación
 bash -c "sleep .1 && xdotool type 'Mensaje' && xdotool key Return"
 ```
 
-### Copiar
+### Copiar ficheros
+
 ```shell
 # Copiar un fichero en otro directorio
 cp /etc/issue ~/version.txt
@@ -664,6 +679,7 @@ cp -r directorio_origen_1 directorio_origen_2 directorio_origen_3 directorio_obj
 ```
 
 ### Comprobar que distribución estoy usando
+
 ```shell
 lsb_release -d
 uname -a
@@ -673,6 +689,7 @@ hostnamectl
 
 ### Cambiar permisos
 **Nota:** Con chmod y sudo tienes el poder de cambiar los permisos en casi cualquier fichero. Esto no significa que debas hacerlo. Los permisos fuera de su directorio personal están establecidos de la manera que están por una razón. Cambiarlos es raramente la solución apropiada a cualquier problema.
+
 ```shell
 # Otorgar permisos de ejecución al propietario para un fichero
 chmod o+x fichero.txt
@@ -681,12 +698,14 @@ chmod 644 fichero.txt
 ```
 
 ### Cambiar propiedad de ficheros o directorios
+
 ```shell
 # Establecer tu usuario personal como propietario de todos los ficheros de su directorio personal
 sudo chown -R $USER:$USER $HOME
 ```
 
 ### Cambiar de directorio
+
 ```shell
 # Cambiar al último directorio de trabajo
 cd -
@@ -699,6 +718,7 @@ cd !$ # Nos moveremos al directorio personal
 ```
 
 Usando pushd, popd y dirs para navegar con mayor facilidad entre directorios:
+
 - pushd: añadir directorios a la pila.
 - popd: eliminar directorios de la pila.
 - dirs: listar directorios de la pila.
@@ -707,6 +727,7 @@ La pila se utiliza para guardar rutas de directorios en la memoria. Se mantiene 
 El historial de la pila se ordena de más reciente a más antiguo.
 La posición número 0 de la pila se irá reescribiendo y siempre será el directorio de trabajo actual.
 Ejemplos:
+
 ```shell
 # Guardar directorio actual en la pila
 pushd <dir>
@@ -726,6 +747,7 @@ dirs -l -v
 
 ### Invocar al último comando introducido
 Lo hacemos con `!!`. Ejemplo:
+
 ```shell
 # Típico error al instalar un software sin tener permisos para ello
 apt install vlc
@@ -733,16 +755,19 @@ sudo !! # Es equivalente a sudo apt install vlc
 ```
 
 ### Obtener el código de salida del último comando introducido
+
 ```shell
 echo $?
 ```
 
 ### Vaciar el contenido de un fichero
+
 ```shell
 > fichero.txt
 ```
 
 ### Descargar ficheros de Internet
+
 ```shell
 sudo apt install wget
 wget URL
@@ -761,6 +786,7 @@ wget -c
 [Tutorial](https://javiermartinalonso.github.io/linux/2018/01/23/linux-tips-concatenar-comandos.html)
 
 ### Abrir un fichero o URL usando la aplicación favorita del usuario
+
 ```shell
 # Abrir el directorio actual en el explorador de ficheros
 xdg-open .
@@ -777,6 +803,7 @@ lowriter --headless --convert-to pdf \*.odt
 **Nota:** habrá tantos *.pdf* como *.odt* haya en el directorio actual.
 
 ### Convertir múltiples PDF en uno solo
+
 ```shell
 pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 ```
@@ -785,17 +812,20 @@ pdftk mypdf1.pdf mypdf2 cat output salida.pdf
 [Tutorial completo](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10)
 
 ### Crear 10 ficheros rápidamente
+
 ```shell
 touch test{1..10}.txt
 ```
 
 ### Visualizar el tamaño del directorio actual
 El comando du se puede usar para verificar cuánto espacio de almacenamiento ocupa una carpeta o directorio. Es útil para identificar qué parte de un sistema está usando una cantidad excesiva de espacio de almacenamiento.
+
 ```shell
 du -sh .
 ```
 
 ### Ordenar ficheros
+
 ```shell
 # Ordenar numéricamente y enviar el resultado a otro fichero
 sort filename.txt -n > filename_ordenado.txt
@@ -803,11 +833,13 @@ sort filename.txt -n > filename_ordenado.txt
 sort filename.txt -u
 ```
 ### Ver los 20 comandos más usados
+
 ```shell
 history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -rn | head -n 20
 ```
 
 ### Mostrar contenido de ficheros por pantalla
+
 ```shell
 cat fichero.txt
 more fichero.txt
@@ -823,6 +855,7 @@ nl fichero.txt
 ```
 
 ### Crear directorios
+
 ```shell
 mkdir dir1
 # Crear los directorios padre si no existen
@@ -830,6 +863,7 @@ mkdir -p dir1/dir2/dir3
 ```
 
 ### Dos herramientas para gestionar el portapapeles
+
 ```shell
 sudo apt install xclip xsel
 # Pegar portapapeles
@@ -850,16 +884,19 @@ sudo apt install cmatrix && cmatrix
 ```
 
 ### Mostrar mensaje en bucle
+
 ```shell
 yes mensaje
 ```
 
 ### Imprimir con efecto arco iris la salida de los comandos
+
 ```shell
 ls | lolcat
 ```
 
 ### Dos herramientas para mostrar mensajes con tipografías grandes
+
 ```shell
 sudo apt install toilet figlet
 toilet mensaje
@@ -867,12 +904,14 @@ figlet mensaje
 ```
 
 ### Gato que persigue tu ratón por el terminal
+
 ```shell
 sudo apt install oneko
 oneko
 ```
 
 ### Hacer sonar por el altavoz el texto introducido por teclado
+
 ```shell
 sudo apt install espeak
 espeak
@@ -888,7 +927,8 @@ cal 1 1990
 ```
 
 ### Tres métodos para descomprimir multiples ficheros .zip de un mismo directorio
-```bash
+
+```shell
 unzip '*.zip'
 unzip \*.zip
 for z in *.zip; do unzip "$z"; done
@@ -896,6 +936,7 @@ for z in *.zip; do unzip "$z"; done
 
 ### Cambiar el grupo principal de un usuario de forma teporal
 Útil cuando añadimos a nuestro usuario a un grupo nuevo y no queremos cerrar sesión y entrar de nuevo para aplicar los cambios.
+
 ```shell
 newgrp group_name
 ```
@@ -905,6 +946,8 @@ https://www.hostinger.com/tutorials/tmux-beginners-guide-and-cheat-sheet/
 
 
 ### Cambiar la distribución predeterminada del teclado
+Muy útil cuando arrancamos desde un LiveUSB.
+
 ```shell
 # Español
 setxkbmap es
@@ -914,6 +957,7 @@ setxkbmap es
 [Manual de referencia](https://wiki.archlinux.org/title/XDG_user_directories)
 
 ### Reiniciar el equipo en caso de congelamiento severo
+
 Pulsamos `Alt + Impr Pant`.
 Sin dejar de soltarlas pulsamos las teclas `REISUB`.
 
@@ -923,6 +967,7 @@ Sin dejar de soltarlas pulsamos las teclas `REISUB`.
 **Método temporal**
 
 Expirará al cerrar el terminal actual.
+
 ```shell
 export PATH=$PATH:/ruta
 ```
@@ -930,7 +975,8 @@ export PATH=$PATH:/ruta
 **Método permanente**
 
 Añadimos el comando del método temporal en alguno de estos ficheros:
-```
+
+```shell
 # Para todos los usuarios
 /etc/profile
 /etc/environment
@@ -942,22 +988,26 @@ Añadimos el comando del método temporal en alguno de estos ficheros:
 ```
 
 ### No se muestran correctamente todos los iconos de Adwaita en XFCE
+
 Instalamos otro paquete de iconos como Papirus
 ```shell
 sudo apt install papirus-icon-theme
 ```
 
 ### Visualizar idioma del sistema
+
 ```shell
 cat /etc/locale.conf
 ```
 
 ### Cambiar idioma del sistema a español de España
+
 ```shell
 sudo localectl set-locale LANG=es_ES.UTF-8
 ```
 
 ### Visualizar ejemplos comunes de uso de un comando
+
 ```shell
 sudo apt install tldr
 # Actualizar caché local
@@ -967,6 +1017,7 @@ tldr rsync
 ```
 
 ### Herramienta para gestionar la papelera de reciclaje del usuario
+
 ```shell
 sudo apt install trash-cli
 # Eliminar fichero
@@ -978,6 +1029,7 @@ trash-restore
 ```
 
 ### Alternativa al comando cd para navegar más rápido por el árbol de directorios
+
 ```shell
 sudo apt install autojump
 # Cambiar al directorio que contiene 'foo'
@@ -989,11 +1041,13 @@ jo music
 ```
 
 ### Establecer el idioma de GIMP a castellano
+
 ```shell
 sudo apt install language-pack-gnome-es
 ```
 
 ### Programa para grabar y reproducir vídeos de los comandos que introduces
+
 ```shell
 sudo apt install asciinema
 ```
@@ -1004,6 +1058,7 @@ sudo apt install asciinema
 Comenzar grabación y guardarla en /tmp si no se desea subir al servidor.
 Ctrl+D o exit para finalizar grabación
 Ctrl+\ para pausar grabación. Para escribir la barra invertida usamos AltGr.
+
 ```shell
 # Comenzar grabación y guardarla en <file>
 asciinema rec <file>
@@ -1013,6 +1068,7 @@ asciinema rec -c "asciinema play -s 5 -i 2 original.cast" -t "Proyecto final" fi
 ```
 
 Parámetros:
+
 | Parámetro | Descripción
 |-|-|
 | --append | Insertar nueva grabación en un fichero existente
@@ -1040,6 +1096,7 @@ asciinema play demo.cast -s 2
 ```
 
 #### asciinema upload
+
 Subir grabación sin cuenta. La grabación se conserva 7 días, luego es archivada y no es accesible.
 ```shell
 asciinema upload <file>
@@ -1052,6 +1109,7 @@ Este UUID será el que vinculemos con nuestra cuenta que deberemos haber creado 
 Las próximas grabaciones se subirán automáticamente a nuestra cuenta si hemos vinculado el UUID, si no, se subirán de forma anónima y estarán disponibles durante 7 días.
 
 ### Cifrar fichero y descifrarlo
+
 ```shell
 # Cifrar
 gpg -c fichero
@@ -1060,6 +1118,7 @@ gpg fichero
 ```
 
 ### Añadir y eliminar a tu usuario del grupo sudo
+
 ```shell
 # Añadir
 sudo adduser user sudo
@@ -1069,6 +1128,7 @@ sudo deluser user sudo
 ```
 
 ### Deshabilitar cuenta del superusuario (root)
+
 ```shell
 sudo passwd -dl root
 ```
@@ -1076,6 +1136,7 @@ sudo passwd -dl root
 
 ### Convertir imagen a texto
 Para ello usaremos la tecnología OCR.
+
 ```shell
 # Instalar motor OCR de línea de comandos y el paquete de idiomas en castellano
 sudo apt install tesseract tesseract-langpack-spa
@@ -1086,6 +1147,7 @@ tesseract imagen.png salida -l spa+eng
 [TextSnatcher](https://github.com/RajSolai/TextSnatcher) es una interfaz gráfica muy fácil de usar de Tesseract.
 
 ### Comparar ficheros
+
 ```shell
 # El comando cmp se puede usar para verificar si dos archivos son idénticos
 cmp fich1 fich2
@@ -1096,6 +1158,7 @@ diff fich1 fich2
 ```
 
 ### Mostrar información de un comando
+
 ```shell
 # Usos del comando
 whatis comando
@@ -1106,6 +1169,7 @@ whereis comando
 ```
 
 ### Mostrar el nombre de tu usuario
+
 ```shell
 whoami
 who
@@ -1114,6 +1178,7 @@ who
 ### Eliminar por completo un fichero sin posibilidad de recuperación
 No se puede recuperar ya que el comando sobrescribe con información aleatoria antes de eliminarlo.
 **Atención:** no se recomienda usar este comando en un SSD.
+
 ```shell
 shred -u fichero.txt
 ```
@@ -1121,12 +1186,14 @@ shred -u fichero.txt
 ### Sistema operativo lento o se apaga solo, y al arrancar nos manda a BusyBox con el mensaje "initramfs"
 Este error ocurre cuando hay un error en algún fichero del sistema, bien por alguna actualización que ha salido mal, o bien porque se ha tocado sin querer algún fichero del sistema.
 Comprobamos el sistema de archivos en busca de errores, y los intentará reparar (hay que cambiar la X por la partición que requiera chequeo):
+
 ```shell
 fsck -f /dev/sdaX
 ```
 
 ### Eliminar software preinstalado en Linux Mint para ahorrar espacio y acelerar actualizaciones
 Los podremos reinstalar en cualquier momento.
+
 ```shell
 sudo apt purge libreoffice-* thunderbird rhythmbox hexchat transmission-common pix hypnotix warpinator
 rmdir ~/Warpinator
@@ -1134,6 +1201,7 @@ rmdir ~/Warpinator
 
 ### Personalizar variable PS1
 La variable PS1 se utiliza para especificar el prompt del shell. Esta se puede adaptar para que contenga información como el nombre de usuario, el nombre del servidor, la ruta actual, etc.
+
 ```shell
 vim .bashrc
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -1143,12 +1211,14 @@ En este ejemplo, usamos el formato que usa Linux Mint con el nombre del usuario 
 
 ### Eliminar credenciales de sudo almacenadas en caché
 Útil cuando necesitamos realizar una tarea simple como ejecutar un comando y luego desconectarse de los privilegios de superusuario.
+
 ```shell
 sudo -K
 ```
 
 ### Modificar listas de acceso para un fichero (permisos extendidos)
 El símbolo + en `-rw-r-xr--+` índica que ese fichero tiene permisos extendidos.
+
 ```shell
 # Otorgar permisos recursivos de ejecución al usuario QEMU en nuestro directorio de Descargas
 setfacl -R -m u:qemu:x ~/Descargas/
@@ -1157,12 +1227,14 @@ setfacl -b <file>
 ```
 
 ### Obtener listas de control de acceso a un fichero
+
 ```shell
 getfacl <file>
 ```
 
 
 ### Eliminar enlace simbólico
+
 ```shell
 unlink <file>
 ```
@@ -1261,7 +1333,6 @@ virsh vol-create-as <pool> <name> <capacity>
 # Listar volumenes de un grupo
 virsh vol-list <pool>
 
-
 # Listar todas las redes
 virsh net-list
 # Iniciar una red
@@ -1286,7 +1357,8 @@ virsh domblkstat <domain> <device>
 virsh domblkerror <domain>
 ```
 
-Para los siguientes comandos es necesario instalar libguestfs-tools
+Para los siguientes comandos es necesario instalar `libguestfs-tools`:
+
 ```shell
 # Listar ficheros
 virt-ls -l -d <domain> <file>
@@ -1306,6 +1378,7 @@ virt-log -d <domain> | less
 
 #### virt-clone
 Clonar dominio.
+
 ```shell
 # Clonar dominio (debe estar parado)
 virt-clone --original test --name test_clone --file /var/lib/libvirt/images/test_clone.qcow2 
@@ -1313,6 +1386,7 @@ virt-clone --original test --name test_clone --file /var/lib/libvirt/images/test
 
 #### virt-install
 Crear una nueva máquina virtual.
+
 ```shell
 # Listar todas las variantes de sistemas operativos que se pueden usar
 virt-install --os-variant list
@@ -1373,6 +1447,7 @@ De no especificar alguna opción durante la creación de la VM, coge el valor po
 
 #### qemu-img
 Manipular imágenes de disco. Las máquinas virtuales asociadas al disco deben estar apagadas.
+
 ```shell
 # Expandir un disco virtual a 50 GB
 qemu-img resize /path/to/kvm-harddisk-file.qcow2 +50G
@@ -1386,6 +1461,7 @@ qemu-img convert -f raw -O qcow2 imagen.img nombre_nuevo.qcow2 -p
 Tras seleccionar una ISO dentro de **virt-manager** durante la creación de una máquina virtual, aparece un error similar al siguiente: "El emulador podría no tener permisos de búsqueda para la ruta. ¿Desea corregir esto ahora?".
 La opción "Sí" funciona a la perfección, pero aprenderemos a solucionarlo por nuestra cuenta creando una ACL para el usuario correspondiente que necesita acceso a nuestro directorio.
 Para ello, deberemos ejecutar el siguiente comando en cada directorio a partir del $HOME hasta llegar a la ubicación donde se almacena la ISO, en este caso en Descargas:
+
 ```shell
 setfacl -m u:<user>:x $HOME
 setfacl -m u:<user>:x $HOME/Descargas
@@ -1398,6 +1474,7 @@ Security-Enhanced Linux (SELinux) es una arquitectura de seguridad para los sist
 
 #### Cambiar y visualizar contexto de seguridad para un fichero
 En este ejemplo, cambiamos el contexto de seguridad para autorizar el acceso a los contenedores (virtualización) al fichero especificado recursivamente.
+
 ```shell
 # Activar
 chcon -R -t container_file_t /ruta
@@ -1463,7 +1540,7 @@ Podemos enviar tantas URL como queramos.
 
 ### El fichero /var/log/syslog
 Es uno de los ficheros más importantes de registro en el sistema. Está diseñado para almacenar los mensajes de errores y advertencias generados por los procesos del sistema. Estos mensajes pueden ser enviados por el kernel, los procesos de sistema o aplicaciones de usuario, y contienen información sobre cualquier cosa que pueda estar fallando en el sistema, como problemas de hardware, errores de software o problemas de red. Es una herramienta valiosa para los administradores de sistemas para diagnosticar problemas.
-Para visualizarlo en tiempo real usamos el comando `tail -f /var/log/syslog`.   
+Para visualizarlo en tiempo real usamos el comando `tail -f /var/log/syslog`.
 
 ## Productividad
 
@@ -1543,6 +1620,7 @@ Para visualizarlo en tiempo real usamos el comando `tail -f /var/log/syslog`.
 
 ### Alias básicos
 Un alias es un nombre (generalmente corto) que el shell traduce a otro nombre o comando (generalmente más largo).
+
 ```shell
 # Actualiza los repositorios e instala las actualizaciones de todos los paquetes
 alias actualizar="sudo apt update && sudo apt upgrade"
@@ -1587,6 +1665,7 @@ sudo apt install gufw
 ```
 
 Perfil `Casa`:
+
 - Entrante: Denegar
 - Saliente: Permitir
 
@@ -1646,6 +1725,7 @@ reboot
 ```
 
 Ejemplo de instalación de un programa usando Flatpak:
+
 ```shell
 # FlatSeal es un programa para administrar los permisos usados por aplicaciones Flatpak
 flatpak install flatseal
@@ -1712,6 +1792,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 **Importante:** Asegurarse antes de formatear que no perderemos ningún fichero y que no olvidaremos ninguna contraseña guardada en el navegador u otro lugar que desaparecerá. Realizar una copia de seguridad antes del procedimiento de borrado. Una vez hecha esa copia mirar cada directorio (de la copia) comprobando que está todo lo necesario para continuar con el proceso sin luego lamentaciones ni enfados.
 
 ### ¿Qué no debo copiar en mis copias de seguridad?
+
 - Descargas/ (pesan muchos gigas, sobre todo las películas)
 - Escritorio/ (pues solo hay accesos directos a aplicaciones)
 - Música/ (usar servicios de streaming o copiar solo una vez en un HDD externo)
@@ -1723,6 +1804,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 **Nota:** Si usas Linux Mint, el programa "Herramienta de copia de seguridad" te ahorrará mucho tiempo.
 
 ### Elementos que no se te deben olvidar exportar de vez en cuando
+
 - Marcadores del navegador web
 - Exclusiones de Privacy Badger
 - Dominios bloqueados/permitidos de NoScript
@@ -1731,6 +1813,7 @@ Lista de acciones a tener en cuenta antes de formatear tu sistema para instalar 
 
 
 ### Enlaces útiles relacionados con GNU/Linux
+
 - Visualizar la última versión de los paquetes que usan las distribuciones: https://repology.org/
 - Revisar las distribuciones más usadas: https://distrowatch.com/
 - Nano cheatsheet https://www.nano-editor.org/dist/latest/cheatsheet.html
