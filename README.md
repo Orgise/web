@@ -6,3 +6,5 @@ In this project I gather some geek notes that I find interesting to learn, some 
 On the Internet we are shown a lot of advertisements for a website that does not need any. That is why I bring you multiple programs that will be useful to you, as well as some video games and awesome websites that will surprise your friends without any ads or trackers involved.
 
 You can review the source code of each program, as well as request new pull requests.
+
+The project has been migrated to [GitLab](https://gitlab.com/Dalde/web).
