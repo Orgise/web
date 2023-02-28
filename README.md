@@ -7,4 +7,4 @@ On the Internet we are shown a lot of advertisements for a website that does not
 
 You can review the source code of each program, as well as request new pull requests.
 
-The project has been migrated to [Codeberg](https://codeberg.org/Dalde/pages).
+The project has been migrated to [Gitlab](https://gitlab.com/Dalde/web).
